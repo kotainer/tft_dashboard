@@ -1,159 +1,189 @@
-  <header>
-    <div class="logo">
-      ThreeFold Grid Explorer
-    </div>
-    <div class="search-line">
-      <input type="text" placeholder="Search for block/transaction">
-    </div>
-  </header>
-  <div class="container">
-    <div class="flex-between">
-      <div class="flex-column flex-between full-width">
-        <div class="flex full-width">
-          <div class="card">
-            <div class="flex">
-              <div>
-                <div class="card-title">
-                  Blocks
-                </div>
-                <div class="big-num">
-                  #10001
-                </div>
-                <div class="flex align-center">
-                  <div class="card-subtitle">
-                    Last Block
-                  </div>
-                  <div class="small-layer"></div>
-                  <div class="chip green">
-                    15s ago
-                  </div>
-                </div>
+<header>
+  <div class="logo">
+    ThreeFold Grid Explorer
+  </div>
+  <div class="search-line">
+    <input type="text" placeholder="Search for block/transaction">
+  </div>
+</header>
+<div class="container">
+  <div class="flex-between">
+    <div class="flex-column flex-between full-width">
+      <div class="flex full-width">
+        <div class="card">
+          <div class="flex">
+            <div>
+              <div class="card-title">
+                Blocks
               </div>
-              <div class="big-layer"></div>
-              <div>
-                <div class="card-title">
-                  Transactions
-                </div>
-                <div class="big-num">
-                  115
-                </div>
+              <div class="big-num">
+                #10001
+              </div>
+              <div class="flex align-center">
                 <div class="card-subtitle">
-                  24hr txn count
+                  Last Block
+                </div>
+                <div class="small-layer"></div>
+                <div class="chip green">
+                  15s ago
                 </div>
               </div>
             </div>
-          </div>
-          <div class="layer"></div>
-          <div class="card">
-            <div class="card-title">
-              Total Units
-            </div>
-            <div class="flex">
-              <div>
-                <div class="big-num">
-                  115
-                </div>
-                <div class="card-subtitle">
-                  Compute Units
-                </div>
+            <div class="big-layer"></div>
+            <div>
+              <div class="card-title">
+                Transactions
               </div>
-              <div class="layer"></div>
-              <div>
-                <div class="big-num">
-                  115
-                </div>
-                <div class="card-subtitle">
-                  Storage Units
-                </div>
+              <div class="big-num">
+                115
               </div>
-            </div>
-          </div>
-          <div class="layer"></div>
-          <div class="card">
-            <div class="card-title">
-              AVG Unit Price
-            </div>
-            <div class="flex">
-              <div>
-                <div class="big-num pink-text">
-                  $110
-                </div>
-                <div class="card-subtitle">
-                  Compute Unit
-                </div>
-              </div>
-              <div class="layer"></div>
-              <div>
-                <div class="big-num peach-text">
-                  $800
-                </div>
-                <div class="card-subtitle">
-                  Storage Unit
-                </div>
+              <div class="card-subtitle">
+                24hr txn count
               </div>
             </div>
           </div>
         </div>
+        <div class="layer"></div>
         <div class="card">
-          <div class="flex-center bold middle-num">
-            1 TFT = 0.01 USD / 0.088 EUR / 0.0003 BTC
+          <div class="card-title">
+            Total Units
+          </div>
+          <div class="flex">
+            <div>
+              <div class="big-num">
+                115
+              </div>
+              <div class="card-subtitle">
+                Compute Units
+              </div>
+            </div>
+            <div class="layer"></div>
+            <div>
+              <div class="big-num">
+                115
+              </div>
+              <div class="card-subtitle">
+                Storage Units
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="layer"></div>
+        <div class="card">
+          <div class="card-title">
+            AVG Unit Price
+          </div>
+          <div class="flex">
+            <div>
+              <div class="big-num pink-text">
+                $110
+              </div>
+              <div class="card-subtitle">
+                Compute Unit
+              </div>
+            </div>
+            <div class="layer"></div>
+            <div>
+              <div class="big-num peach-text">
+                $800
+              </div>
+              <div class="card-subtitle">
+                Storage Unit
+              </div>
+            </div>
           </div>
         </div>
       </div>
-     
-      <div class="layer"></div>
-      <div class="card auto">
-        <div class="card-title">
-          Unit Price History
+      <div class="card">
+        <div class="flex-center bold middle-num">
+          1 TFT = 0.01 USD / 0.088 EUR / 0.0003 BTC
         </div>
-        <ngx-charts-line-chart [view]="view" [scheme]="colorScheme" [results]="unitsData" [gradient]="gradient" [xAxis]="showXAxis"
-          [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel"
+      </div>
+    </div>
+    
+    <div class="layer"></div>
+    <div class="card auto">
+      <div class="card-title">
+        Unit Price (last 6 months)
+      </div>
+      <ngx-charts-line-chart [view]="view" [scheme]="colorScheme" [results]="unitsData" [gradient]="gradient" [xAxis]="showXAxis"
+        [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel"
+        [yAxisLabel]="yAxisLabel" [autoScale]="true" [showGridLines]="true" [curve]="curve" [legendTitle]="''">
+      </ngx-charts-line-chart>
+    </div>
+  </div>
+  <div class="layer"></div>
+  <div class="flex-between">
+    <div class="card auto">
+      <div class="card-title">
+        Token Price (last 6 months)
+      </div>
+      <div>
+        <ngx-charts-line-chart [view]="view" [scheme]="colorSchemePrice" [results]="priceData" [gradient]="gradient" [xAxis]="showXAxis"
+          [yAxis]="showYAxis" [legend]="false" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel"
           [yAxisLabel]="yAxisLabel" [autoScale]="true" [showGridLines]="true" [curve]="curve" [legendTitle]="''">
         </ngx-charts-line-chart>
       </div>
+      <div class="chart-currencies">
+        <div class="tip active">USD</div>
+        <div class="tip">USD</div>
+        <div class="tip">USD</div>
+      </div>
     </div>
     <div class="layer"></div>
-    <div class="flex-between">
-      <div class="card auto">
+    <div class="card">
+      <div class="card-title">
+        Registered Nodes
+      </div>
+      <div style="height: 170px" leaflet [leafletOptions]="options" [leafletLayers]="layers">
+      </div>
+    </div>
+    <div class="layer"></div>
+    <div class="card">
+      <div class="card-title">
+        Heat Map of Nodes and Cloud Units
+      </div>
+      <!-- <div style="height: 170px" leaflet [leafletOptions]="options" [leafletLayers]="layers"> -->
+      <!-- </div> -->
+    </div>
+  </div>
+  <div class="layer"></div>
+  <div class="flex-between">
+    <div class="card auto">
+      <div class="card-title">
+        Recent blocks
+      </div>
+      <div class="row">
+        <div class="row-icon">
+          <img src="assets/images/icons8-brick-64.png" alt="">
+        </div>
         <div>
-          <div class="card-title">
-            Token Price History
+          <div class="row-title">
+            <div class="flex">
+              <div>
+                Block #10001
+              </div>
+              <div class="chip green">15s</div>
+            </div>
           </div>
-          <ngx-charts-line-chart [view]="view" [scheme]="colorSchemePrice" [results]="priceData" [gradient]="gradient" [xAxis]="showXAxis"
-            [yAxis]="showYAxis" [legend]="false" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel"
-            [yAxisLabel]="yAxisLabel" [autoScale]="true" [showGridLines]="true" [curve]="curve" [legendTitle]="''">
-          </ngx-charts-line-chart>
+          <div class="row-info big-data-wrapper">
+            Mined By 0xb75d1e62b10e4ba91315c4aa3facc536f8a922f5
+          </div>
+          <div class="row-info">
+            <a class="bold">68 txns</a> in 8 secs
+          </div>
         </div>
-      </div>
-      <div class="layer"></div>
-      <div class="card">
-        <div class="card-title">
-          Registered Nodes
-        </div>
-        <div style="height: 170px" leaflet [leafletOptions]="options" [leafletLayers]="layers">
-        </div>
-      </div>
-      <div class="layer"></div>
-      <div class="card">
-        <div class="card-title">
-          Registered Nodes
-        </div>
-        <div style="height: 170px" leaflet [leafletOptions]="options" [leafletLayers]="layers">
-        </div>
+        
       </div>
     </div>
     <div class="layer"></div>
-    <div class="flex-between">
-      <div class="card">
-        <div class="card-title">
-          Recent blocks
-        </div>
-      </div>
-      <div class="layer"></div>
-      <div class="card">
-        <div class="card-title">
-          Recent transactons
-        </div>
+    <div class="card">
+      <div class="card-title">
+        Recent transactons
       </div>
     </div>
   </div>
+</div>
+<footer>
+  2018 © All rights reserved
+</footer>

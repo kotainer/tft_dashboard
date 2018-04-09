@@ -2,21 +2,12 @@ body {
   color: white;
   width: 100%;
   min-height: 100vh;
-  padding: 1%;
   background-image: linear-gradient(to right bottom,
    #2ea7af, #334b97, #29337f, #520d43);
   /* background-image: -webkit-gradient(linear, right bottom, left top, from(#6d327c), color-stop(#485DA6), color-stop(#00a1ba), color-stop(#00BF98), to(#36C486));
   background-image: -webkit-linear-gradient(right bottom, #6d327c, #485DA6, #00a1ba, #00BF98, #36C486);
   background-image: -o-linear-gradient(right bottom, #6d327c, #485DA6, #00a1ba, #00BF98, #36C486);
   background-image: linear-gradient(to left top, #6d327c, #485DA6, #00a1ba, #00BF98, #36C486); */
-}
-.overlay{
-  height: 100%;
-  width: 100%;
-  left: 0;
-  top: 0;
-  position: absolute;
-  /* background: rgba(0, 0, 0, 0.45); */
 }
 .container{
   margin-left: auto;
@@ -29,6 +20,7 @@ body {
   border-radius: 8px;
   box-sizing: border-box;
   width: 100%;
+  position: relative;
 }
 .card.small{
   padding: 10px;
@@ -72,6 +64,9 @@ body {
 .peach-text{
   color: #ffc8a7;
 }
+.blue-text{
+  color: #25dfec;
+}
 .chip{
   padding: 3px 5px;
   border-radius: 18px;
@@ -79,6 +74,8 @@ body {
   font-weight: 500;
   letter-spacing: 0;
   flex-shrink: 0;
+  text-align: center;
+  min-width: 30px;
 }
 .chip.red{
   color: #fd5266;
@@ -102,6 +99,9 @@ ngx-charts-chart ngx-charts-legend.chart-legend ul{
   margin-top: 10px;
   margin-left: 10px;
   display: flex;
+}
+ngx-charts-chart .line-series .line{
+  stroke-width: 2.1px;
 }
 .leaflet-control-container{
   display: none;
@@ -133,4 +133,33 @@ header .search-line input{
   position: relative;
   transition: transform 0.3s, box-shadow 0.3s;
   box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.1);
+}
+.tip{
+  padding: 3px 7px;
+  border-radius: 18px;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0;
+  flex-shrink: 0;
+  color: #8f7beb;
+  border: 1px solid #8f7beb;
+  margin-right: 7px;
+  cursor: pointer;
+  transition: all 0.3s ease; 
+}
+.tip:hover,
+.tip.active{
+  background: #8f7beb;
+  color: white
+}
+.big-data-wrapper{
+
+}
+/* footer */
+footer {
+  font-weight: 300;
+  background: #121413da;
+  padding: 15px;
+  color: white;
+  text-align: center;
 }
