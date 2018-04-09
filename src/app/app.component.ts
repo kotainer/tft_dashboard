@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import * as d3 from 'd3-shape';
+import * as L from 'leaflet';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  view: any[] = [430, 130];
+  view: any[] = [420, 120];
   unitsData = [
     {
       'name': 'Unit price',
@@ -115,8 +116,32 @@ export class AppComponent {
   colorSchemePrice = {
     domain: ['#00f7da']
   };
-
   // line, area
   autoScale = true;
   public curve = d3.curveNatural;
+
+
+
+  options = {
+    layers: [
+      L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_nolabels/{z}/{x}/{y}.png',
+      {
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+      subdomains: 'abcd',
+      maxZoom: 5
+    })
+    ],
+    zoom: 1.1,
+    center: L.latLng(46.879966, -121.726909)
+  };
+  layers = [
+    L.circle([46.95, -122], { radius: 300000, color: '#8f7beb'  }),
+    L.circle([46.95, -112], { radius: 300000, color: '#8f7beb' }),
+    L.circle([46.95, -102], { radius: 300000, color: '#8f7beb' }),
+    L.circle([48.95, -122], { radius: 300000, color: '#8f7beb' }),
+    L.circle([58.95, -182], { radius: 300000, color: '#8f7beb' }),
+    L.circle([66.95, -122], { radius: 300000, color: '#8f7beb' }),
+    L.circle([66.95, -222], { radius: 300000, color: '#8f7beb' }),
+    L.circle([36.95, -352], { radius: 300000, color: '#8f7beb' })
+  ];
 }

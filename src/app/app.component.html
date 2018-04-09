@@ -1,4 +1,3 @@
-<div class="overlay">
   <header>
     <div class="logo">
       ThreeFold Grid Explorer
@@ -30,7 +29,7 @@
                   </div>
                 </div>
               </div>
-              <div class="huge-layer"></div>
+              <div class="big-layer"></div>
               <div>
                 <div class="card-title">
                   Transactions
@@ -45,7 +44,7 @@
             </div>
           </div>
           <div class="layer"></div>
-          <div class="card auto">
+          <div class="card">
             <div class="card-title">
               Total Units
             </div>
@@ -97,7 +96,7 @@
         </div>
         <div class="card">
           <div class="flex-center bold middle-num">
-            1TFT = 0.01 USD / 0.088 EUR / 0.001 BTC
+            1 TFT = 0.01 USD / 0.088 EUR / 0.0003 BTC
           </div>
         </div>
       </div>
@@ -126,6 +125,22 @@
           </ngx-charts-line-chart>
         </div>
       </div>
+      <div class="layer"></div>
+      <div class="card">
+        <div class="card-title">
+          Registered Nodes
+        </div>
+        <div style="height: 170px" leaflet [leafletOptions]="options" [leafletLayers]="layers">
+        </div>
+      </div>
+      <div class="layer"></div>
+      <div class="card">
+        <div class="card-title">
+          Registered Nodes
+        </div>
+        <div style="height: 170px" leaflet [leafletOptions]="options" [leafletLayers]="layers">
+        </div>
+      </div>
     </div>
     <div class="layer"></div>
     <div class="flex-between">
@@ -142,4 +157,3 @@
       </div>
     </div>
   </div>
-</div>

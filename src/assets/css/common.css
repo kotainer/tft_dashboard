@@ -103,6 +103,9 @@ ngx-charts-chart ngx-charts-legend.chart-legend ul{
   margin-left: 10px;
   display: flex;
 }
+.leaflet-control-container{
+  display: none;
+}
 header {
   background: #121413da;
   color: white;
