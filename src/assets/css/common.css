@@ -1,0 +1,133 @@
+body {
+  color: white;
+  width: 100%;
+  min-height: 100vh;
+  padding: 1%;
+  background-image: linear-gradient(to right bottom,
+   #2ea7af, #334b97, #29337f, #520d43);
+  /* background-image: -webkit-gradient(linear, right bottom, left top, from(#6d327c), color-stop(#485DA6), color-stop(#00a1ba), color-stop(#00BF98), to(#36C486));
+  background-image: -webkit-linear-gradient(right bottom, #6d327c, #485DA6, #00a1ba, #00BF98, #36C486);
+  background-image: -o-linear-gradient(right bottom, #6d327c, #485DA6, #00a1ba, #00BF98, #36C486);
+  background-image: linear-gradient(to left top, #6d327c, #485DA6, #00a1ba, #00BF98, #36C486); */
+}
+.overlay{
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  position: absolute;
+  /* background: rgba(0, 0, 0, 0.45); */
+}
+.container{
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1%;
+}
+.card{
+  padding: 20px 15px;
+  background: rgba(0, 0, 0, 0.37);
+  border-radius: 8px;
+  box-sizing: border-box;
+  width: 100%;
+}
+.card.small{
+  padding: 10px;
+}
+.card.clear{
+  padding: 0;
+}
+.card.auto{
+  width: auto;
+}
+.card.chart{
+  padding-bottom: 0;
+  padding-right: 0;
+  width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card-title{
+  font-weight: 400;
+  font-size: 16px;
+  padding-bottom: 10px;
+  color: #cfdef8;
+}
+.card-subtitle{
+  font-weight: 500;
+  color: #cfdef8;
+}
+.big-num{
+  font-size: 37px;
+}
+.middle-num{
+  font-size: 25px;
+}
+.bold{
+  font-weight: 700;
+}
+.pink-text{
+  color: #f993ab;
+}
+.peach-text{
+  color: #ffc8a7;
+}
+.chip{
+  padding: 3px 5px;
+  border-radius: 18px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0;
+  flex-shrink: 0;
+}
+.chip.red{
+  color: #fd5266;
+  background: rgba(253, 82, 102, 0.18);
+}
+.chip.green{
+  color: #17f9be;
+  background: rgba(23, 249, 189, 0.18);
+}
+ngx-charts-chart .tick text{
+  fill: white
+}
+ngx-charts-chart .ngx-charts .gridline-path{
+  stroke: #fafafa47;
+}
+ngx-charts-chart ngx-charts-legend.chart-legend,
+ngx-charts-chart ngx-charts-legend.chart-legend>div{
+  width: 100% !important;
+}
+ngx-charts-chart ngx-charts-legend.chart-legend ul{
+  margin-top: 10px;
+  margin-left: 10px;
+  display: flex;
+}
+header {
+  background: #121413da;
+  color: white;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 4px 0 rgba(132,140,168,.28);
+}
+header .logo{
+  font-weight: 100;
+  font-size: 23px;
+  text-transform: uppercase;
+}
+header .search-line input{
+  font-size: 14px;
+  outline: none;
+  border: none;
+  background: #fafafa;
+  padding: 7px 15px;
+  border-radius: 5px;
+  width: 300px;
+  text-align: center;
+  font-weight: 300;
+  position: relative;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.1);
+}

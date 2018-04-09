@@ -1,0 +1,9 @@
+/* footer */
+footer {
+  padding: 40px 10px;
+  color: white;
+}
+footer .footer-info{
+  text-transform: uppercase;
+  font-size: 13px;
+}
