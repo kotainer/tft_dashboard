@@ -138,9 +138,9 @@ export class AppComponent {
     L.circle([46.95, -112], { radius: 300000, color: '#25dfec' }),
     L.circle([46.95, -102], { radius: 300000, color: '#25dfec' }),
     L.circle([48.95, -122], { radius: 300000, color: '#25dfec' }),
-    L.circle([58.95, -182], { radius: 300000, color: '#25dfec' }),
+    L.circle([58.95, -182], { radius: 200000, color: '#25dfec' }),
     L.circle([66.95, -122], { radius: 300000, color: '#25dfec' }),
-    L.circle([66.95, -222], { radius: 300000, color: '#25dfec' }),
-    L.circle([36.95, -352], { radius: 300000, color: '#25dfec' })
+    L.circle([66.95, -222], { radius: 200000, color: '#25dfec' }),
+    L.circle([36.95, -352], { radius: 200000, color: '#25dfec' })
   ];
 }

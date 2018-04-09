@@ -54,7 +54,6 @@ body {
   position: relative;
   box-sizing: border-box;
   letter-spacing: 0.1px;
-  overflow-x: hidden !important;
   -webkit-user-drag: none;
   text-rendering: optimizeLegibility !important;
   -webkit-font-smoothing: antialiased;
@@ -124,7 +123,7 @@ table{
   box-sizing:  border-box;
 }
 .half-width{
-  width: 50%;
+  width: 50% !important;
 }
 .small-layer{
   min-width: 7px;

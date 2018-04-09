@@ -63,6 +63,7 @@
 .leaflet-container.leaflet-touch-drag.leaflet-touch-zoom {
 	-ms-touch-action: none;
 	touch-action: none;
+	background: black;
 }
 .leaflet-container {
 	-webkit-tap-highlight-color: transparent;
