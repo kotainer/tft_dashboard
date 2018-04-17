@@ -7,7 +7,7 @@ import * as L from 'leaflet';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  view: any[] = [420, 120];
+  view: any[] = [450, 120];
   unitsData = [
     {
       'name': 'Unit price',

@@ -4,21 +4,38 @@ body {
   min-height: 100vh;
   min-width: 1200px;
   overflow-x: auto;
-  background-image: linear-gradient(to right bottom,
-   #2ea7af, #334b97, #29337f, #520d43);
+  /* background-image: linear-gradient(to right bottom,
+   #2ea7af, #334b97, #29337f, #520d43); */
   /* background-image: -webkit-gradient(linear, right bottom, left top, from(#6d327c), color-stop(#485DA6), color-stop(#00a1ba), color-stop(#00BF98), to(#36C486));
   background-image: -webkit-linear-gradient(right bottom, #6d327c, #485DA6, #00a1ba, #00BF98, #36C486);
   background-image: -o-linear-gradient(right bottom, #6d327c, #485DA6, #00a1ba, #00BF98, #36C486);
   background-image: linear-gradient(to left top, #6d327c, #485DA6, #00a1ba, #00BF98, #36C486); */
+  /* background-image: -webkit-gradient(linear, left bottom, right top, from(#6d327c), color-stop(#485DA6), color-stop(#00a1ba), color-stop(#00BF98), to(#36C486));
+  background-image: -webkit-linear-gradient(left bottom, #6d327c, #485DA6, #00a1ba, #00BF98, #36C486);
+  background-image: -o-linear-gradient(left bottom, #6d327c, #485DA6, #00a1ba, #00BF98, #36C486); */
+  background-image: linear-gradient(to left top, #b40cd2, #6675d2 55%, #45a0cb, #13e7c3 );
+  -webkit-user-drag: none;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased;
+}
+.loader{
+  font-family: Arial, Helvetica, sans-serif;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 16px;
 }
 .container{
   margin-left: auto;
   margin-right: auto;
-  padding: 1%;
+  padding: 0.7%;
 }
 .card{
-  padding: 20px 15px;
-  background: rgba(0, 0, 0, 0.37);
+  padding: 15px 10px;
+  background: rgba(0, 0, 0, 0.55);
   border-radius: 8px;
   box-sizing: border-box;
   width: 100%;
@@ -44,15 +61,17 @@ body {
 .card-title{
   font-weight: 400;
   font-size: 16px;
-  padding-bottom: 10px;
+  padding-bottom: 7px;
   color: #cfdef8;
 }
 .card-subtitle{
-  font-weight: 500;
+  font-size: 13px;
+  font-weight: 600;
   color: #cfdef8;
+  flex-shrink: 0;
 }
 .big-num{
-  font-size: 37px;
+  font-size: 35px;
 }
 .middle-num{
   font-size: 25px;
@@ -76,7 +95,7 @@ body {
   padding: 3px 5px;
   border-radius: 18px;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0;
   flex-shrink: 0;
   text-align: center;
@@ -108,11 +127,11 @@ ngx-charts-chart ngx-charts-legend.chart-legend ul{
 ngx-charts-chart .line-series .line{
   stroke-width: 2.1px;
 }
-.leaflet-control-container{
+.leaflet-control-container a{
   display: none;
 }
 header {
-  background: #121413da;
+  background: #121413ea;
   color: white;
   padding: 10px;
   display: flex;
@@ -188,10 +207,10 @@ header .search-line input{
 .row .row-title{
   font-weight: 600;
   font-size: 19px;
-  margin-bottom: 7px;
 }
 .row .row-info{
-  margin-bottom: 3px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 /* footer */
 footer {

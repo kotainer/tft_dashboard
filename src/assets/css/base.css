@@ -48,12 +48,12 @@ body {
   font-size: 14px;
   color: #0b234e;
   line-height: 1.3;
-  font-family: 'Roboto';
+  font-family: Arial, Helvetica, sans-serif;
   font-weight: 400;
   margin: 0;
   position: relative;
   box-sizing: border-box;
-  letter-spacing: 0.1px;
+  letter-spacing: 0.15px;
   -webkit-user-drag: none;
   text-rendering: optimizeLegibility !important;
   -webkit-font-smoothing: antialiased;
@@ -102,6 +102,9 @@ table{
   display: flex;
   flex-direction: column;
 }
+.flex-no-shrink{
+  flex-shrink: 0;
+}
 .align-center{
   -webkit-align-items: center;
   align-items: center;
@@ -126,18 +129,18 @@ table{
   width: 50% !important;
 }
 .small-layer{
-  min-width: 7px;
-  min-height: 7px;
+  min-width: 0.5vw;
+  min-height: 0.5vw;
 }
 .layer{
-  min-width: 15px;
-  min-height: 15px;
+  min-width: 1vw;
+  min-height: 1vw;
 }
 .big-layer {
-  min-width: 30px;
-  min-height: 30px;
+  min-width: 1.5vw;
+  min-height: 1.5vw;
 }
 .huge-layer{
-  min-height: 45px;
-  min-width: 45px;
+  min-height: 2vw;
+  min-width: 2vw;
 }

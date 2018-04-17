@@ -12,7 +12,7 @@
       <div class="flex full-width">
         <div class="card">
           <div class="flex">
-            <div>
+            <div class="flex-no-shrink">
               <div class="card-title">
                 Blocks
               </div>
@@ -25,12 +25,12 @@
                 </div>
                 <div class="small-layer"></div>
                 <div class="chip green">
-                  15s ago
+                  15s
                 </div>
               </div>
             </div>
-            <div class="big-layer"></div>
-            <div>
+            <div class="layer"></div>
+            <div class="flex-no-shrink">
               <div class="card-title">
                 Transactions
               </div>
@@ -43,13 +43,52 @@
             </div>
           </div>
         </div>
-        <div class="layer"></div>
+        <div class="small-layer"></div>
         <div class="card">
           <div class="card-title">
-            Total Units
+            Network
+          </div>
+          <div class="flex-no-shrink">
+            <div class="big-num">
+              ${{ '115000' | number: '1.2-4'}}
+            </div>
+            <div class="card-subtitle">
+              Network price
+            </div>
+          </div>
+        </div>  
+        <div class="small-layer"></div>
+        <div class="card">
+          <div class="card-title">
+            Total
           </div>
           <div class="flex">
-            <div>
+            <div class="flex-no-shrink">
+              <div class="big-num">
+                14
+              </div>
+              <div class="card-subtitle">
+                PB of storage
+              </div>
+            </div>
+            <div class="layer"></div>
+            <div class="flex-no-shrink">
+              <div class="big-num">
+                115
+              </div>
+              <div class="card-subtitle">
+                Processor Cores
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="small-layer"></div>
+        <div class="card">
+          <div class="card-title">
+            Units
+          </div>
+          <div class="flex">
+            <div class="flex-no-shrink">
               <div class="big-num">
                 115
               </div>
@@ -58,9 +97,9 @@
               </div>
             </div>
             <div class="layer"></div>
-            <div>
+            <div class="flex-no-shrink">
               <div class="big-num">
-                115
+                6052
               </div>
               <div class="card-subtitle">
                 Storage Units
@@ -68,13 +107,31 @@
             </div>
           </div>
         </div>
-        <div class="layer"></div>
+      </div>
+      <div class="small-layer"></div>
+      <div class="flex full-width">
         <div class="card">
+          <div class="flex-center align-center bold">
+            <span class="middle-num">1 TFT = 0.01</span>
+            &nbsp;
+            <span class="small-num">USD</span>
+            &nbsp;
+            <span class="middle-num">/ 0.088</span>
+            &nbsp;
+            <span class="small-num">EUR</span>
+            &nbsp;
+            <span class="middle-num">/ 0.0003</span>
+            &nbsp;
+            <span class="small-num">BTC</span>
+          </div>
+        </div>
+        <div class="small-layer"></div>
+        <div class="card third-width">
           <div class="card-title">
             AVG Unit Price
           </div>
           <div class="flex">
-            <div>
+            <div class="flex-no-shrink">
               <div class="big-num pink-text">
                 $110
               </div>
@@ -83,7 +140,7 @@
               </div>
             </div>
             <div class="layer"></div>
-            <div>
+            <div class="flex-no-shrink">
               <div class="big-num peach-text">
                 $800
               </div>
@@ -94,24 +151,9 @@
           </div>
         </div>
       </div>
-      <div class="card">
-        <div class="flex-center align-center bold">
-          <span class="middle-num">1 TFT = 0.01</span>
-          &nbsp;
-          <span class="small-num">USD</span>
-          &nbsp;
-          <span class="middle-num">/ 0.088</span>
-           &nbsp;
-          <span class="small-num">EUR</span>
-           &nbsp;
-          <span class="middle-num">/ 0.0003</span>
-          &nbsp;
-          <span class="small-num">BTC</span>
-        </div>
-      </div>
     </div>
     
-    <div class="layer"></div>
+    <div class="small-layer"></div>
     <div class="card auto">
       <div class="card-title">
         Unit Price (last 6 months)
@@ -122,7 +164,7 @@
       </ngx-charts-line-chart>
     </div>
   </div>
-  <div class="layer"></div>
+  <div class="small-layer"></div>
   <div class="flex-between">
     <div class="card auto">
       <div class="card-title">
@@ -140,7 +182,7 @@
         <div class="tip">BTC</div>
       </div>
     </div>
-    <div class="layer"></div>
+    <div class="small-layer"></div>
     <div class="card">
       <div class="card-title">
         Registered Nodes
@@ -148,7 +190,7 @@
       <div style="height: 170px" leaflet [leafletOptions]="options" [leafletLayers]="layers">
       </div>
     </div>
-    <div class="layer"></div>
+    <div class="small-layer"></div>
     <div class="card">
       <div class="card-title">
         Heat Map of Nodes and Cloud Units
@@ -157,7 +199,7 @@
       <!-- </div> -->
     </div>
   </div>
-  <div class="layer"></div>
+  <div class="small-layer"></div>
   <div class="flex-between">
     <div class="card auto card-blocks">
       <div class="card-title">
@@ -240,7 +282,7 @@
         </div>
       </div>
     </div>
-    <div class="layer"></div>
+    <div class="small-layer"></div>
     <div class="card">
       <div class="card-title">
         Recent transactons
