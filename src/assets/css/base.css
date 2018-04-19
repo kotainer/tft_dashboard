@@ -128,6 +128,9 @@ table{
   width: 100%;
   box-sizing:  border-box;
 }
+.full-height{
+  height: 100%;
+}
 .half-width{
   width: 50% !important;
 }
