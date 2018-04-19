@@ -4,6 +4,11 @@
   bottom: 20px;
   left: 25px;
 }
-.card-blocks{
+.left-col{
+  min-width: 64.5%;
+  width: 64.5%;
+}
+.right-col{
   min-width: 35%;
+  width: 35%;
 }

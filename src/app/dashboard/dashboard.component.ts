@@ -12,7 +12,7 @@ import HeatmapOverlay = require('leaflet-heatmap/leaflet-heatmap');
 export class DashboardComponent implements OnInit {
 
   // Charts
-  public view: any[] = [450, 120];
+  public view: any[] = [400, 135];
   public unitsData = [
     {
       'name': 'Unit price',

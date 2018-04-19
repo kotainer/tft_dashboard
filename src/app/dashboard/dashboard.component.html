@@ -1,40 +1,39 @@
 <app-header></app-header>
 <div class="container">
   <div class="flex-between">
-    <div class="flex-column flex-between full-width">
-      <div class="flex full-width">
-        <div class="card">
-          <div class="card-title">
-            Blocks
-          </div>
-          <div class="flex">
-            <div>
-              <div class="big-num">
-                #10001
+    <div class="left-col">
+      <div class="card">
+        <div class="card-title">
+          Blocks
+        </div>
+        <div class="flex">
+          <div>
+            <div class="big-num">
+              #10001
+            </div>
+            <div class="flex align-center">
+              <div class="card-subtitle">
+                Last Block
               </div>
-              <div class="flex align-center">
-                <div class="card-subtitle">
-                  Last Block
-                </div>
-                <div class="small-layer"></div>
-                <div class="chip green">
-                  15s
-                </div>
+              <div class="small-layer"></div>
+              <div class="chip green">
+                15s
               </div>
             </div>
-            <div class="flex-no-shrink">
-              <div class="big-num ">
-                35 849 BS
-              </div>
-              <div class="card-subtitle">
-                Difficulty
-              </div>
+          </div>
+          <div class="flex-no-shrink">
+            <div class="big-num ">
+              35 849 BS
+            </div>
+            <div class="card-subtitle">
+              Difficulty
             </div>
           </div>
         </div>
-        <div class="small-layer"></div>
-
-        <div class="card auto">
+      </div>
+      <div class="small-layer"></div>
+      <div class="flex flex-wrap">
+        <div class="card auto flex-grow">
           <div class="card-title">
             Units
           </div>
@@ -59,7 +58,7 @@
           </div>
         </div>
         <div class="small-layer"></div>
-        <div class="card auto">
+        <div class="card auto flex-grow">
           <div class="card-title">
             Total
           </div>
@@ -83,10 +82,8 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="small-layer"></div>
-      <div class="flex">
-        <div class="card auto">
+        <div class="small-layer"></div>
+        <div class="card auto flex-grow">
           <div class="card-title">
             AVG Unit Price
           </div>
@@ -111,7 +108,7 @@
           </div>
         </div>
         <div class="small-layer"></div>
-        <div class="card auto">
+        <div class="card auto flex-grow">
           <div class="card-title">
             Network
           </div>
@@ -125,133 +122,233 @@
           </div>
         </div>
       </div>
-    </div>
-
-    <div class="small-layer"></div>
-    <div class="card auto">
-      <div class="card-title">
-        Unit Price (last 6 months)
-      </div>
-      <ngx-charts-line-chart [view]="view" [scheme]="colorScheme" [results]="unitsData" [gradient]="gradient" [xAxis]="showXAxis"
-        [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel"
-        [yAxisLabel]="yAxisLabel" [autoScale]="true" [showGridLines]="true" [curve]="curve" [legendTitle]="''">
-      </ngx-charts-line-chart>
-    </div>
-  </div>
-  <div class="small-layer"></div>
-  <div class="flex-between">
-    <div class="card auto">
-      <div class="card-title">
-        Token Price (last 6 months)
-      </div>
-      <div>
-        <ngx-charts-line-chart [view]="view" [scheme]="colorSchemePrice" [results]="priceData" [gradient]="gradient" [xAxis]="showXAxis"
-          [yAxis]="showYAxis" [legend]="false" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel"
-          [yAxisLabel]="yAxisLabel" [autoScale]="true" [showGridLines]="true" [curve]="curve" [legendTitle]="''">
-        </ngx-charts-line-chart>
-      </div>
-      <div class="chart-currencies">
-        <div class="tip active">USD</div>
-        <div class="tip">EUR</div>
-        <div class="tip">BTC</div>
-      </div>
-    </div>
-    <div class="small-layer"></div>
-    <div class="card">
-      <div class="card-title">
-        Registered Nodes
-      </div>
-      <div style="height: 170px" leaflet [leafletOptions]="options" [leafletLayers]="layers">
-      </div>
-    </div>
-    <div class="small-layer"></div>
-    <div class="card">
-      <div class="card-title">
-        Heat Map of Nodes and Cloud Units
-      </div>
-      <div style="height: 170px" leaflet (leafletMapReady)="onMapReady($event)" [leafletOptions]="options2">
-      </div>
-    </div>
-  </div>
-  <div class="small-layer"></div>
-  <div class="flex-between">
-    <div class="card auto card-blocks">
-      <div class="card-title">
-        Recent blocks
-      </div>
-      <div class="row">
-        <div class="row-icon">
-          <img src="assets/images/icons8-brick-64.png" alt="">
+      <div class="small-layer"></div>
+      <div class="flex">
+        <div class="card">
+          <div class="card-title">
+            Unit Price (last 6 months)
+          </div>
+          <ngx-charts-line-chart [view]="view" [scheme]="colorScheme" [results]="unitsData" [gradient]="gradient" [xAxis]="showXAxis"
+            [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel"
+            [yAxisLabel]="yAxisLabel" [autoScale]="true" [showGridLines]="true" [curve]="curve" [legendTitle]="''">
+          </ngx-charts-line-chart>
         </div>
-        <div>
-          <div class="flex align-center">
-            <div class="row-title">
-              Block #10001
+        <div class="small-layer"></div>
+        <div class="card">
+          <div class="card-title">
+            Token Price (last 6 months)
+          </div>
+          <div>
+            <ngx-charts-line-chart [view]="view" [scheme]="colorSchemePrice" [results]="priceData" [gradient]="gradient" [xAxis]="showXAxis"
+              [yAxis]="showYAxis" [legend]="false" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel"
+              [yAxisLabel]="yAxisLabel" [autoScale]="true" [showGridLines]="true" [curve]="curve" [legendTitle]="''">
+            </ngx-charts-line-chart>
+          </div>
+          <div class="chart-currencies">
+            <div class="tip active">USD</div>
+            <div class="tip">EUR</div>
+            <div class="tip">BTC</div>
+          </div>
+        </div>
+      </div>
+      <div class="small-layer"></div>
+      <div class="flex">
+        <div class="card">
+          <div class="card-title">
+            Registered Nodes
+          </div>
+          <div style="height: 170px" leaflet [leafletOptions]="options" [leafletLayers]="layers">
+          </div>
+        </div>
+        <div class="small-layer"></div>
+        <div class="card">
+          <div class="card-title">
+            Heat Map of Nodes and Cloud Units
+          </div>
+          <div style="height: 170px" leaflet (leafletMapReady)="onMapReady($event)" [leafletOptions]="options2">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="right-col">
+      <div class="card">
+        <div class="card-title">
+          Recent blocks
+        </div>
+        <div class="row">
+          <div class="row-icon">
+            <img src="assets/images/icons8-brick-64.png" alt="">
+          </div>
+          <div>
+            <div class="flex align-center">
+              <div class="row-title">
+                Block #10001
+              </div>
+              <div class="small-layer"></div>
+              <div class="chip green">15s</div>
             </div>
-            <div class="small-layer"></div>
-            <div class="chip green">15s</div>
-          </div>
-          <div class="row-info flex">
-            <span>
-              Proposed By&nbsp;
-            </span>
-            <span class="big-data-wrapper">
-              0xb75d1e62b10e4ba91315c4aa3facc536f8a922f5
-            </span>
-          </div>
-          <div class="row-info">
-            <a class="bold">68 txns</a> in 8 secs
-          </div>
-        </div>
-
-      </div>
-      <div class="row">
-        <div class="row-icon">
-          <img src="assets/images/icons8-brick-64.png" alt="">
-        </div>
-        <div>
-          <div class="flex align-center">
-            <div class="row-title">
-              Block #10000
+            <div class="row-info flex">
+              <span>
+                Proposed By&nbsp;
+              </span>
+              <span class="big-data-wrapper">
+                0xb75d1e62b10e4ba91315c4aa3facc536f8a922f5
+              </span>
             </div>
-            <div class="small-layer"></div>
-            <div class="chip green">35s</div>
-          </div>
-          <div class="row-info flex">
-            <span>
-              Proposed By&nbsp;
-            </span>
-            <span class="big-data-wrapper">
-              0xb75d1e62b10e4ba91315c4aa3facc536f8a922f5
-            </span>
-          </div>
-          <div class="row-info">
-            <a class="bold">68 txns</a> in 8 secs
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="row-icon">
-          <img src="assets/images/icons8-brick-64.png" alt="">
-        </div>
-        <div>
-          <div class="flex align-center">
-            <div class="row-title">
-              Block #9999
+            <div class="row-info">
+              <a class="bold">68 txns</a> in 8 secs
             </div>
-            <div class="small-layer"></div>
-            <div class="chip green">45s</div>
           </div>
-          <div class="row-info flex">
-            <span>
-              Proposed By&nbsp;
-            </span>
-            <span class="big-data-wrapper">
-              0xb75d1e62b10e4ba91315c4aa3facc536f8a922f5
-            </span>
+      
+        </div>
+        <div class="row">
+          <div class="row-icon">
+            <img src="assets/images/icons8-brick-64.png" alt="">
           </div>
-          <div class="row-info">
-            <a class="bold">68 txns</a> in 8 secs
+          <div>
+            <div class="flex align-center">
+              <div class="row-title">
+                Block #10000
+              </div>
+              <div class="small-layer"></div>
+              <div class="chip green">35s</div>
+            </div>
+            <div class="row-info flex">
+              <span>
+                Proposed By&nbsp;
+              </span>
+              <span class="big-data-wrapper">
+                0xb75d1e62b10e4ba91315c4aa3facc536f8a922f5
+              </span>
+            </div>
+            <div class="row-info">
+              <a class="bold">68 txns</a> in 8 secs
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="row-icon">
+            <img src="assets/images/icons8-brick-64.png" alt="">
+          </div>
+          <div>
+            <div class="flex align-center">
+              <div class="row-title">
+                Block #9999
+              </div>
+              <div class="small-layer"></div>
+              <div class="chip green">45s</div>
+            </div>
+            <div class="row-info flex">
+              <span>
+                Proposed By&nbsp;
+              </span>
+              <span class="big-data-wrapper">
+                0xb75d1e62b10e4ba91315c4aa3facc536f8a922f5
+              </span>
+            </div>
+            <div class="row-info">
+              <a class="bold">68 txns</a> in 8 secs
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="row-icon">
+            <img src="assets/images/icons8-brick-64.png" alt="">
+          </div>
+          <div>
+            <div class="flex align-center">
+              <div class="row-title">
+                Block #9999
+              </div>
+              <div class="small-layer"></div>
+              <div class="chip green">45s</div>
+            </div>
+            <div class="row-info flex">
+              <span>
+                Proposed By&nbsp;
+              </span>
+              <span class="big-data-wrapper">
+                0xb75d1e62b10e4ba91315c4aa3facc536f8a922f5
+              </span>
+            </div>
+            <div class="row-info">
+              <a class="bold">68 txns</a> in 8 secs
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="row-icon">
+            <img src="assets/images/icons8-brick-64.png" alt="">
+          </div>
+          <div>
+            <div class="flex align-center">
+              <div class="row-title">
+                Block #9999
+              </div>
+              <div class="small-layer"></div>
+              <div class="chip green">45s</div>
+            </div>
+            <div class="row-info flex">
+              <span>
+                Proposed By&nbsp;
+              </span>
+              <span class="big-data-wrapper">
+                0xb75d1e62b10e4ba91315c4aa3facc536f8a922f5
+              </span>
+            </div>
+            <div class="row-info">
+              <a class="bold">68 txns</a> in 8 secs
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="row-icon">
+            <img src="assets/images/icons8-brick-64.png" alt="">
+          </div>
+          <div>
+            <div class="flex align-center">
+              <div class="row-title">
+                Block #9999
+              </div>
+              <div class="small-layer"></div>
+              <div class="chip green">45s</div>
+            </div>
+            <div class="row-info flex">
+              <span>
+                Proposed By&nbsp;
+              </span>
+              <span class="big-data-wrapper">
+                0xb75d1e62b10e4ba91315c4aa3facc536f8a922f5
+              </span>
+            </div>
+            <div class="row-info">
+              <a class="bold">68 txns</a> in 8 secs
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="row-icon">
+            <img src="assets/images/icons8-brick-64.png" alt="">
+          </div>
+          <div>
+            <div class="flex align-center">
+              <div class="row-title">
+                Block #9999
+              </div>
+              <div class="small-layer"></div>
+              <div class="chip green">45s</div>
+            </div>
+            <div class="row-info flex">
+              <span>
+                Proposed By&nbsp;
+              </span>
+              <span class="big-data-wrapper">
+                0xb75d1e62b10e4ba91315c4aa3facc536f8a922f5
+              </span>
+            </div>
+            <div class="row-info">
+              <a class="bold">68 txns</a> in 8 secs
+            </div>
           </div>
         </div>
       </div>

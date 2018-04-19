@@ -2,16 +2,22 @@
 header {
   background: #121413ea;
   color: white;
-  padding: 10px;
+  padding: 9px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   box-shadow: 0 4px 4px 0 rgba(132,140,168,.28);
 }
-header .logo{
+/* header .logo{
   font-weight: 100;
   font-size: 23px;
   text-transform: uppercase;
+} */
+header .logo img{
+  width: 140px;
+  object-fit: contain;
+  position: relative;
+  top: 4px;
 }
 header .search-line input{
   font-size: 14px;
