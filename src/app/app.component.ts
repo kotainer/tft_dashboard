@@ -1,14 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit, ViewChild } from '@angular/core';
 import * as d3 from 'd3-shape';
 import * as L from 'leaflet';
+import { MapComponent, OSM_TILE_LAYER_URL } from '@yaga/leaflet-ng2';
+import HeatmapOverlay = require ('leaflet-heatmap/leaflet-heatmap');
+// import * as HeatmapOverlay from 'heatmap.js';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  view: any[] = [450, 120];
-  unitsData = [
+  
+export class AppComponent{
+  // Charts
+  public view: any[] = [450, 120];
+  public unitsData = [
     {
       'name': 'Unit price',
       'series': [
@@ -68,7 +74,7 @@ export class AppComponent {
       ]
     }
   ];
-  priceData = [
+  public priceData = [
     {
       'name': 'Token price',
       'series': [
@@ -100,47 +106,107 @@ export class AppComponent {
     }
   ];
 
-  // options
-  showXAxis = true;
-  showYAxis = true;
-  gradient = true;
-  showLegend = true;
-  showXAxisLabel = false;
-  xAxisLabel = 'Month';
-  showYAxisLabel = false;
-  yAxisLabel = 'Price';
+  // Charts options
+  public showXAxis = true;
+  public showYAxis = true;
+  public gradient = true;
+  public showLegend = true;
+  public showXAxisLabel = false;
+  public xAxisLabel = 'Month';
+  public showYAxisLabel = false;
+  public yAxisLabel = 'Price';
 
-  colorScheme = {
+  public colorScheme = {
     domain: ['#f993ab', '#ffc8a7']
   };
   colorSchemePrice = {
     domain: ['#17f9be']
   };
-  // line, area
-  autoScale = true;
+  public autoScale = true;
   public curve = d3.curveNatural;
 
 
-
-  options = {
+  // Map
+  public OSM_TILE_LAYER_URL1 = 'https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_nolabels/{z}/{x}/{y}.png';
+  public options = {
     layers: [
-      L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_nolabels/{z}/{x}/{y}.png',
+      L.tileLayer(this.OSM_TILE_LAYER_URL1,
       {
       subdomains: 'abcd',
       maxZoom: 5
     })
     ],
-    zoom: 1.1,
+    zoom: 0,
     center: L.latLng(46.879966, -121.726909)
   };
-  layers = [
-    L.circle([46.95, -122], { radius: 300000, color: '#25dfec'  }),
-    L.circle([46.95, -112], { radius: 300000, color: '#25dfec' }),
-    L.circle([46.95, -102], { radius: 300000, color: '#25dfec' }),
-    L.circle([48.95, -122], { radius: 300000, color: '#25dfec' }),
+  public layers = [
+    L.circle([46.95, -102], { radius: 200000, color: '#25dfec'  }),
+    L.circle([46.95, -102], { radius: 200000, color: '#25dfec' }),
+    L.circle([46.95, -102], { radius: 200000, color: '#25dfec' }),
+    L.circle([46.95, -102], { radius: 200000, color: '#25dfec' }),
     L.circle([58.95, -182], { radius: 200000, color: '#25dfec' }),
-    L.circle([66.95, -122], { radius: 300000, color: '#25dfec' }),
+    L.circle([66.95, -122], { radius: 200000, color: '#25dfec' }),
     L.circle([66.95, -222], { radius: 200000, color: '#25dfec' }),
+    L.circle([36.95, -352], { radius: 200000, color: '#25dfec' }),
     L.circle([36.95, -352], { radius: 200000, color: '#25dfec' })
   ];
+
+  // Heatmap
+  public tileLayerUrl: string = OSM_TILE_LAYER_URL;
+  public options2 = {
+    layers: [
+      L.tileLayer(this.OSM_TILE_LAYER_URL1,
+        {
+          subdomains: 'abcd',
+          maxZoom: 5
+        })
+    ],
+    zoom: 0,
+    center: L.latLng(46.879966, -121.726909)
+  };
+  @ViewChild(MapComponent) private mapComponent: MapComponent;
+  onMapReady(map: L.Map): void {
+    // Do stuff with map
+    const testData = {
+      max: 10,
+      min: 1,
+      data: [
+        { lat: 46.95, lng: -102, count: 4 },
+        { lat: 58.95, lng: -182, count: 1 },
+        { lat: 66.95, lng: -122, count: 1 },
+        { lat: 66.95, lng: -222, count: 1 },
+        { lat: 36.95, lng: -352, count: 2 }
+      ]
+    };
+    const baseLayer = L.tileLayer(
+      'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 18
+      }
+    );
+
+    const cfg = {
+      // radius should be small ONLY if scaleRadius is true (or small radius is intended)
+      // if scaleRadius is false it will be the constant radius used in pixels
+      'radius': 15,
+      'maxOpacity': .6,
+      // scales the radius based on map zoom
+      'scaleRadius': true,
+      // if set to false the heatmap uses the global maximum for colorization
+      // if activated: uses the data maximum within the current map boundaries
+      //   (there will always be a red spot with useLocalExtremas true)
+      'useLocalExtrema': true,
+      // which field name in your data represents the latitude - default 'lat'
+      latField: 'lat',
+      // which field name in your data represents the longitude - default 'lng'
+      lngField: 'lng',
+      // which field name in your data represents the data value - default 'value'
+      valueField: 'count'
+    };
+
+
+    const heatmapLayer = new HeatmapOverlay(cfg);
+
+    heatmapLayer.setData(testData);
+    heatmapLayer.onAdd(map);
+  }
 }

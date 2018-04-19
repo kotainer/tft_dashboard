@@ -24,11 +24,11 @@
     <div class="flex-column flex-between full-width">
       <div class="flex full-width">
         <div class="card">
-          <div class="card-title">
-            Blocks
-          </div>
           <div class="flex">
-            <div>
+            <div class="flex-no-shrink">
+              <div class="card-title">
+                Blocks
+              </div>
               <div class="big-num">
                 #10001
               </div>
@@ -42,19 +42,61 @@
                 </div>
               </div>
             </div>
+            <div class="layer"></div>
             <div class="flex-no-shrink">
-              <div class="big-num ">
-                35 849 BS
+              <div class="card-title">
+                Transactions
+              </div>
+              <div class="big-num">
+                115
               </div>
               <div class="card-subtitle">
-                Difficulty
+                24hr txn count
               </div>
             </div>
           </div>
         </div>
         <div class="small-layer"></div>
-       
-        <div class="card auto">
+        <div class="card">
+          <div class="card-title">
+            Network
+          </div>
+          <div class="flex-no-shrink">
+            <div class="big-num">
+              ${{ '115000' | number: '1.2-4'}}
+            </div>
+            <div class="card-subtitle">
+              Network price
+            </div>
+          </div>
+        </div>
+        <div class="small-layer"></div>
+        <div class="card">
+          <div class="card-title">
+            Total
+          </div>
+          <div class="flex">
+            <div class="flex-no-shrink">
+              <div class="big-num">
+                14PB
+              </div>
+              <div class="card-subtitle">
+                Storage Units
+              </div>
+            </div>
+            <div class="layer"></div>
+            <div class="flex-no-shrink">
+              <div class="big-num">
+                115
+              </div>
+              <div class="card-subtitle">
+                Processor Cores
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="small-layer"></div>
+        <div class="card">
           <div class="card-title">
             Units
           </div>
@@ -78,75 +120,54 @@
             </div>
           </div>
         </div>
-        <div class="small-layer"></div>
-        <div class="card auto">
-          <div class="card-title">
-            Total
-          </div>
-          <div class="flex">
-            <div class="flex-no-shrink">
-              <div class="big-num">
-                14 PB
-              </div>
-              <div class="card-subtitle">
-                Storage Units
-              </div>
-            </div>
-            <div class="layer"></div>
-            <div class="flex-no-shrink">
-              <div class="big-num">
-                115
-              </div>
-              <div class="card-subtitle">
-                Processor Cores
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
       <div class="small-layer"></div>
       <div class="flex">
-        <div class="card auto">
-          <div class="card-title">
-            AVG Unit Price
+        <!-- <div class="card">
+          <div class="flex-center align-center bold">
+            <span class="middle-num">1 TFT = 0.01</span>
+            &nbsp;
+            <span class="small-num">USD</span>
+            &nbsp;
+            <span class="middle-num">/ 0.088</span>
+            &nbsp;
+            <span class="small-num">EUR</span>
+            &nbsp;
+            <span class="middle-num">/ 0.0003</span>
+            &nbsp;
+            <span class="small-num">BTC</span>
           </div>
-          <div class="flex">
-            <div class="flex-no-shrink">
-              <div class="big-num pink-text">
-                $110
-              </div>
-              <div class="card-subtitle">
-                Compute Unit
-              </div>
+        </div> -->
+        <div class="fourth-width flex">
+          <div class="small-layer"></div>
+          <div class="card">
+            <div class="card-title">
+              AVG Unit Price
             </div>
-            <div class="layer"></div>
-            <div class="flex-no-shrink">
-              <div class="big-num peach-text">
-                $800
+            <div class="flex">
+              <div class="flex-no-shrink">
+                <div class="big-num pink-text">
+                  $110
+                </div>
+                <div class="card-subtitle">
+                  Compute Unit
+                </div>
               </div>
-              <div class="card-subtitle">
-                Storage Unit
+              <div class="layer"></div>
+              <div class="flex-no-shrink">
+                <div class="big-num peach-text">
+                  $800
+                </div>
+                <div class="card-subtitle">
+                  Storage Unit
+                </div>
               </div>
-            </div>
-          </div>
-        </div>
-        <div class="small-layer"></div>
-        <div class="card auto">
-          <div class="card-title">
-            Network
-          </div>
-          <div class="flex-no-shrink">
-            <div class="big-num">
-              ${{ '115000' | number: '1.2-4'}}
-            </div>
-            <div class="card-subtitle">
-              Network price
             </div>
           </div>
         </div>
       </div>
     </div>
-    
+
     <div class="small-layer"></div>
     <div class="card auto">
       <div class="card-title">
@@ -181,7 +202,7 @@
       <div class="card-title">
         Registered Nodes
       </div>
-      <div style="height: 170px" leaflet [leafletOptions]="options" [leafletLayers]="layers" >
+      <div style="height: 170px" leaflet [leafletOptions]="options" [leafletLayers]="layers">
       </div>
     </div>
     <div class="small-layer"></div>
@@ -189,8 +210,8 @@
       <div class="card-title">
         Heat Map of Nodes and Cloud Units
       </div>
-      <div style="height: 170px" leaflet (leafletMapReady)="onMapReady($event)" [leafletOptions]="options2">
-      </div>
+      <!-- <div style="height: 170px" leaflet [leafletOptions]="options" [leafletLayers]="layers"> -->
+      <!-- </div> -->
     </div>
   </div>
   <div class="small-layer"></div>
@@ -223,7 +244,7 @@
             <a class="bold">68 txns</a> in 8 secs
           </div>
         </div>
-        
+
       </div>
       <div class="row">
         <div class="row-icon">
@@ -272,6 +293,76 @@
           </div>
           <div class="row-info">
             <a class="bold">68 txns</a> in 8 secs
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="small-layer"></div>
+    <div class="card">
+      <div class="card-title">
+        Recent transactons
+      </div>
+      <div class="row">
+        <div>
+          <div class="flex align-center">
+            <div class="row-title flex align-center">
+              TX#&nbsp;
+              <span class="big-data-wrapper long">
+                0X2ECB0C984AF5842A1D83C550DF006AC854C670EFBBCF24891CA4302B0F19768F
+              </span>
+            </div>
+            <div class="small-layer"></div>
+            <div class="chip green">45s</div>
+          </div>
+          <div class="row-info flex">
+            <span>
+              From&nbsp;
+            </span>
+            <span class="big-data-wrapper long">
+              0xb75d1e62b10e4ba91315c4aa3facc536f8a922f5
+            </span>
+            <div class="layer"></div>
+            <span>
+              To&nbsp;
+            </span>
+            <span class="big-data-wrapper long">
+              0xb75d1e62b10e4ba91315c4aa3facc536f8a922f5
+            </span>
+          </div>
+          <div class="row-info bold">
+            Amount 0.020714392 TFT
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <div class="flex align-center">
+            <div class="row-title flex align-center">
+              TX#&nbsp;
+              <span class="big-data-wrapper long">
+                0X2ECB0C984AF5842A1D83C550DF006AC854C670EFBBCF24891CA4302B0F19768F
+              </span>
+            </div>
+            <div class="small-layer"></div>
+            <div class="chip green">45s</div>
+          </div>
+          <div class="row-info flex">
+            <span>
+              From&nbsp;
+            </span>
+            <span class="big-data-wrapper long">
+              0xb75d1e62b10e4ba91315c4aa3facc536f8a922f5
+            </span>
+            <div class="layer"></div>
+            <span>
+              To&nbsp;
+            </span>
+            <span class="big-data-wrapper long">
+              0xb75d1e62b10e4ba91315c4aa3facc536f8a922f5
+            </span>
+          </div>
+          <div class="row-info bold">
+            Amount 0.020714392 TFT
           </div>
         </div>
       </div>

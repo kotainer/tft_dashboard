@@ -128,6 +128,9 @@ table{
 .half-width{
   width: 50% !important;
 }
+.fourth-width{
+  width: 25% !important;
+}
 .small-layer{
   min-width: 0.5vw;
   min-height: 0.5vw;

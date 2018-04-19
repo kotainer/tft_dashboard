@@ -13,8 +13,9 @@ body {
   /* background-image: -webkit-gradient(linear, left bottom, right top, from(#6d327c), color-stop(#485DA6), color-stop(#00a1ba), color-stop(#00BF98), to(#36C486));
   background-image: -webkit-linear-gradient(left bottom, #6d327c, #485DA6, #00a1ba, #00BF98, #36C486);
   background-image: -o-linear-gradient(left bottom, #6d327c, #485DA6, #00a1ba, #00BF98, #36C486); */
-  background-image: linear-gradient(to left top, #b40cd2, #6675d2 55%, #45a0cb, #13e7c3 );
-  -webkit-user-drag: none;
+  /* background-image: linear-gradient(to left top, #b40cd2, #6675d2 55%, #45a0cb, #13e7c3 );
+  -webkit-user-drag: none; */
+  background-image: linear-gradient(to right bottom, #36c486 , #008ac7 , #6d327c);
   text-rendering: optimizeLegibility !important;
   -webkit-font-smoothing: antialiased;
 }
@@ -35,7 +36,7 @@ body {
 }
 .card{
   padding: 15px 10px;
-  background: rgba(0, 0, 0, 0.55);
+  background: rgba(0, 0, 0, 0.6);
   border-radius: 8px;
   box-sizing: border-box;
   width: 100%;
@@ -72,6 +73,7 @@ body {
 }
 .big-num{
   font-size: 35px;
+  word-break: break-all;
 }
 .middle-num{
   font-size: 25px;
@@ -90,6 +92,9 @@ body {
 }
 .blue-text{
   color: #25dfec;
+}
+.green-text{
+  color: #80ffb5;
 }
 .chip{
   padding: 3px 5px;
