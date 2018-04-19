@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { SocketService } from '../services/socket.service';
 import * as d3 from 'd3-shape';
 import * as L from 'leaflet';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -143,4 +145,15 @@ export class AppComponent {
     L.circle([66.95, -222], { radius: 200000, color: '#25dfec' }),
     L.circle([36.95, -352], { radius: 200000, color: '#25dfec' })
   ];
+
+  constructor(
+    public socketService: SocketService,
+  ) {
+    this.socketService.initSocket();
+
+    this.socketService.onMessage()
+      .subscribe((message: any) => {
+        console.log(message);
+      });
+  }
 }
