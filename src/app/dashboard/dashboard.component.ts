@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MapComponent } from '@yaga/leaflet-ng2';
+
 import * as d3 from 'd3-shape';
 import * as L from 'leaflet';
-import { MapComponent } from '@yaga/leaflet-ng2';
-import HeatmapOverlay = require('leaflet-heatmap/leaflet-heatmap');
+import * as HeatmapOverlay from 'leaflet-heatmap/leaflet-heatmap';
 
 @Component({
   selector: 'app-dashboard',
