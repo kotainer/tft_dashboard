@@ -12,7 +12,7 @@ import HeatmapOverlay = require('leaflet-heatmap/leaflet-heatmap');
 export class DashboardComponent implements OnInit {
 
   // Charts
-  public view: any[] = [400, 135];
+  public view: any[] = [400, 148];
   public unitsData = [
     {
       'name': 'Unit price',
@@ -104,24 +104,12 @@ export class DashboardComponent implements OnInit {
       ]
     }
   ];
-
-  // Charts options
-  public showXAxis = true;
-  public showYAxis = true;
-  public gradient = true;
-  public showLegend = true;
-  public showXAxisLabel = false;
-  public xAxisLabel = 'Month';
-  public showYAxisLabel = false;
-  public yAxisLabel = 'Price';
-
   public colorScheme = {
     domain: ['#f993ab', '#ffc8a7']
   };
   colorSchemePrice = {
     domain: ['#17f9be']
   };
-  public autoScale = true;
   public curve = d3.curveNatural;
 
 
@@ -135,7 +123,7 @@ export class DashboardComponent implements OnInit {
           maxZoom: 5
         })
     ],
-    zoom: 0,
+    zoom: 0.5,
     center: L.latLng(46.879966, -121.726909)
   };
   public layers = [
@@ -159,7 +147,7 @@ export class DashboardComponent implements OnInit {
           maxZoom: 5
         })
     ],
-    zoom: 0,
+    zoom: 0.5,
     center: L.latLng(46.879966, -121.726909)
   };
   constructor() { }
@@ -169,14 +157,18 @@ export class DashboardComponent implements OnInit {
   public onMapReady(map: L.Map): void {
     // Do stuff with map
     const testData = {
-      max: 10,
+      max: 1,
       min: 1,
       data: [
-        { lat: 46.95, lng: -102, count: 4 },
+        { lat: 46.95, lng: -102, count: 2 },
+        { lat: 46.95, lng: -102, count: 1 },
+        { lat: 46.95, lng: -102, count: 1 },
+        { lat: 46.95, lng: -102, count: 1 },
         { lat: 58.95, lng: -182, count: 1 },
         { lat: 66.95, lng: -122, count: 1 },
         { lat: 66.95, lng: -222, count: 1 },
-        { lat: 36.95, lng: -352, count: 2 }
+        { lat: 36.95, lng: -352, count: 1 },
+        { lat: 36.95, lng: -353, count: 1 }
       ]
     };
     const baseLayer = L.tileLayer(

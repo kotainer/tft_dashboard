@@ -1,7 +1,7 @@
 .chart-currencies{
   display: flex;
   position: absolute;
-  bottom: 20px;
+  bottom: 15px;
   left: 25px;
 }
 .left-col{

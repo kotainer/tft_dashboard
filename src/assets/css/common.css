@@ -26,7 +26,7 @@ body {
   align-items: center;
   justify-content: center;
   color: white;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.35);
   font-weight: 100;
   font-size: 19px;
   /* text-transform: uppercase; */
@@ -38,7 +38,7 @@ body {
 }
 .card{
   padding: 15px 10px;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.55);
   border-radius: 8px;
   box-sizing: border-box;
   width: 100%;
@@ -54,12 +54,7 @@ body {
   width: auto;
 }
 .card.chart{
-  padding-bottom: 0;
-  padding-right: 0;
-  width: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding-bottom: 55px;
 }
 .card-title{
   font-weight: 400;
@@ -74,8 +69,7 @@ body {
   flex-shrink: 0;
 }
 .big-num{
-  font-size: 35px;
-  word-break: break-all;
+  font-size: 33.5px;
 }
 .middle-num{
   font-size: 23px;
@@ -132,7 +126,7 @@ ngx-charts-chart ngx-charts-legend.chart-legend ul{
   display: flex;
 }
 ngx-charts-chart .line-series .line{
-  stroke-width: 2.1px;
+  stroke-width: 2.3px;
 }
 .leaflet-control-container a{
   display: none;
@@ -141,18 +135,18 @@ ngx-charts-chart .line-series .line{
   padding: 3px 7px;
   border-radius: 18px;
   font-size: 13px;
-  font-weight: 400;
+  font-weight: bolder;
   letter-spacing: 0;
   flex-shrink: 0;
-  color: #8f7beb;
-  border: 1px solid #8f7beb;
+  color: #8a58ff;
+  border: 1px solid #8a58ff;
   margin-right: 7px;
   cursor: pointer;
   transition: all 0.3s ease; 
 }
 .tip:hover,
 .tip.active{
-  background: #8f7beb;
+  background: #8a58ff;
   color: white
 }
 .big-data-wrapper{
