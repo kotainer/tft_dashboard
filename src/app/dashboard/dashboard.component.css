@@ -1,0 +1,17 @@
+.chart-currencies{
+  display: flex;
+  position: absolute;
+  bottom: 15px;
+  left: 0px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.left-col{
+  min-width: 64.5%;
+  width: 64.5%;
+}
+.right-col{
+  min-width: 35%;
+  width: 35%;
+}

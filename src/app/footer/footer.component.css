@@ -1,0 +1,21 @@
+
+section{
+  font-weight: bold;
+  padding: 17px;
+  background: #121413da;
+}
+section .socials-line,
+section .buy-line{
+  display: flex;
+  justify-content: center;
+}
+section .socials-line a{
+  margin: 5px;
+}
+footer {
+  font-weight: 300;
+  background: #121413ea;
+  padding: 15px;
+  color: white;
+  text-align: center;
+}

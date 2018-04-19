@@ -1,0 +1,319 @@
+<app-header></app-header>
+<div class="container">
+  <div class="flex-between">
+    <div class="left-col">
+      <div class="card">
+        <div class="flex-center">
+          <div class="middle-num">
+            Current Block #10001
+          </div>
+          <div class="big-layer"></div>
+          <div class="middle-num ">
+            Difficulty: 35 849 BS
+          </div>
+        </div>
+        <div class="small-layer"></div>
+        <div class="flex-center">
+          ID: 43e086816556e8ddd30eeb2ac80f711091a55a9f1628d9a3ba81e3e1dd43396b
+        </div>
+      </div>
+      <div class="small-layer"></div>
+      <div class="flex">
+        <div class="full-width flex">
+          <div class="card auto flex-grow">
+            <div class="card-title">
+              Units
+            </div>
+            <div class="flex">
+              <div class="flex-no-shrink">
+                <div class="big-num">
+                  115
+                </div>
+                <div class="card-subtitle">
+                  Compute Units
+                </div>
+              </div>
+              <div class="layer"></div>
+              <div class="flex-no-shrink">
+                <div class="big-num">
+                  6052
+                </div>
+                <div class="card-subtitle">
+                  Storage Units
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="small-layer"></div>
+          <div class="card auto flex-grow">
+            <div class="card-title">
+              Total
+            </div>
+            <div class="flex">
+              <div class="flex-no-shrink">
+                <div class="big-num">
+                  14 PB
+                </div>
+                <div class="card-subtitle">
+                  Storage Units
+                </div>
+              </div>
+              <div class="layer"></div>
+              <div class="flex-no-shrink">
+                <div class="big-num">
+                  115
+                </div>
+                <div class="card-subtitle">
+                  Cores
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="small-layer"></div>
+        <div class="full-width flex">
+          <div class="card auto flex-grow">
+            <div class="card-title">
+              AVG Unit Price
+            </div>
+            <div class="flex">
+              <div class="flex-no-shrink">
+                <div class="big-num pink-text">
+                  $110
+                </div>
+                <div class="card-subtitle">
+                  Compute Unit
+                </div>
+              </div>
+              <div class="layer"></div>
+              <div class="flex-no-shrink">
+                <div class="big-num peach-text">
+                  $800
+                </div>
+                <div class="card-subtitle">
+                  Storage Unit
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="small-layer"></div>
+          <div class="card auto flex-grow">
+            <div class="card-title">
+              Network
+            </div>
+            <div class="flex-no-shrink">
+              <div class="big-num">
+                ${{ '115000' | number: '1.0-0'}}
+              </div>
+              <div class="card-subtitle">
+                Network price
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="layer"></div>
+      <div class="flex">
+        <div class="card chart">
+          <div class="card-title">
+            Token Price (last 6 months)
+          </div>
+          <div>
+            <ngx-charts-line-chart [view]="view" [scheme]="colorSchemePrice" [results]="priceData" [gradient]="true" [xAxis]="true" [yAxis]="true" [legend]="false" [showXAxisLabel]="false" [showYAxisLabel]="false" [autoScale]="true" [showGridLines]="true" [curve]="curve">
+            </ngx-charts-line-chart>
+          </div>
+          <div class="chart-currencies">
+            <div class="tip active">USD</div>
+            <div class="tip">EUR</div>
+            <div class="tip">BTC</div>
+          </div>
+        </div>
+        <div class="small-layer"></div>
+        <div class="card">
+          <div class="card-title">
+            Unit Price (last 6 months)
+          </div>
+          <ngx-charts-line-chart [view]="view" [scheme]="colorScheme" [results]="unitsData" [gradient]="true" [xAxis]="true" [yAxis]="true"
+            [legend]="false" [showXAxisLabel]="false" [showYAxisLabel]="false" [autoScale]="true" [showGridLines]="true" [curve]="curve">
+          </ngx-charts-line-chart>
+        </div>
+      </div>
+      <div class="small-layer"></div>
+      <div class="flex">
+        <div class="card">
+          <div class="card-title">
+            Registered Nodes
+          </div>
+          <div style="height: 221px" leaflet [leafletOptions]="options" [leafletLayers]="layers">
+          </div>
+        </div>
+        <div class="small-layer"></div>
+        <div class="card">
+          <div class="card-title">
+            Heat Map of Nodes and Cloud Units
+          </div>
+          <div style="height: 221px" leaflet (leafletMapReady)="onMapReady($event)" [leafletOptions]="options2">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="right-col">
+      <div class="card full-height">
+        <div class="card-title">
+          Recent blocks
+        </div>
+        <div class="row">
+          <div class="row-icon">
+            <img src="assets/images/icons8-brick-64.png" alt="">
+          </div>
+          <div>
+            <div class="flex align-center">
+              <div class="row-title">
+                <a>Block #10000</a> 
+              </div>
+              <div class="small-layer"></div>
+              <div class="chip green">15s ago</div>
+            </div>
+            <div class="row-info">
+              <span class="big-data-container">
+                ID: 7650f3d5808ca181e0268d575d35c5fb65388ce8cb822f424db28585e592395b
+              </span>
+            </div>
+            <div class="row-info">
+              <span class="big-data-container">
+                Parent ID: 7650f3d5808ca181e0268d575d35c5fb65388ce8cb822f424db28585e592395b
+              </span>
+            </div>
+            <div class="row-info bold">
+              Block Reward 1 TFT /&nbsp;3 txns
+            </div>
+            <div class="row-info">
+              Active BlockStake: 369 BS
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="row-icon">
+            <img src="assets/images/icons8-brick-64.png" alt="">
+          </div>
+          <div>
+            <div class="flex align-center">
+              <div class="row-title">
+                <a>Block #10000</a> 
+              </div>
+              <div class="small-layer"></div>
+              <div class="chip green">15s ago</div>
+            </div>
+            <div class="row-info">
+              <span class="big-data-container">
+                ID: 7650f3d5808ca181e0268d575d35c5fb65388ce8cb822f424db28585e592395b
+              </span>
+            </div>
+            <div class="row-info">
+              <span class="big-data-container">
+                Parent ID: 7650f3d5808ca181e0268d575d35c5fb65388ce8cb822f424db28585e592395b
+              </span>
+            </div>
+            <div class="row-info bold">
+              Block Reward 1 TFT /&nbsp;3 txns
+            </div>
+            <div class="row-info">
+              Active BlockStake: 369 BS
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="row-icon">
+            <img src="assets/images/icons8-brick-64.png" alt="">
+          </div>
+          <div>
+            <div class="flex align-center">
+              <div class="row-title">
+                <a><a>Block #10000</a> </a> 
+              </div>
+              <div class="small-layer"></div>
+              <div class="chip green">15s ago</div>
+            </div>
+            <div class="row-info">
+              <span class="big-data-container">
+                ID: 7650f3d5808ca181e0268d575d35c5fb65388ce8cb822f424db28585e592395b
+              </span>
+            </div>
+            <div class="row-info">
+              <span class="big-data-container">
+                Parent ID: 7650f3d5808ca181e0268d575d35c5fb65388ce8cb822f424db28585e592395b
+              </span>
+            </div>
+            <div class="row-info bold">
+              Block Reward 1 TFT /&nbsp;3 txns
+            </div>
+            <div class="row-info">
+              Active BlockStake: 369 BS
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="row-icon">
+            <img src="assets/images/icons8-brick-64.png" alt="">
+          </div>
+          <div>
+            <div class="flex align-center">
+              <div class="row-title">
+                <a>Block #10000</a> 
+              </div>
+              <div class="small-layer"></div>
+              <div class="chip green">15s ago</div>
+            </div>
+            <div class="row-info">
+              <span class="big-data-container">
+                ID: 7650f3d5808ca181e0268d575d35c5fb65388ce8cb822f424db28585e592395b
+              </span>
+            </div>
+            <div class="row-info">
+              <span class="big-data-container">
+                Parent ID: 7650f3d5808ca181e0268d575d35c5fb65388ce8cb822f424db28585e592395b
+              </span>
+            </div>
+            <div class="row-info bold">
+              Block Reward 1 TFT /&nbsp;3 txns
+            </div>
+            <div class="row-info">
+              Active BlockStake: 369 BS
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="row-icon">
+            <img src="assets/images/icons8-brick-64.png" alt="">
+          </div>
+          <div>
+            <div class="flex align-center">
+              <div class="row-title">
+                <a>Block #10000</a> 
+              </div>
+              <div class="small-layer"></div>
+              <div class="chip green">15s ago</div>
+            </div>
+            <div class="row-info">
+              <span class="big-data-container">
+                ID: 7650f3d5808ca181e0268d575d35c5fb65388ce8cb822f424db28585e592395b
+              </span>
+            </div>
+            <div class="row-info">
+              <span class="big-data-container">
+                Parent ID: 7650f3d5808ca181e0268d575d35c5fb65388ce8cb822f424db28585e592395b
+              </span>
+            </div>
+            <div class="row-info bold">
+              Block Reward 1 TFT /&nbsp;3 txns
+            </div>
+            <div class="row-info">
+              Active BlockStake: 369 BS
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>
