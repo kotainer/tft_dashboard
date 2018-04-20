@@ -168,6 +168,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     );
     this.subscriptions.push(appSub);
   }
+
   ngOnDestroy() {
     this.subscriptions
       .forEach(s => s.unsubscribe());

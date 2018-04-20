@@ -36,12 +36,15 @@ export class SocketService {
 
                 console.log('socket message', data);
             });
+        });
+    }
 
+    public onTick(): Observable<any> {
+        return new Observable<any>(observer => {
             this.socket.on('tick', (data: any) => {
-                console.log('socket tick', data);
                 if (data.result) {
-                    if (data.type === this.types.MESSAGE) {
-                        observer.next(data.data);
+                    if (data.type === this.types.TICK) {
+                        observer.next(data);
                     }
                 }
             });

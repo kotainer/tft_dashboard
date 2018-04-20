@@ -18,12 +18,10 @@ export class AppComponent {
   ) {
     this.socketService.initSocket();
 
-    this.socketService.onMessage()
+    this.socketService.onTick()
       .subscribe((message: any) => {
         this.dataService.blocks$.next(message);
-        console.log('message', message);
       });
-
   }
 
 }
