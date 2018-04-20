@@ -25,16 +25,19 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
-  background-color: rgba(0, 0, 0, 0.35);
+  /* color: white; */
+  /* background-color: rgba(0, 0, 0, 0.35); */
+  background-color: #fafafa;
   font-weight: 100;
   font-size: 19px;
-  /* text-transform: uppercase; */
 }
 .container{
+  max-width: 1170px;
   margin-left: auto;
   margin-right: auto;
-  padding: 0.7%;
+}
+.inner-container{
+  min-height: calc( 100vh - 58.77px - 135.19px);
 }
 .card{
   padding: 15px 10px;

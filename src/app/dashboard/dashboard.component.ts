@@ -1,11 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import * as HeatmapOverlay from 'leaflet-heatmap/leaflet-heatmap';
 import * as d3 from 'd3-shape';
 import * as L from 'leaflet';
-import * as HeatmapOverlay from 'leaflet-heatmap/leaflet-heatmap';
 import { Subscription } from 'rxjs/Subscription';
 import { AppComponent } from '../app.component';
 
-
+const OSM_TILE_LAYER_URL = 'https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_nolabels/{z}/{x}/{y}.png';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -13,9 +13,10 @@ import { AppComponent } from '../app.component';
 })
 export class DashboardComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
-  public blocks;
+  public lastBlocks;
+  public lastBlock;
   // Charts
-  public view: any[] = [400, 175];
+  public view = [400, 175];
   public unitsData = [
     {
       'name': 'Unit price',
@@ -110,17 +111,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
   public colorScheme = {
     domain: ['#f993ab', '#ffc8a7']
   };
-  colorSchemePrice = {
+  public colorSchemePrice = {
     domain: ['#17f9be']
   };
   public curve = d3.curveNatural;
 
-
   // Map
-  public OSM_TILE_LAYER_URL = 'https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_nolabels/{z}/{x}/{y}.png';
   public optionsGeoMap = {
     layers: [
-      L.tileLayer(this.OSM_TILE_LAYER_URL,
+      L.tileLayer(OSM_TILE_LAYER_URL,
         {
           subdomains: 'abcd',
           maxZoom: 5
@@ -144,7 +143,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   // Heatmap
   public optionsHeatMap = {
     layers: [
-      L.tileLayer(this.OSM_TILE_LAYER_URL,
+      L.tileLayer(OSM_TILE_LAYER_URL,
         {
           subdomains: 'abcd',
           maxZoom: 5
@@ -158,15 +157,21 @@ export class DashboardComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    const appSub = this.appComponent.dataService.blocks$.subscribe(
-      blocks => {
-        if (blocks) {
-          this.blocks = blocks;
-          console.log(blocks);
+    const lastBlockSub = this.appComponent.dataService.lastBlock$.subscribe(
+      block => {
+        if (block) {
+          this.lastBlock = block;
         }
       }
     );
-    this.subscriptions.push(appSub);
+    const lastBlocksSub = this.appComponent.dataService.lastBlocks$.subscribe(
+      blocks => {
+        if (blocks) {
+          this.lastBlocks = blocks;
+        }
+      }
+    );
+    this.subscriptions.push(lastBlocksSub);
   }
 
   ngOnDestroy() {
@@ -198,24 +203,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
     );
 
     const cfg = {
-      // radius should be small ONLY if scaleRadius is true (or small radius is intended)
-      // if scaleRadius is false it will be the constant radius used in pixels
       'radius': 15,
       'maxOpacity': .6,
-      // scales the radius based on map zoom
       'scaleRadius': true,
-      // if set to false the heatmap uses the global maximum for colorization
-      // if activated: uses the data maximum within the current map boundaries
-      //   (there will always be a red spot with useLocalExtremas true)
       'useLocalExtrema': true,
-      // which field name in your data represents the latitude - default 'lat'
       latField: 'lat',
-      // which field name in your data represents the longitude - default 'lng'
       lngField: 'lng',
-      // which field name in your data represents the data value - default 'value'
       valueField: 'count'
     };
-
 
     const heatmapLayer = new HeatmapOverlay(cfg);
 

@@ -1,7 +1,7 @@
 <header>
-  <div class="logo">
+  <a class="logo" routerLink="/">
     <img src="/assets/images/tff-logo-white.svg" alt="">
-  </div>
+  </a>
   <!-- <a class="logo"> -->
     <!-- <div>
       ThreeFold Grid Explorer
@@ -21,6 +21,6 @@
     <span class="small-num">BTC</span>
   </div>
   <div class="search-line">
-    <input type="text" placeholder="Search by Block Height/Transaction Hash">
+    <input type="text" placeholder="Search by Block Height/Transaction Hash" (keyup.enter)="search()" [(ngModel)]="query">
   </div>
 </header>

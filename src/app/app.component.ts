@@ -19,8 +19,9 @@ export class AppComponent {
     this.socketService.initSocket();
 
     this.socketService.onTick()
-      .subscribe((message: any) => {
-        this.dataService.blocks$.next(message);
+      .subscribe((data: any) => {
+        this.dataService.lastBlock$.next(data.lastBlock);
+        this.dataService.lastBlocks$.next(data.lastBlocks);
       });
   }
 

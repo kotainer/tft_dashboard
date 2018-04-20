@@ -1,20 +1,20 @@
 <app-header></app-header>
-<div class="container">
+<div class="page-container">
   <div class="flex-between">
     <div class="left-col">
       <div class="card">
         <div class="flex-center">
           <div class="middle-num">
-            Current Block #10001
+            Current Block #{{lastBlock?.height}}
           </div>
           <div class="big-layer"></div>
           <div class="middle-num ">
-            Difficulty: 35 849 BS
+            Difficulty: {{lastBlock?.difficulty}} BS
           </div>
         </div>
         <div class="small-layer"></div>
         <div class="flex-center">
-          ID: 43e086816556e8ddd30eeb2ac80f711091a55a9f1628d9a3ba81e3e1dd43396b
+          ID: {{lastBlock?.id}}
         </div>
       </div>
       <div class="small-layer"></div>
@@ -162,153 +162,34 @@
         <div class="card-title">
           Recent blocks
         </div>
-        <div class="row">
+        <div class="row" *ngFor="let block of lastBlocks">
           <div class="row-icon">
             <img src="assets/images/icons8-brick-64.png" alt="">
           </div>
           <div>
             <div class="flex align-center">
               <div class="row-title">
-                <a>Block #10000</a> 
+                <a>Block #{{block?.height}}</a> 
               </div>
-              <div class="small-layer"></div>
-              <div class="chip green">15s ago</div>
+              <!-- <div class="small-layer"></div>
+              <div class="chip green">15s ago</div> -->
             </div>
             <div class="row-info">
               <span class="big-data-container">
-                ID: 7650f3d5808ca181e0268d575d35c5fb65388ce8cb822f424db28585e592395b
+                ID: {{block?.id}}
               </span>
             </div>
             <div class="row-info">
               <span class="big-data-container">
-                Parent ID: 7650f3d5808ca181e0268d575d35c5fb65388ce8cb822f424db28585e592395b
+                Parent ID: {{block?.parentId}}
               </span>
             </div>
             <div class="row-info bold">
-              Block Reward 1 TFT /&nbsp;3 txns
+              Block Reward {{block?.transactionsCount * 1}} TFT /&nbsp;
+              {{block?.transactionsCount}} txns
             </div>
             <div class="row-info">
-              Active BlockStake: 369 BS
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="row-icon">
-            <img src="assets/images/icons8-brick-64.png" alt="">
-          </div>
-          <div>
-            <div class="flex align-center">
-              <div class="row-title">
-                <a>Block #10000</a> 
-              </div>
-              <div class="small-layer"></div>
-              <div class="chip green">15s ago</div>
-            </div>
-            <div class="row-info">
-              <span class="big-data-container">
-                ID: 7650f3d5808ca181e0268d575d35c5fb65388ce8cb822f424db28585e592395b
-              </span>
-            </div>
-            <div class="row-info">
-              <span class="big-data-container">
-                Parent ID: 7650f3d5808ca181e0268d575d35c5fb65388ce8cb822f424db28585e592395b
-              </span>
-            </div>
-            <div class="row-info bold">
-              Block Reward 1 TFT /&nbsp;3 txns
-            </div>
-            <div class="row-info">
-              Active BlockStake: 369 BS
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="row-icon">
-            <img src="assets/images/icons8-brick-64.png" alt="">
-          </div>
-          <div>
-            <div class="flex align-center">
-              <div class="row-title">
-                <a><a>Block #10000</a> </a> 
-              </div>
-              <div class="small-layer"></div>
-              <div class="chip green">15s ago</div>
-            </div>
-            <div class="row-info">
-              <span class="big-data-container">
-                ID: 7650f3d5808ca181e0268d575d35c5fb65388ce8cb822f424db28585e592395b
-              </span>
-            </div>
-            <div class="row-info">
-              <span class="big-data-container">
-                Parent ID: 7650f3d5808ca181e0268d575d35c5fb65388ce8cb822f424db28585e592395b
-              </span>
-            </div>
-            <div class="row-info bold">
-              Block Reward 1 TFT /&nbsp;3 txns
-            </div>
-            <div class="row-info">
-              Active BlockStake: 369 BS
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="row-icon">
-            <img src="assets/images/icons8-brick-64.png" alt="">
-          </div>
-          <div>
-            <div class="flex align-center">
-              <div class="row-title">
-                <a>Block #10000</a> 
-              </div>
-              <div class="small-layer"></div>
-              <div class="chip green">15s ago</div>
-            </div>
-            <div class="row-info">
-              <span class="big-data-container">
-                ID: 7650f3d5808ca181e0268d575d35c5fb65388ce8cb822f424db28585e592395b
-              </span>
-            </div>
-            <div class="row-info">
-              <span class="big-data-container">
-                Parent ID: 7650f3d5808ca181e0268d575d35c5fb65388ce8cb822f424db28585e592395b
-              </span>
-            </div>
-            <div class="row-info bold">
-              Block Reward 1 TFT /&nbsp;3 txns
-            </div>
-            <div class="row-info">
-              Active BlockStake: 369 BS
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="row-icon">
-            <img src="assets/images/icons8-brick-64.png" alt="">
-          </div>
-          <div>
-            <div class="flex align-center">
-              <div class="row-title">
-                <a>Block #10000</a> 
-              </div>
-              <div class="small-layer"></div>
-              <div class="chip green">15s ago</div>
-            </div>
-            <div class="row-info">
-              <span class="big-data-container">
-                ID: 7650f3d5808ca181e0268d575d35c5fb65388ce8cb822f424db28585e592395b
-              </span>
-            </div>
-            <div class="row-info">
-              <span class="big-data-container">
-                Parent ID: 7650f3d5808ca181e0268d575d35c5fb65388ce8cb822f424db28585e592395b
-              </span>
-            </div>
-            <div class="row-info bold">
-              Block Reward 1 TFT /&nbsp;3 txns
-            </div>
-            <div class="row-info">
-              Active BlockStake: 369 BS
+              Active BlockStake: {{block?.activeBlockStake}} BS
             </div>
           </div>
         </div>
