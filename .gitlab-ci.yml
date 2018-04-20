@@ -1,0 +1,16 @@
+deploy_dev:
+  script:
+    - pwd
+    - ssh-keyscan -t rsa 5.45.120.191 >> ~/.ssh/known_hosts
+    - rsync -a ./ --exclude '.git' root@5.45.120.191:/var/www/html/tft
+    - ssh -i ~/.ssh/id_rsa root@5.45.120.191 -t "/root/scripts/deploy-tft.bash"
+  only:
+    - develop
+  allow_failure: true
+
+deploy_prod_distributors_dashboard:
+  script:
+    - pwd
+  only:
+    - master
+  allow_failure: true
