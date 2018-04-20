@@ -41,10 +41,10 @@ export class SocketService {
 
     public onTick(): Observable<any> {
         return new Observable<any>(observer => {
-            this.socket.on('tick', (data: any) => {
-                if (data.result) {
-                    if (data.type === this.types.TICK) {
-                        observer.next(data);
+            this.socket.on('tick', (res: any) => {
+                if (res.result) {
+                    if (res.type === this.types.TICK) {
+                        observer.next(res.data);
                     }
                 }
             });
