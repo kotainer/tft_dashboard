@@ -7,6 +7,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 import { SocketService } from '../services/socket.service';
+import { DataService } from '../services/data.service';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -29,7 +30,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     LeafletModule.forRoot()
   ],
   providers: [
-    SocketService
+    SocketService,
+    DataService
   ],
   bootstrap: [AppComponent]
 })

@@ -34,11 +34,11 @@ export class SocketService {
                     }
                 }
 
-                console.log('socket', data);
+                console.log('socket message', data);
             });
 
             this.socket.on('tick', (data: any) => {
-                console.log('socket', data);
+                console.log('socket tick', data);
                 if (data.result) {
                     if (data.type === this.types.MESSAGE) {
                         observer.next(data.data);

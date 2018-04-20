@@ -144,7 +144,7 @@
           <div class="card-title">
             Registered Nodes
           </div>
-          <div style="height: 221px" leaflet [leafletOptions]="options" [leafletLayers]="layers">
+          <div style="height: 221px" leaflet [leafletOptions]="optionsGeoMap" [leafletLayers]="layers">
           </div>
         </div>
         <div class="small-layer"></div>
@@ -152,7 +152,7 @@
           <div class="card-title">
             Heat Map of Nodes and Cloud Units
           </div>
-          <div style="height: 221px" leaflet (leafletMapReady)="onMapReady($event)" [leafletOptions]="options2">
+          <div style="height: 221px" leaflet (leafletMapReady)="onMapReady($event)" [leafletOptions]="optionsHeatMap">
           </div>
         </div>
       </div>

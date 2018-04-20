@@ -1,17 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { MapComponent } from '@yaga/leaflet-ng2';
-
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import * as d3 from 'd3-shape';
 import * as L from 'leaflet';
 import * as HeatmapOverlay from 'leaflet-heatmap/leaflet-heatmap';
+import { Subscription } from 'rxjs/Subscription';
+import { AppComponent } from '../app.component';
+
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit {
-
+export class DashboardComponent implements OnInit, OnDestroy {
+  private subscriptions: Subscription[] = [];
+  public blocks;
   // Charts
   public view: any[] = [400, 175];
   public unitsData = [
@@ -116,7 +118,7 @@ export class DashboardComponent implements OnInit {
 
   // Map
   public OSM_TILE_LAYER_URL = 'https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_nolabels/{z}/{x}/{y}.png';
-  public options = {
+  public optionsGeoMap = {
     layers: [
       L.tileLayer(this.OSM_TILE_LAYER_URL,
         {
@@ -140,7 +142,7 @@ export class DashboardComponent implements OnInit {
   ];
 
   // Heatmap
-  public options2 = {
+  public optionsHeatMap = {
     layers: [
       L.tileLayer(this.OSM_TILE_LAYER_URL,
         {
@@ -151,10 +153,26 @@ export class DashboardComponent implements OnInit {
     zoom: 0.5,
     center: L.latLng(46.879966, -121.726909)
   };
-  constructor() { }
+  constructor(
+    private appComponent: AppComponent,
+  ) { }
 
   ngOnInit() {
+    const appSub = this.appComponent.dataService.blocks$.subscribe(
+      blocks => {
+        if (blocks) {
+          this.blocks = blocks;
+          console.log(blocks);
+        }
+      }
+    );
+    this.subscriptions.push(appSub);
   }
+  ngOnDestroy() {
+    this.subscriptions
+      .forEach(s => s.unsubscribe());
+  }
+
   public onMapReady(map: L.Map): void {
     // Do stuff with map
     const testData = {

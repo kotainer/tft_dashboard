@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
+
 import { SocketService } from '../services/socket.service';
-import * as d3 from 'd3-shape';
-import * as L from 'leaflet';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-root',
@@ -9,15 +10,20 @@ import * as L from 'leaflet';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  private subscriptions: Subscription[] = [];
+
   constructor(
     public socketService: SocketService,
+    public dataService: DataService,
   ) {
     this.socketService.initSocket();
 
     this.socketService.onMessage()
       .subscribe((message: any) => {
-        console.log(message);
+        this.dataService.blocks$.next(message);
+        console.log('message', message);
       });
+
   }
 
 }
