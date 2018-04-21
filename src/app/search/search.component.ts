@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AppComponent } from '../app.component';
 
 @Component({
@@ -9,11 +9,11 @@ import { AppComponent } from '../app.component';
 })
 export class SearchComponent implements OnInit {
   public id;
-  public loading = false;
   public item;
   constructor(
     private appComponent: AppComponent,
-    public activatedRoute: ActivatedRoute
+    public activatedRoute: ActivatedRoute,
+    public router: Router
   ) { }
 
   ngOnInit() {
@@ -30,9 +30,13 @@ export class SearchComponent implements OnInit {
     this.appComponent.API('get', path, this.id).subscribe(
       data => {
         if (data) {
+          console.log(data);
           this.item = data;
         }
       },
     );
+  }
+  public newSearch(id) {
+    this.router.navigate([`/search/${id}`]);
   }
 }
