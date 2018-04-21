@@ -47,7 +47,7 @@ export class AppComponent {
       this.apiService[args[0]](...args.slice(1)).subscribe(
         res => {
           if (res.result) {
-            observer.next(res);
+            observer.next(res.data);
           } else {
             this.notify.error('Error', res.message);
           }

@@ -157,28 +157,35 @@ export class DashboardComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    this.getLastBlocks();
     const lastBlockSub = this.appComponent.dataService.lastBlock$.subscribe(
       block => {
         if (block) {
           this.lastBlock = block;
+          if (this.lastBlock.height > this.lastBlocks[0].height) {
+            this.lastBlocks.unshift(this.lastBlock);
+            this.lastBlocks.splice(-1, 1);
+          }
         }
       }
     );
-    const lastBlocksSub = this.appComponent.dataService.lastBlocks$.subscribe(
-      blocks => {
-        if (blocks) {
-          this.lastBlocks = blocks;
-        }
-      }
-    );
-    this.subscriptions.push(lastBlocksSub);
+    this.subscriptions.push(lastBlockSub);
   }
 
   ngOnDestroy() {
     this.subscriptions
       .forEach(s => s.unsubscribe());
   }
+  public getLastBlocks() {
 
+    this.appComponent.API('get', 'block', '').subscribe(
+      data => {
+        if (data) {
+          this.lastBlocks = data.lastBlocks;
+        }
+      },
+    );
+  }
   public onMapReady(map: L.Map): void {
     // Do stuff with map
     const testData = {

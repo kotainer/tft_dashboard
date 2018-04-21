@@ -15,7 +15,7 @@ export class ApiService {
       'Content-Type': 'application/json'
     });
 
-    return this.http.get(`${environment.apiPath}${environment.apiVersion}/${path}${query}`, { headers, params: query });
+    return this.http.get(`${environment.API_URL}${environment.API_VERSION}/${path}${query}`, { headers, params: query });
   }
 
 }

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
@@ -37,7 +38,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     FormsModule,
     LeafletModule.forRoot(),
     SimpleNotificationsModule.forRoot(),
-
+    HttpClientModule,
   ],
   providers: [
     SocketService,
