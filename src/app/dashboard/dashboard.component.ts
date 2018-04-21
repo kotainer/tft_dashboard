@@ -162,7 +162,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
       block => {
         if (block) {
           this.lastBlock = block;
-          if (this.lastBlock.height > this.lastBlocks[0].height) {
+          if (this.lastBlocks.lenght > 0 && this.lastBlock.height > this.lastBlocks[0].height) {
+            this.appComponent.notify.success('New block', block.height);
             this.lastBlocks.unshift(this.lastBlock);
             this.lastBlocks.splice(-1, 1);
           }
