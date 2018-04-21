@@ -14,7 +14,7 @@ import { ApiService } from '../services/api.service';
 })
 export class AppComponent {
   private subscriptions: Subscription[] = [];
-  private notyOptions = {
+  public notyOptions = {
     timeOut: 5000,
     lastOnBottom: true,
     clickToClose: true,
@@ -40,7 +40,6 @@ export class AppComponent {
     this.socketService.onTick()
       .subscribe((data: any) => {
         this.dataService.lastBlock$.next(data.lastBlock);
-        this.dataService.lastBlocks$.next(data.lastBlocks);
       });
   }
   public API(...args): Observable<any> {
