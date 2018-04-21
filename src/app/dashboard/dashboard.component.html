@@ -170,21 +170,21 @@
           </div>
           <div>
             <div class="flex align-center">
-              <div class="row-title">
-                <a>Block #{{block?.height}}</a> 
-              </div>
+              <a class="row-title" (click)="search(block?.height)">
+                Block #{{block?.height}}
+              </a>
               <!-- <div class="small-layer"></div>
               <div class="chip green">15s ago</div> -->
             </div>
             <div class="row-info">
-              <span class="big-data-container">
+              <a class="big-data-container" (click)="search(block?.id)">
                 ID: {{block?.id}}
-              </span>
+              </a>
             </div>
             <div class="row-info">
-              <span class="big-data-container">
+              <a class="big-data-container" (click)="search(block?.parentId)">
                 Parent ID: {{block?.parentId}}
-              </span>
+              </a>
             </div>
             <div class="row-info bold">
               Block Reward {{block?.transactionsCount * 1}} TFT /&nbsp;

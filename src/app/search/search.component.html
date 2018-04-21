@@ -1,7 +1,21 @@
 <app-header></app-header>
 <div class="inner-container">
-  <div class="container">
-    fghjkl
+  <div *ngIf="!item">
+  <div class="huge-layer"></div>
+  <div class="huge-layer"></div>
+  <div class="huge-layer"></div>
+  <div class="huge-layer"></div>
+  <div class="huge-layer"></div>
+  <div class="flex-center" >Searching ....</div>
+  </div>
+  <div class="container" *ngIf="item">
+
+   <div class="card">
+     <div class="card-title">
+       <!-- {{item | json }} -->
+       {{ item?.hashtype !== 'transactionid' ? 'Block' : 'Transaction'}}
+     </div>
+   </div>
   </div>
 </div>
 <app-footer></app-footer>

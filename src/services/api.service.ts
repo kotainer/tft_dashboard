@@ -10,12 +10,12 @@ export class ApiService {
     private http: HttpClient
   ) { }
 
-  public get(path: string, query: any): Observable<any> {
+  public get(path: string, id: any = '', query: any = ''): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
 
-    return this.http.get(`${environment.API_URL}${environment.API_VERSION}/${path}${query}`, { headers, params: query });
+    return this.http.get(`${environment.API_URL}${environment.API_VERSION}/${path}/${id}${query}`, { headers, params: query });
   }
 
 }

@@ -7,7 +7,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 
 const routes: Routes = [
   { path: '', component: DashboardComponent },
-  { path: 'search/:query', component: SearchComponent },
+  { path: 'search/:id', component: SearchComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
 

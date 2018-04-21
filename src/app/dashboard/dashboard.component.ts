@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
 import * as HeatmapOverlay from 'leaflet-heatmap/leaflet-heatmap';
 import * as d3 from 'd3-shape';
 import * as L from 'leaflet';
-import { Subscription } from 'rxjs/Subscription';
 import { AppComponent } from '../app.component';
 
 const OSM_TILE_LAYER_URL = 'https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_nolabels/{z}/{x}/{y}.png';
@@ -13,8 +14,8 @@ const OSM_TILE_LAYER_URL = 'https://cartodb-basemaps-{s}.global.ssl.fastly.net/d
 })
 export class DashboardComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
-  public lastBlocks;
   public lastBlock;
+  public lastBlocks = [];
   // Charts
   public view = [400, 175];
   public unitsData = [
@@ -154,6 +155,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   };
   constructor(
     private appComponent: AppComponent,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -162,7 +164,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       block => {
         if (block) {
           this.lastBlock = block;
-          if (this.lastBlocks.lenght > 0 && this.lastBlock.height > this.lastBlocks[0].height) {
+          if (this.lastBlocks.length > 0 && this.lastBlock.height > this.lastBlocks[0].height) {
             this.appComponent.notify.success('New block', block.height);
             this.lastBlocks.unshift(this.lastBlock);
             this.lastBlocks.splice(-1, 1);
@@ -178,8 +180,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       .forEach(s => s.unsubscribe());
   }
   public getLastBlocks() {
-
-    this.appComponent.API('get', 'block', '').subscribe(
+    this.appComponent.API('get', 'block').subscribe(
       data => {
         if (data) {
           this.lastBlocks = data.lastBlocks;
@@ -224,6 +225,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     heatmapLayer.setData(testData);
     heatmapLayer.onAdd(map);
+  }
+  public search(id) {
+    this.router.navigate([`/search/${id}`]);
   }
 
 }
