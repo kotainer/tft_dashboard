@@ -1,197 +1,201 @@
 <app-header></app-header>
-<div class="page-container">
-  <div class="flex-between">
-    <div class="left-col">
-      <div class="card">
-        <div class="flex-center">
-          <div class="middle-num">
-            Current Block #{{lastBlock?.height}}
+<div class="inner-container">
+  <div class="page-container">
+    <div class="flex-between">
+      <div class="left-col">
+        <div class="card">
+          <div class="flex-center">
+            <div class="middle-num">
+              Current Block #{{lastBlock?.height}}
+            </div>
+            <div class="big-layer"></div>
+            <div class="middle-num ">
+              Difficulty: {{lastBlock?.difficulty}} BS
+            </div>
           </div>
-          <div class="big-layer"></div>
-          <div class="middle-num ">
-            Difficulty: {{lastBlock?.difficulty}} BS
+          <div class="small-layer"></div>
+          <div class="flex-center">
+            ID: {{lastBlock?.id}}
           </div>
         </div>
         <div class="small-layer"></div>
-        <div class="flex-center">
-          ID: {{lastBlock?.id}}
-        </div>
-      </div>
-      <div class="small-layer"></div>
-      <div class="flex">
-        <div class="full-width flex">
-          <div class="card auto flex-grow">
-            <div class="card-title">
-              Units
-            </div>
-            <div class="flex">
-              <div class="flex-no-shrink">
-                <div class="big-num">
-                  115
+        <div class="flex">
+          <div class="full-width flex">
+            <div class="card auto flex-grow">
+              <div class="card-title">
+                Units
+              </div>
+              <div class="flex">
+                <div class="flex-no-shrink">
+                  <div class="big-num">
+                    115
+                  </div>
+                  <div class="card-subtitle">
+                    Compute Units
+                  </div>
                 </div>
-                <div class="card-subtitle">
-                  Compute Units
+                <div class="layer"></div>
+                <div class="flex-no-shrink">
+                  <div class="big-num">
+                    6052
+                  </div>
+                  <div class="card-subtitle">
+                    Storage Units
+                  </div>
                 </div>
               </div>
-              <div class="layer"></div>
-              <div class="flex-no-shrink">
-                <div class="big-num">
-                  6052
+            </div>
+            <div class="small-layer"></div>
+            <div class="card auto flex-grow">
+              <div class="card-title">
+                Total
+              </div>
+              <div class="flex">
+                <div class="flex-no-shrink">
+                  <div class="big-num">
+                    14 PB
+                  </div>
+                  <div class="card-subtitle">
+                    Storage Units
+                  </div>
                 </div>
-                <div class="card-subtitle">
-                  Storage Units
+                <div class="layer"></div>
+                <div class="flex-no-shrink">
+                  <div class="big-num">
+                    115
+                  </div>
+                  <div class="card-subtitle">
+                    Cores
+                  </div>
                 </div>
               </div>
             </div>
           </div>
           <div class="small-layer"></div>
-          <div class="card auto flex-grow">
-            <div class="card-title">
-              Total
-            </div>
-            <div class="flex">
-              <div class="flex-no-shrink">
-                <div class="big-num">
-                  14 PB
+          <div class="full-width flex">
+            <div class="card auto flex-grow">
+              <div class="card-title">
+                AVG Unit Price
+              </div>
+              <div class="flex">
+                <div class="flex-no-shrink">
+                  <div class="big-num pink-text">
+                    $110
+                  </div>
+                  <div class="card-subtitle">
+                    Compute Unit
+                  </div>
                 </div>
-                <div class="card-subtitle">
-                  Storage Units
+                <div class="layer"></div>
+                <div class="flex-no-shrink">
+                  <div class="big-num peach-text">
+                    $800
+                  </div>
+                  <div class="card-subtitle">
+                    Storage Unit
+                  </div>
                 </div>
               </div>
-              <div class="layer"></div>
+            </div>
+            <div class="small-layer"></div>
+            <div class="card auto flex-grow">
+              <div class="card-title">
+                Network
+              </div>
               <div class="flex-no-shrink">
                 <div class="big-num">
-                  115
+                  ${{ '115000' | number: '1.0-0'}}
                 </div>
                 <div class="card-subtitle">
-                  Cores
+                  Network price
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="small-layer"></div>
-        <div class="full-width flex">
-          <div class="card auto flex-grow">
+        <div class="layer"></div>
+        <div class="flex">
+          <div class="card chart">
             <div class="card-title">
-              AVG Unit Price
+              Token Price (last 6 months)
             </div>
-            <div class="flex">
-              <div class="flex-no-shrink">
-                <div class="big-num pink-text">
-                  $110
-                </div>
-                <div class="card-subtitle">
-                  Compute Unit
-                </div>
-              </div>
-              <div class="layer"></div>
-              <div class="flex-no-shrink">
-                <div class="big-num peach-text">
-                  $800
-                </div>
-                <div class="card-subtitle">
-                  Storage Unit
-                </div>
-              </div>
+            <div class="flex-center">
+              <ngx-charts-line-chart [view]="view" [scheme]="colorSchemePrice" [results]="priceData" [gradient]="true" [xAxis]="true" [yAxis]="true"
+                [legend]="false" [showXAxisLabel]="false" [showYAxisLabel]="false" [autoScale]="true" [showGridLines]="true"
+                [curve]="curve">
+              </ngx-charts-line-chart>
+            </div>
+            <div class="chart-currencies">
+              <div class="tip active">USD</div>
+              <div class="tip">EUR</div>
+              <div class="tip">BTC</div>
             </div>
           </div>
           <div class="small-layer"></div>
-          <div class="card auto flex-grow">
+          <div class="card">
             <div class="card-title">
-              Network
+              Unit Price (last 6 months)
             </div>
-            <div class="flex-no-shrink">
-              <div class="big-num">
-                ${{ '115000' | number: '1.0-0'}}
-              </div>
-              <div class="card-subtitle">
-                Network price
-              </div>
+            <div class="flex-center">
+              <ngx-charts-line-chart [view]="view" [scheme]="colorScheme" [results]="unitsData" [gradient]="true" [xAxis]="true" [yAxis]="true"
+                [legend]="false" [showXAxisLabel]="false" [showYAxisLabel]="false" [autoScale]="true" [showGridLines]="true"
+                [curve]="curve">
+              </ngx-charts-line-chart>
             </div>
-          </div>
-        </div>
-      </div>
-      <div class="layer"></div>
-      <div class="flex">
-        <div class="card chart">
-          <div class="card-title">
-            Token Price (last 6 months)
-          </div>
-          <div class="flex-center">
-            <ngx-charts-line-chart [view]="view" [scheme]="colorSchemePrice" [results]="priceData" [gradient]="true" [xAxis]="true" [yAxis]="true" [legend]="false" [showXAxisLabel]="false" [showYAxisLabel]="false" [autoScale]="true" [showGridLines]="true" [curve]="curve">
-            </ngx-charts-line-chart>
-          </div>
-          <div class="chart-currencies">
-            <div class="tip active">USD</div>
-            <div class="tip">EUR</div>
-            <div class="tip">BTC</div>
           </div>
         </div>
         <div class="small-layer"></div>
-        <div class="card">
-          <div class="card-title">
-            Unit Price (last 6 months)
+        <div class="flex">
+          <div class="card">
+            <div class="card-title">
+              Registered Nodes
+            </div>
+            <div style="height: 221px" leaflet [leafletOptions]="optionsGeoMap" [leafletLayers]="geoMapLayers">
+            </div>
           </div>
-          <div class="flex-center">
-            <ngx-charts-line-chart [view]="view" [scheme]="colorScheme" [results]="unitsData" [gradient]="true" [xAxis]="true" [yAxis]="true"
-              [legend]="false" [showXAxisLabel]="false" [showYAxisLabel]="false" [autoScale]="true" [showGridLines]="true" [curve]="curve">
-            </ngx-charts-line-chart>
+          <div class="small-layer"></div>
+          <div class="card">
+            <div class="card-title">
+              Heat Map of Nodes and Cloud Units
+            </div>
+            <div style="height: 221px" leaflet (leafletMapReady)="onMapReady($event)" [leafletOptions]="optionsHeatMap">
+            </div>
           </div>
         </div>
       </div>
-      <div class="small-layer"></div>
-      <div class="flex">
-        <div class="card">
+      <div class="right-col">
+        <div class="card full-height">
           <div class="card-title">
-            Registered Nodes
+            Recent blocks
           </div>
-          <div style="height: 221px" leaflet [leafletOptions]="optionsGeoMap" [leafletLayers]="geoMapLayers">
-          </div>
-        </div>
-        <div class="small-layer"></div>
-        <div class="card">
-          <div class="card-title">
-            Heat Map of Nodes and Cloud Units
-          </div>
-          <div style="height: 221px" leaflet (leafletMapReady)="onMapReady($event)" [leafletOptions]="optionsHeatMap">
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="right-col">
-      <div class="card full-height">
-        <div class="card-title">
-          Recent blocks
-        </div>
-        <div class="row" *ngFor="let block of lastBlocks">
-          <div class="row-icon">
-            <img src="assets/images/icons8-brick-64.png" alt="">
-          </div>
-          <div>
-            <div class="flex align-center">
-              <a class="row-title" (click)="search(block?.height)">
-                Block #{{block?.height}}
-              </a>
-              <!-- <div class="small-layer"></div>
-              <div class="chip green">{{timeAgo(block.timeStamp)}}s ago</div> -->
+          <div class="row" *ngFor="let block of lastBlocks">
+            <div class="row-icon">
+              <img src="assets/images/icons8-brick-64.png" alt="">
             </div>
-            <div class="row-info">
-              <a class="big-data-container" (click)="search(block?.id)">
-                ID: {{block?.id}}
-              </a>
-            </div>
-            <div class="row-info">
-              <a class="big-data-container" (click)="search(block?.parentId)">
-                Parent ID: {{block?.parentId}}
-              </a>
-            </div>
-            <div class="row-info bold">
-              Block Reward {{block?.transactionsCount * 1}} TFT /&nbsp;
-              {{block?.transactionsCount}} txns
-            </div>
-            <div class="row-info">
-              Active BlockStake: {{block?.activeBlockStake}} BS
+            <div>
+              <div class="flex align-center">
+                <a class="row-title" (click)="search(block?.height)">
+                  Block #{{block?.height}}
+                </a>
+                <!-- <div class="small-layer"></div>
+                <div class="chip green">{{timeAgo(block.timeStamp)}}s ago</div> -->
+              </div>
+              <div class="row-info">
+                <a class="big-data-container" (click)="search(block?.id)">
+                  ID: {{block?.id}}
+                </a>
+              </div>
+              <div class="row-info">
+                <a class="big-data-container" (click)="search(block?.parentId)">
+                  Parent ID: {{block?.parentId}}
+                </a>
+              </div>
+              <div class="row-info bold">
+                Block Reward {{block?.transactionsCount * 1}} TFT /&nbsp; {{block?.transactionsCount}} txns
+              </div>
+              <div class="row-info">
+                Active BlockStake: {{block?.activeBlockStake}} BS
+              </div>
             </div>
           </div>
         </div>

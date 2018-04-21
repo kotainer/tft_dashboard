@@ -146,9 +146,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
     center: L.latLng(50, 4)
   };
   public heatMapLayers = {
-    max: 1,
+    max: 2,
     min: 1,
-    data: []
+    data: [
+      { lat: 50, lng: 4, count: 2 }
+    ]
   };
   constructor(
     private appComponent: AppComponent,
@@ -227,8 +229,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
     };
 
     const heatmapLayer = new HeatmapOverlay(cfg);
-
-    heatmapLayer.setData(this.heatMapLayers);
+    this.peers.map(peer => {
+      const coordinate = { lat: peer.geo.coordinates[0], lng: peer.geo.coordinates[1], count: 10 };
+      this.heatMapLayers.data.push(coordinate);
+      heatmapLayer.setData(this.heatMapLayers);
+    });
     heatmapLayer.onAdd(map);
   }
   public search(id) {
