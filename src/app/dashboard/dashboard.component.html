@@ -118,7 +118,7 @@
           <div class="card-title">
             Token Price (last 6 months)
           </div>
-          <div>
+          <div class="flex-center">
             <ngx-charts-line-chart [view]="view" [scheme]="colorSchemePrice" [results]="priceData" [gradient]="true" [xAxis]="true" [yAxis]="true" [legend]="false" [showXAxisLabel]="false" [showYAxisLabel]="false" [autoScale]="true" [showGridLines]="true" [curve]="curve">
             </ngx-charts-line-chart>
           </div>
@@ -133,9 +133,11 @@
           <div class="card-title">
             Unit Price (last 6 months)
           </div>
-          <ngx-charts-line-chart [view]="view" [scheme]="colorScheme" [results]="unitsData" [gradient]="true" [xAxis]="true" [yAxis]="true"
-            [legend]="false" [showXAxisLabel]="false" [showYAxisLabel]="false" [autoScale]="true" [showGridLines]="true" [curve]="curve">
-          </ngx-charts-line-chart>
+          <div class="flex-center">
+            <ngx-charts-line-chart [view]="view" [scheme]="colorScheme" [results]="unitsData" [gradient]="true" [xAxis]="true" [yAxis]="true"
+              [legend]="false" [showXAxisLabel]="false" [showYAxisLabel]="false" [autoScale]="true" [showGridLines]="true" [curve]="curve">
+            </ngx-charts-line-chart>
+          </div>
         </div>
       </div>
       <div class="small-layer"></div>

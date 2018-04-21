@@ -2,7 +2,7 @@
 section{
   font-weight: bold;
   padding: 17px;
-  background: #121413da;
+  background: rgba(18, 20, 19, 0.855);
 }
 section .socials-line,
 section .buy-line{
@@ -14,7 +14,7 @@ section .socials-line a{
 }
 footer {
   font-weight: 300;
-  background: #121413ea;
+  background: rgba(18, 20, 19, 0.918);
   padding: 15px;
   color: white;
   text-align: center;
