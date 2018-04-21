@@ -13,7 +13,7 @@
     <div class="page-title" *ngIf="!item?.hashtype">
       Block #{{id}}
     </div>
-    <div class="huge-layer"></div>
+    <div class="big-layer"></div>
     <div  *ngIf="!item?.hashtype || item?.hashtype === 'blockid'">
       <div class="card">
         <div class="card-title">
@@ -71,9 +71,9 @@
             <div class="row-title">
               ID
             </div>
-            <div class="row-data bold" (click)="newSearch(transaction.id)">
+            <a class="row-data bold" (click)="newSearch(transaction.id)">
               {{transaction.id}}
-            </div>
+            </a>
           </div>
           <div class="row">
             <div class="row-title">
