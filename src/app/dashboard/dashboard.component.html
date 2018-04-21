@@ -146,7 +146,7 @@
           <div class="card-title">
             Registered Nodes
           </div>
-          <div style="height: 221px" leaflet [leafletOptions]="optionsGeoMap" [leafletLayers]="layers">
+          <div style="height: 221px" leaflet [leafletOptions]="optionsGeoMap" [leafletLayers]="geoMapLayers">
           </div>
         </div>
         <div class="small-layer"></div>
@@ -174,7 +174,7 @@
                 Block #{{block?.height}}
               </a>
               <!-- <div class="small-layer"></div>
-              <div class="chip green">15s ago</div> -->
+              <div class="chip green">{{timeAgo(block.timeStamp)}}s ago</div> -->
             </div>
             <div class="row-info">
               <a class="big-data-container" (click)="search(block?.id)">

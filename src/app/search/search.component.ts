@@ -30,7 +30,6 @@ export class SearchComponent implements OnInit {
     this.appComponent.API('get', path, this.id).subscribe(
       data => {
         if (data) {
-          console.log(data);
           this.item = data;
         }
       },

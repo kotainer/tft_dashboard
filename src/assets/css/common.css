@@ -144,3 +144,12 @@ ngx-charts-chart .line-series .line{
 .leaflet-control-container a{
   display: none;
 }
+simple-notification .simple-notification{
+  border-radius: 5px;
+}
+simple-notification .simple-notification.error{
+  background-color: #cc0033;
+}
+simple-notification .simple-notification.success{
+  background-color: #0EBD89;
+}
