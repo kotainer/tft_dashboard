@@ -6,9 +6,11 @@ import { FormsModule } from '@angular/forms';
 
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { SimpleNotificationsModule } from 'angular2-notifications';
 
 import { SocketService } from '../services/socket.service';
 import { DataService } from '../services/data.service';
+import { ApiService } from '../services/api.service';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -33,11 +35,14 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     NgxChartsModule,
     AppRoutingModule,
     FormsModule,
-    LeafletModule.forRoot()
+    LeafletModule.forRoot(),
+    SimpleNotificationsModule.forRoot(),
+
   ],
   providers: [
     SocketService,
-    DataService
+    DataService,
+    ApiService
   ],
   bootstrap: [AppComponent]
 })
