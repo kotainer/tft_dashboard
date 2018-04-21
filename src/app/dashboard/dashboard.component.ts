@@ -125,7 +125,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       L.tileLayer(OSM_TILE_LAYER_URL,
         {
           subdomains: 'abcd',
-          maxZoom: 5
+          maxZoom: 4
         })
     ],
     zoom: 0.5,
@@ -139,18 +139,26 @@ export class DashboardComponent implements OnInit, OnDestroy {
       L.tileLayer(OSM_TILE_LAYER_URL,
         {
           subdomains: 'abcd',
-          maxZoom: 5
+          maxZoom: 4
         })
     ],
     zoom: 0.5,
     center: L.latLng(50, 4)
   };
+  public heatmapLayerConfigs = {
+    'radius': 5,
+    'maxOpacity': .6,
+    'scaleRadius': true,
+    'useLocalExtrema': true,
+    latField: 'lat',
+    lngField: 'lng',
+    valueField: 'count'
+  };
+  public heatmapLayer = new HeatmapOverlay(this.heatmapLayerConfigs);
   public heatMapLayers = {
     max: 2,
     min: 1,
-    data: [
-      { lat: 50, lng: 4, count: 2 }
-    ]
+    data: []
   };
   constructor(
     private appComponent: AppComponent,
@@ -200,41 +208,23 @@ export class DashboardComponent implements OnInit, OnDestroy {
     );
   }
   public prepareGeoMapData() {
-    this.peers.map(peer => {
-      const coordinate = L.circle([peer.geo.coordinates[0], peer.geo.coordinates[1]], { radius: 200000, color: '#25dfec' });
+    this.peers.forEach(peer => {
+      const coordinate = L.circle([peer.geo.coordinates[0], peer.geo.coordinates[1]], { radius: 150000, color: '#25dfec' });
       this.geoMapLayers.push(coordinate);
     });
   }
   public prepareHeatMapData() {
-    this.peers.map(peer => {
-      const coordinate = { lat: peer.geo.coordinates[0], lng: peer.geo.coordinates[1], count: 1 };
+    this.peers.map((peer, i) => {
+      let coordinate = { lat: peer.geo.coordinates[0], lng: peer.geo.coordinates[1], count: 1 };
+      if (i === 0) {
+        coordinate.count = 2;
+      }
       this.heatMapLayers.data.push(coordinate);
     });
+    this.heatmapLayer.setData(this.heatMapLayers);
   }
   public onMapReady(map: L.Map): void {
-    const baseLayer = L.tileLayer(
-      'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 18
-      }
-    );
-
-    const cfg = {
-      'radius': 15,
-      'maxOpacity': .6,
-      'scaleRadius': true,
-      'useLocalExtrema': true,
-      latField: 'lat',
-      lngField: 'lng',
-      valueField: 'count'
-    };
-
-    const heatmapLayer = new HeatmapOverlay(cfg);
-    this.peers.map(peer => {
-      const coordinate = { lat: peer.geo.coordinates[0], lng: peer.geo.coordinates[1], count: 10 };
-      this.heatMapLayers.data.push(coordinate);
-      heatmapLayer.setData(this.heatMapLayers);
-    });
-    heatmapLayer.onAdd(map);
+    this.heatmapLayer.onAdd(map);
   }
   public search(id) {
     this.router.navigate([`/search/${id}`]);
