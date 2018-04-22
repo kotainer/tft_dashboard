@@ -4,17 +4,6 @@ body {
   min-height: 100vh;
   min-width: 1400px;
   overflow-x: auto;
-  /* background-image: linear-gradient(to right bottom,
-   #2ea7af, #334b97, #29337f, #520d43); */
-  /* background-image: -webkit-gradient(linear, right bottom, left top, from(#6d327c), color-stop(#485DA6), color-stop(#00a1ba), color-stop(#00BF98), to(#36C486));
-  background-image: -webkit-linear-gradient(right bottom, #6d327c, #485DA6, #00a1ba, #00BF98, #36C486);
-  background-image: -o-linear-gradient(right bottom, #6d327c, #485DA6, #00a1ba, #00BF98, #36C486);
-  background-image: linear-gradient(to left top, #6d327c, #485DA6, #00a1ba, #00BF98, #36C486); */
-  /* background-image: -webkit-gradient(linear, left bottom, right top, from(#6d327c), color-stop(#485DA6), color-stop(#00a1ba), color-stop(#00BF98), to(#36C486));
-  background-image: -webkit-linear-gradient(left bottom, #6d327c, #485DA6, #00a1ba, #00BF98, #36C486);
-  background-image: -o-linear-gradient(left bottom, #6d327c, #485DA6, #00a1ba, #00BF98, #36C486); */
-  /* background-image: linear-gradient(to left top, #b40cd2, #6675d2 55%, #45a0cb, #13e7c3 );
-  -webkit-user-drag: none; */
   background-image: linear-gradient(to right top, #36c486 , #008ac7 , #6d327c);
   text-rendering: optimizeLegibility !important;
   -webkit-font-smoothing: antialiased;
@@ -25,6 +14,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #444444;
   background-color: #fafafa;
   font-weight: 100;
   font-size: 19px;
@@ -57,8 +47,11 @@ body {
 .card.chart{
   padding-bottom: 55px;
 }
+.card a:hover{
+  color: #a749fa;
+}
 .big-num{
-  font-size: 33.5px;
+  font-size: 33px;
 }
 .middle-num{
   font-size: 23px;
@@ -123,6 +116,8 @@ body {
   align-items: center;
 }
 /* libraries new styles */
+
+/* Charts */
 ngx-charts-chart .tick text{
   fill: white
 }
@@ -141,9 +136,22 @@ ngx-charts-chart ngx-charts-legend.chart-legend ul{
 ngx-charts-chart .line-series .line{
   stroke-width: 2.3px;
 }
+ngx-charts-chart .chart-legend .legend-labels{
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 6px;
+}
+ngx-charts-chart .ngx-charts-outer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* Leaflet */
 .leaflet-control-container a{
   display: none;
 }
+/* Notifications */
 simple-notification .simple-notification{
   border-radius: 5px;
 }

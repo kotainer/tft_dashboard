@@ -28,7 +28,7 @@
               <div class="flex">
                 <div class="flex-no-shrink">
                   <div class="big-num">
-                    115
+                    {{convertInThousands(computeUnitsTotal) | number: '1.1-1'}}K
                   </div>
                   <div class="card-subtitle">
                     Compute Units
@@ -37,7 +37,7 @@
                 <div class="layer"></div>
                 <div class="flex-no-shrink">
                   <div class="big-num">
-                    6052
+                    {{convertInThousands(storageUnitsTotal) | number: '1.1-1'}}K
                   </div>
                   <div class="card-subtitle">
                     Storage Units
@@ -53,7 +53,7 @@
               <div class="flex">
                 <div class="flex-no-shrink">
                   <div class="big-num">
-                    14 PB
+                    {{convertInThousands(storageUnitsPB) | number: '1.0-0'}}K PB
                   </div>
                   <div class="card-subtitle">
                     Storage Units
@@ -62,7 +62,7 @@
                 <div class="layer"></div>
                 <div class="flex-no-shrink">
                   <div class="big-num">
-                    115
+                    {{convertInThousands(storageUnitsCores) | number: '1.0-0'}}K
                   </div>
                   <div class="card-subtitle">
                     Cores
@@ -73,14 +73,14 @@
           </div>
           <div class="small-layer"></div>
           <div class="full-width flex">
-            <div class="card auto flex-grow">
+            <div class="card auto  flex-grow">
               <div class="card-title">
                 AVG Unit Price
               </div>
               <div class="flex">
                 <div class="flex-no-shrink">
                   <div class="big-num pink-text">
-                    $110
+                    ${{computeUnitPriceUSD | number: '1.2-2'}}
                   </div>
                   <div class="card-subtitle">
                     Compute Unit
@@ -89,7 +89,7 @@
                 <div class="layer"></div>
                 <div class="flex-no-shrink">
                   <div class="big-num peach-text">
-                    $800
+                    ${{storageUnitPriceUSD | number: '1.2-2'}}
                   </div>
                   <div class="card-subtitle">
                     Storage Unit
@@ -104,7 +104,7 @@
               </div>
               <div class="flex-no-shrink">
                 <div class="big-num">
-                  ${{ '115000' | number: '1.0-0'}}
+                  ${{ networkPrice() | number: '1.0-0'}}
                 </div>
                 <div class="card-subtitle">
                   Network price
@@ -120,9 +120,9 @@
               Token Price (last 6 months)
             </div>
             <div class="flex-center">
-              <ngx-charts-line-chart [view]="view" [scheme]="colorSchemePrice" [results]="priceData" [gradient]="true" [xAxis]="true" [yAxis]="true"
-                [legend]="false" [showXAxisLabel]="false" [showYAxisLabel]="false" [autoScale]="true" [showGridLines]="true"
-                [curve]="curve">
+              <ngx-charts-line-chart [view]="viewCharts" [scheme]="colorSchemePriceChart" [results]="priceChartData" [gradient]="true" [xAxis]="true" [yAxis]="true"
+                [legend]="false" [showXAxisLabel]="false" [showYAxisLabel]="false" [autoScale]="false" [showGridLines]="true"
+                [curve]="curveCharts">
               </ngx-charts-line-chart>
             </div>
             <div class="chart-currencies">
@@ -137,10 +137,12 @@
               Unit Price (last 6 months)
             </div>
             <div class="flex-center">
-              <ngx-charts-line-chart [view]="view" [scheme]="colorScheme" [results]="unitsData" [gradient]="true" [xAxis]="true" [yAxis]="true"
-                [legend]="false" [showXAxisLabel]="false" [showYAxisLabel]="false" [autoScale]="true" [showGridLines]="true"
-                [curve]="curve">
-              </ngx-charts-line-chart>
+              <!-- <ngx-charts-line-chart [view]="viewCharts" [scheme]="colorSchemeUnitsChart" [results]="unitsChartData" [gradient]="true" [xAxis]="true" [yAxis]="true" [legendTitle]="''"
+                [legend]="true" [showXAxisLabel]="false" [showYAxisLabel]="false" [autoScale]="false" [showGridLines]="true" [curve]="curveCharts">
+              </ngx-charts-line-chart> -->
+              <ngx-charts-area-chart [view]="viewCharts" [scheme]="colorSchemeUnitsChart" [results]="unitsChartData" [gradient]="true" [xAxis]="true" [yAxis]="true" [legendTitle]="''"
+              [legend]="true" [showXAxisLabel]="false" [showYAxisLabel]="false" [autoScale]="false" [showGridLines]="true" [curve]="curveCharts">
+              </ngx-charts-area-chart>
             </div>
           </div>
         </div>
@@ -150,7 +152,7 @@
             <div class="card-title">
               Registered Nodes
             </div>
-            <div style="height: 221px" leaflet [leafletOptions]="optionsGeoMap" [leafletLayers]="geoMapLayers">
+            <div style="height: 221px" leaflet [leafletOptions]="geoMapOptions" [leafletLayers]="geoMapLayers">
             </div>
           </div>
           <div class="small-layer"></div>
@@ -158,7 +160,7 @@
             <div class="card-title">
               Heat Map of Nodes and Cloud Units
             </div>
-            <div style="height: 221px" leaflet (leafletMapReady)="onMapReady($event)" [leafletOptions]="optionsHeatMap">
+            <div style="height: 221px" leaflet (leafletMapReady)="onHeatMapReady($event)" [leafletOptions]="heatMapOptions">
             </div>
           </div>
         </div>

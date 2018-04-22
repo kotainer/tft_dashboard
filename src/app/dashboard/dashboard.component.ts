@@ -14,113 +14,34 @@ const OSM_TILE_LAYER_URL = 'https://cartodb-basemaps-{s}.global.ssl.fastly.net/d
 })
 export class DashboardComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
+  public currentTimeTimeStamp = + new Date();
   public lastBlock;
   public lastBlocks = [];
   public peers = [];
-  public currentTimeTimeStamp = + new Date();
+  public unitsChartData;
+  public priceChartData;
+
+  // Static Stats
+  public computeUnitsTotal = 25200;
+  public storageUnitsTotal = 91578;
+  public storageUnitsPB = 72000;
+  public storageUnitsCores = 28000;
+  public computeUnitPriceUSD = 12;
+  public storageUnitPriceUSD = 10;
+
   // Charts
-  public view = [400, 175];
-  public unitsData = [
-    {
-      'name': 'Unit price',
-      'series': [
-        {
-          'name': '01/01',
-          'value': 100
-        },
-        {
-          'name': '01/02',
-          'value': 110
-        },
-        {
-          'name': '01/03',
-          'value': 150
-        },
-        {
-          'name': '01/04',
-          'value': 150
-        },
-        {
-          'name': '01/05',
-          'value': 155
-        },
-        {
-          'name': '01/06',
-          'value': 180
-        },
-      ]
-    },
-    {
-      'name': 'Storage price',
-      'series': [
-        {
-          'name': '01/01',
-          'value': 700
-        },
-        {
-          'name': '01/02',
-          'value': 680
-        },
-        {
-          'name': '01/03',
-          'value': 710
-        },
-        {
-          'name': '01/04',
-          'value': 730
-        },
-        {
-          'name': '01/05',
-          'value': 740
-        },
-        {
-          'name': '01/06',
-          'value': 800
-        },
-      ]
-    }
-  ];
-  public priceData = [
-    {
-      'name': 'Token price',
-      'series': [
-        {
-          'name': '01/01',
-          'value': 100
-        },
-        {
-          'name': '01/02',
-          'value': 110
-        },
-        {
-          'name': '01/03',
-          'value': 150
-        },
-        {
-          'name': '01/04',
-          'value': 150
-        },
-        {
-          'name': '01/05',
-          'value': 155
-        },
-        {
-          'name': '01/06',
-          'value': 180
-        },
-      ]
-    }
-  ];
-  public colorScheme = {
+  public viewCharts = [400, 175];
+
+  public colorSchemeUnitsChart = {
     domain: ['#f993ab', '#ffc8a7']
   };
-  public colorSchemePrice = {
+  public colorSchemePriceChart = {
     domain: ['#17f9be']
   };
-  public curve = d3.curveNatural;
+  public curveCharts = d3.curveLinear;
 
-  // Map
-  public optionsGeoMap = {
+  // Maps
+  public geoMapOptions = {
     layers: [
       L.tileLayer(OSM_TILE_LAYER_URL,
         {
@@ -128,13 +49,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
           maxZoom: 4
         })
     ],
-    zoom: 0.5,
+    zoom: 0.7,
     center: L.latLng(50, 4)
   };
   public geoMapLayers = [];
 
   // Heatmap
-  public optionsHeatMap = {
+  public heatMapOptions = {
     layers: [
       L.tileLayer(OSM_TILE_LAYER_URL,
         {
@@ -142,24 +63,24 @@ export class DashboardComponent implements OnInit, OnDestroy {
           maxZoom: 4
         })
     ],
-    zoom: 0.5,
+    zoom: 1,
     center: L.latLng(50, 4)
   };
-  public heatmapLayerConfigs = {
-    'radius': 5,
-    'maxOpacity': .6,
+  public heatMapLayerConfigs = {
+    'radius': 7,
+    'maxOpacity': 0.6,
     'scaleRadius': true,
     'useLocalExtrema': true,
     latField: 'lat',
     lngField: 'lng',
     valueField: 'count'
   };
-  public heatmapLayer = new HeatmapOverlay(this.heatmapLayerConfigs);
   public heatMapLayers = {
-    max: 2,
+    max: 1,
     min: 1,
     data: []
   };
+  public heatMapLayer = new HeatmapOverlay(this.heatMapLayerConfigs);
   constructor(
     private appComponent: AppComponent,
     private router: Router
@@ -168,10 +89,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.getLastBlocks();
     this.getPeers();
+    this.unitsChartData = this.calculateUnitsChartData();
+    this.priceChartData = this.calculatePriceChartData();
     const lastBlockSub = this.appComponent.dataService.lastBlock$.subscribe(
       block => {
         if (block) {
           this.lastBlock = block;
+          // Check&&Replace last block
           if (this.lastBlocks.length > 0 && this.lastBlock.height > this.lastBlocks[0].height) {
             this.appComponent.notify.success('New block', `#${block.height}`);
             this.lastBlocks.unshift(this.lastBlock);
@@ -201,33 +125,102 @@ export class DashboardComponent implements OnInit, OnDestroy {
       data => {
         if (data) {
           this.peers = data;
-          this.prepareGeoMapData();
-          this.prepareHeatMapData();
+          this.setGeoMapData();
+          this.setHeatMapData();
         }
       },
     );
   }
-  public prepareGeoMapData() {
+  public setGeoMapData() {
     this.peers.forEach(peer => {
       const coordinate = L.circle([peer.geo.coordinates[0], peer.geo.coordinates[1]], { radius: 150000, color: '#25dfec' });
       this.geoMapLayers.push(coordinate);
     });
   }
-  public prepareHeatMapData() {
-    this.peers.map((peer, i) => {
-      let coordinate = { lat: peer.geo.coordinates[0], lng: peer.geo.coordinates[1], count: 1 };
-      if (i === 0) {
+  public setHeatMapData() {
+    this.peers.map((peer, index) => {
+      const coordinate = { lat: peer.geo.coordinates[0], lng: peer.geo.coordinates[1], count: 1 };
+      if (index === 0) {
         coordinate.count = 2;
       }
       this.heatMapLayers.data.push(coordinate);
     });
-    this.heatmapLayer.setData(this.heatMapLayers);
+    this.heatMapLayer.setData(this.heatMapLayers);
   }
-  public onMapReady(map: L.Map): void {
-    this.heatmapLayer.onAdd(map);
+  public onHeatMapReady(map: L.Map) {
+    this.heatMapLayer.onAdd(map);
   }
   public search(id) {
     this.router.navigate([`/search/${id}`]);
+  }
+  public networkPrice() {
+    return this.computeUnitsTotal * this.computeUnitPriceUSD + this.storageUnitsTotal * this.storageUnitPriceUSD;
+  }
+  public convertInThousands(number) {
+    return number / 1000;
+  }
+  public calculateUnitsChartData() {
+    const that = this;
+    const unitsData = [
+      {
+        'name': 'Compute Unit',
+        'series': []
+      },
+      {
+        'name': 'Storage Unit',
+        'series': []
+      }
+    ];
+    function setData(index: number, price: number, times: number) {
+      while (times > 0) {
+        const monthNumber = that.monthNumber(times + 1) > 9 ? that.monthNumber(times + 1) : '0' + that.monthNumber(times + 1);
+        const object = {
+          name: '01/' + monthNumber,
+          value: price
+        };
+        unitsData[index].series.push(object);
+        times--;
+      }
+    }
+    setData(0, this.computeUnitPriceUSD, 6);
+    setData(1, this.storageUnitPriceUSD, 6);
+    return unitsData;
+  }
+  public calculatePriceChartData() {
+    const that = this;
+    const priceData = [
+      {
+        'name': 'Token price',
+        'series': []
+      }
+    ];
+    function setData(times: number) {
+      while (times > 0) {
+        const monthNumber = that.monthNumber(times + 1) > 9 ? that.monthNumber(times + 1) : '0' + that.monthNumber(times + 1);
+        let price;
+        if (times === 1) {
+          price = 0.1;
+        } else if (1 < times && times < 4) {
+          price = 0.08;
+        } else {
+          price = 0.05;
+        }
+        const object = {
+          name: '01/' + monthNumber,
+          value: price
+        };
+        priceData[0].series.push(object);
+        times--;
+      }
+    }
+    setData(6);
+    return priceData;
+  }
+  private monthNumber(monthsCount: number) {
+    const currentMonth = new Date().getMonth() + 1;
+    const today = new Date();
+    const monthNum = new Date(today.setMonth(currentMonth - monthsCount + 1)).getMonth() + 1;
+    return monthNum;
   }
   public timeAgo(timeStampInPast) {
     // let  date= new Date(timeStampInPast * 1000);
@@ -248,9 +241,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
     // Hours part from the timestamp
     const hours1 = date1.getHours();
     // Minutes part from the timestamp
-    const minutes1 = "0" + date1.getMinutes();
+    const minutes1 = '0' + date1.getMinutes();
     // Seconds part from the timestamp
-    const seconds1 = "0" + date1.getSeconds();
+    const seconds1 = '0' + date1.getSeconds();
 
     // Will display time in 10:30:23 format
     const formattedTime1 = hours1 + ':' + minutes1.substr(-2) + ':' + seconds1.substr(-2);
