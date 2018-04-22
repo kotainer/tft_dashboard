@@ -173,9 +173,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
     ];
     function setData(index: number, price: number, times: number) {
       while (times > 0) {
-        const monthNumber = that.monthNumber(times + 1) > 9 ? that.monthNumber(times + 1) : '0' + that.monthNumber(times + 1);
+        const monthNumber = that.monthNumber(times + 1);
+        const monthNumberString = monthNumber > 9 ? monthNumber : '0' + monthNumber;
         const object = {
-          name: '01/' + monthNumber,
+          name: '01/' + monthNumberString,
           value: price
         };
         unitsData[index].series.push(object);
@@ -196,9 +197,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
     ];
     function setData(times: number) {
       while (times > 0) {
-        const monthNumber = that.monthNumber(times + 1) > 9 ? that.monthNumber(times + 1) : '0' + that.monthNumber(times + 1);
+        const monthNumber = that.monthNumber(times + 1);
+        const monthNumberString = monthNumber > 9 ? monthNumber : '0' + monthNumber;
         let price;
-        if (times === 1) {
+        if (times  === 1) {
           price = 0.1;
         } else if (1 < times && times < 4) {
           price = 0.08;
@@ -206,7 +208,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
           price = 0.05;
         }
         const object = {
-          name: '01/' + monthNumber,
+          name: '01/' + monthNumberString,
           value: price
         };
         priceData[0].series.push(object);
