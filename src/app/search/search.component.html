@@ -62,11 +62,45 @@
       </div>
       <div class="layer"></div>
       <div class="page-subtitle">
+        Miner Payouts
+      </div>
+      <div *ngFor="let minerId of item.block.minerpayoutids; let i = index">
+        <div class="layer"></div>
+        <div class="card">
+          <div class="row">
+            <div class="row-title">
+              ID
+            </div>
+            <div class="row-data">
+              {{minerId}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="row-title">
+              Payout Address
+            </div>
+            <div class="row-data">
+              {{item.block.rawblock.minerpayouts[i].unlockhash}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="row-title">
+              Value
+            </div>
+            <div class="row-data">
+              {{calculatedValueInTokens(item.block.rawblock.minerpayouts[i].value) | number : '1.0-8'}} TFT
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="layer"></div>
+      <div class="page-subtitle">
         Transactions
       </div>
-      <div class="layer"></div>
-      <div class="card">
-        <div *ngFor="let transaction of item.block.transactions">
+      <div  *ngFor="let transaction of item.block.transactions">
+        <div class="layer"></div>
+        <div class="card">
           <div class="row">
             <div class="row-title">
               ID
@@ -75,23 +109,38 @@
               {{transaction.id}}
             </a>
           </div>
-          <div class="row">
+          <div class="row" *ngIf="transaction.rawtransaction.data.blockstakeinputs">
             <div class="row-title">
               BlockStake Input Count
             </div>
-            <a class="row-data bold" (click)="newSearch(transaction.id)">
+            <div class="row-data">
               {{transaction.rawtransaction.data.blockstakeinputs.length}}
-            </a>
+            </div>
           </div>
-          <div class="row">
+          <div class="row" *ngIf="transaction.rawtransaction.data.coininputs">
+            <div class="row-title">
+              Coin Input Count
+            </div>
+            <div class="row-data">
+              {{transaction.rawtransaction.data.coininputs.length}}
+            </div>
+          </div>
+          <div class="row" *ngIf="transaction.rawtransaction.data.blockstakeoutputs">
             <div class="row-title">
               BlockStake Output Count
             </div>
-            <div class="row-data bold" (click)="newSearch(transaction.id)">
+            <div class="row-data">
               {{transaction.rawtransaction.data.blockstakeoutputs.length}}
             </div>
           </div>
-           
+          <div class="row" *ngIf="transaction.rawtransaction.data.coinoutputs">
+            <div class="row-title">
+              Coin Output Count
+            </div>
+            <div class="row-data">
+              {{transaction.rawtransaction.data.coinoutputs.length}}
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -116,7 +165,7 @@
             {{item.transaction.id}}
           </div>
         </div>
-        <div class="row">
+        <div class="row" *ngIf="item.transaction.rawtransaction.data.blockstakeinputs">
           <div class="row-title">
             Blockstake Input Count
           </div>
@@ -124,7 +173,7 @@
             {{item.transaction.rawtransaction.data.blockstakeinputs.length}}
           </div>
         </div>
-        <div class="row">
+        <div class="row" *ngIf="item.transaction.rawtransaction.data.blockstakeoutputs">
           <div class="row-title">
             Blockstake Output Count
           </div>

@@ -75,6 +75,9 @@ body {
 .green-text{
   color: #80ffb5;
 }
+.bordered{
+  border-bottom: 1px solid rgba(250, 250, 250, 0.3);
+}
 .chip{
   padding: 3px 5px;
   border-radius: 18px;
