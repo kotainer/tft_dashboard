@@ -32,6 +32,8 @@ export class AppComponent {
     position: ['right', 'top']
   };
   public currentTokenPrice = 0.1;
+
+  public exchangeRates;
   constructor(
     public socketService: SocketService,
     public dataService: DataService,
@@ -43,8 +45,9 @@ export class AppComponent {
     this.socketService.initSocket();
     this.socketService.onTick().subscribe(
       (data) => {
-        dataService.lastBlock$.next(data.lastBlock);
+        this.exchangeRates = data.currency;
         dataService.exchangeRates$.next(data.currency);
+        dataService.lastBlock$.next(data.lastBlock);
       });
     this.setRoutingScroll();
   }
@@ -63,6 +66,13 @@ export class AppComponent {
         },
       );
     });
+  }
+  public calculateAmount( amountInUsd: number, currencyName: string) {
+     if (this.exchangeRates) {
+        return amountInUsd / this.exchangeRates[currencyName];
+    } else {
+      return 0;
+    }
   }
   public setRoutingScroll() {
     // Routing scrolling up

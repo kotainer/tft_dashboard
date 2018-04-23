@@ -116,31 +116,11 @@
         <div class="layer"></div>
         <div class="flex">
           <div class="card chart">
-            <div class="card-title">
-              Token Price (last 6 months)
-            </div>
-            <div class="flex-center">
-              <ngx-charts-line-chart [view]="viewCharts" [scheme]="colorSchemePriceChart" [results]="priceChartData" [gradient]="true" [xAxis]="true" [yAxis]="true"
-                [legend]="false" [showXAxisLabel]="false" [showYAxisLabel]="false" [autoScale]="false" [showGridLines]="true"
-                [curve]="curveCharts">
-              </ngx-charts-line-chart>
-            </div>
-            <div class="chart-currencies">
-              <div class="tip active">USD</div>
-              <div class="tip">EUR</div>
-              <div class="tip">BTC</div>
-            </div>
+            <app-token-price-chart></app-token-price-chart>
           </div>
           <div class="small-layer"></div>
           <div class="card">
-            <div class="card-title">
-              Unit Price (last 6 months)
-            </div>
-            <div class="flex-center">
-              <ngx-charts-area-chart [view]="viewCharts" [scheme]="colorSchemeUnitsChart" [results]="unitsChartData" [gradient]="true" [xAxis]="true" [yAxis]="true" [legendTitle]="''"
-              [legend]="true" [showXAxisLabel]="false" [showYAxisLabel]="false" [autoScale]="false" [showGridLines]="true" [curve]="curveCharts">
-              </ngx-charts-area-chart>
-            </div>
+            <app-unit-price-chart></app-unit-price-chart>
           </div>
         </div>
         <div class="small-layer"></div>
@@ -174,7 +154,7 @@
                 </a>
               </div>
               <div class="row-info bold">
-                Block Reward {{block?.transactionsCount * 1}} TFT /&nbsp; {{block?.transactionsCount}} txns
+                Block Reward {{calculatedValueInTokens(block?.minerReward) | number : '1.0-3'}} TFT /&nbsp; {{block?.transactionsCount}} txns
               </div>
               <div class="row-info">
                 Active BlockStake: {{block?.activeBlockStake}} BS

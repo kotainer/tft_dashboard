@@ -1,3 +1,9 @@
-<p>
-  unit-price-chart works!
-</p>
+<div class="card-title">
+  Unit Price (last 6 months)
+</div>
+<div class="flex-center">
+  <ngx-charts-area-chart [view]="viewCharts" [scheme]="colorSchemeUnitsChart" [results]="unitsChartData" [gradient]="true"
+    [xAxis]="true" [yAxis]="true" [legendTitle]="''" [legend]="true" [showXAxisLabel]="false" [showYAxisLabel]="false" [autoScale]="false"
+    [showGridLines]="true">
+  </ngx-charts-area-chart>
+</div>

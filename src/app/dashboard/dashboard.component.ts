@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
-import * as d3 from 'd3-shape';
 import { AppComponent } from '../app.component';
 
 @Component({
@@ -15,8 +14,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
   public lastBlock;
   public lastBlocks = [];
   public peers = [];
-  public unitsChartData;
-  public priceChartData;
 
   // Static Stats
   public computeUnitsTotal = 25200;
@@ -26,16 +23,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
   public computeUnitPriceUSD = 12;
   public storageUnitPriceUSD = 10;
 
-  // Charts
-  public viewCharts = [400, 175];
-
-  public colorSchemeUnitsChart = {
-    domain: ['#f993ab', '#ffc8a7']
-  };
-  public colorSchemePriceChart = {
-    domain: ['#17f9be']
-  };
-  public curveCharts = d3.curveLinear;
   constructor(
     private appComponent: AppComponent,
     private router: Router
@@ -44,8 +31,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.getPeers();
     this.getLastBlocks();
-    this.unitsChartData = this.calculateUnitsChartData();
-    this.priceChartData = this.calculatePriceChartData();
 
     const lastBlockSub = this.appComponent.dataService.lastBlock$.subscribe(
       block => {
@@ -86,7 +71,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
       },
     );
   }
-
   public search(id) {
     this.router.navigate([`/search/${id}`]);
   }
@@ -96,70 +80,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   public convertInThousands(number) {
     return number / 1000;
   }
-  public calculateUnitsChartData() {
-    const that = this;
-    const unitsData = [
-      {
-        'name': 'Compute Unit',
-        'series': []
-      },
-      {
-        'name': 'Storage Unit',
-        'series': []
-      }
-    ];
-    function setData(index: number, price: number, times: number) {
-      while (times > 0) {
-        const monthNumber = that.monthNumber(times + 1);
-        const monthNumberString = monthNumber > 9 ? monthNumber : '0' + monthNumber;
-        const object = {
-          name: '01/' + monthNumberString,
-          value: price
-        };
-        unitsData[index].series.push(object);
-        times--;
-      }
-    }
-    setData(0, this.computeUnitPriceUSD, 6);
-    setData(1, this.storageUnitPriceUSD, 6);
-    return unitsData;
-  }
-  public calculatePriceChartData() {
-    const that = this;
-    const priceData = [
-      {
-        'name': 'Token price',
-        'series': []
-      }
-    ];
-    function setData(times: number) {
-      while (times > 0) {
-        const monthNumber = that.monthNumber(times + 1);
-        const monthNumberString = monthNumber > 9 ? monthNumber : '0' + monthNumber;
-        let price;
-        if (times  === 1) {
-          price = 0.1;
-        } else if (1 < times && times < 4) {
-          price = 0.08;
-        } else {
-          price = 0.05;
-        }
-        const object = {
-          name: '01/' + monthNumberString,
-          value: price
-        };
-        priceData[0].series.push(object);
-        times--;
-      }
-    }
-    setData(6);
-    return priceData;
-  }
-  private monthNumber(monthsCount: number) {
-    const currentMonth = new Date().getMonth() + 1;
-    const today = new Date();
-    const monthNum = new Date(today.setMonth(currentMonth - monthsCount + 1)).getMonth() + 1;
-    return monthNum;
+  public calculatedValueInTokens(value) {
+    return value / 1000000000;
   }
   public timeAgo(timeStampInPast) {
     // let  date= new Date(timeStampInPast * 1000);
@@ -189,7 +111,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     const diff = Math.abs(this.currentTimeTimeStamp - timeStampInPast) / 3600000;
     if (diff < 18) { /* do something */ }
-
     return datem;
   }
 }

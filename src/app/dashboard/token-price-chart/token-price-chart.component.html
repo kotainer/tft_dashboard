@@ -1,3 +1,12 @@
-<p>
-  token-price-chart works!
-</p>
+<div class="card-title">
+  Token Price (last 6 months)
+</div>
+<div class="flex-center">
+  <ngx-charts-line-chart [view]="viewCharts" [scheme]="colorSchemePriceChart" [results]="priceChartData" [gradient]="true"
+    [xAxis]="true" [yAxis]="true" [legend]="false" [showXAxisLabel]="false" [showYAxisLabel]="false" [autoScale]="false"
+    [showGridLines]="true" [curve]="curveCharts">
+  </ngx-charts-line-chart>
+</div>
+<div class="chart-currencies">
+  <div class="tip" *ngFor="let curency of currenciesNames" (click)="changeCurrency(curency)" [class.active]="currentCurrency === curency" >USD</div>
+</div>
