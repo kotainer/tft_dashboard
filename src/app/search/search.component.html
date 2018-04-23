@@ -13,7 +13,7 @@
     <div class="page-title" *ngIf="!item?.hashtype">
       Block #{{id}}
     </div>
-    <div class="big-layer"></div>
+    <div class="layer"></div>
     <div  *ngIf="!item?.hashtype || item?.hashtype === 'blockid'">
       <div class="card">
         <div class="card-title">
@@ -39,9 +39,9 @@
           <div class="row-title">
             Parent Block
           </div>
-          <div class="row-data">
+          <a class="row-data bold" (click)="newSearch(item.block.rawblock.parentid)">
             {{item.block.rawblock.parentid}}
-          </div>
+          </a>
         </div>
         <div class="row">
           <div class="row-title">
@@ -65,7 +65,6 @@
         Miner Payouts
       </div>
       <div *ngFor="let minerId of item.block.minerpayoutids; let i = index">
-        <div class="layer"></div>
         <div class="card">
           <div class="row">
             <div class="row-title">
@@ -99,7 +98,6 @@
         Transactions
       </div>
       <div  *ngFor="let transaction of item.block.transactions">
-        <div class="layer"></div>
         <div class="card">
           <div class="row">
             <div class="row-title">
@@ -109,36 +107,20 @@
               {{transaction.id}}
             </a>
           </div>
-          <div class="row" *ngIf="transaction.rawtransaction.data.blockstakeinputs">
+          <div class="row">
             <div class="row-title">
-              BlockStake Input Count
+              {{typeName(transaction)}} Input Count
             </div>
             <div class="row-data">
-              {{transaction.rawtransaction.data.blockstakeinputs.length}}
+              {{transaction.rawtransaction.data[typeName(transaction, true) +'inputs'].length}}
             </div>
           </div>
-          <div class="row" *ngIf="transaction.rawtransaction.data.coininputs">
+          <div class="row">
             <div class="row-title">
-              Coin Input Count
+               {{typeName(transaction)}} Output Count
             </div>
             <div class="row-data">
-              {{transaction.rawtransaction.data.coininputs.length}}
-            </div>
-          </div>
-          <div class="row" *ngIf="transaction.rawtransaction.data.blockstakeoutputs">
-            <div class="row-title">
-              BlockStake Output Count
-            </div>
-            <div class="row-data">
-              {{transaction.rawtransaction.data.blockstakeoutputs.length}}
-            </div>
-          </div>
-          <div class="row" *ngIf="transaction.rawtransaction.data.coinoutputs">
-            <div class="row-title">
-              Coin Output Count
-            </div>
-            <div class="row-data">
-              {{transaction.rawtransaction.data.coinoutputs.length}}
+              {{transaction.rawtransaction.data[typeName(transaction, true) +'outputs'].length}}
             </div>
           </div>
         </div>
@@ -165,20 +147,126 @@
             {{item.transaction.id}}
           </div>
         </div>
-        <div class="row" *ngIf="item.transaction.rawtransaction.data.blockstakeinputs">
+        <div class="row">
           <div class="row-title">
-            Blockstake Input Count
+            {{typeName(item.transaction)}} Input Count
           </div>
           <div class="row-data">
-            {{item.transaction.rawtransaction.data.blockstakeinputs.length}}
+            {{item.transaction.rawtransaction.data[typeName(item.transaction, true) +'inputs'].length}}
           </div>
         </div>
-        <div class="row" *ngIf="item.transaction.rawtransaction.data.blockstakeoutputs">
+        <div class="row">
           <div class="row-title">
-            Blockstake Output Count
+            {{typeName(item.transaction)}} Output Count
           </div>
           <div class="row-data">
-            {{item.transaction.rawtransaction.data.blockstakeoutputs.length}}
+            {{item.transaction.rawtransaction.data[typeName(item.transaction, true) +'outputs'].length}}
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="layer"></div>
+        <div class="page-subtitle">
+          {{typeName(item.transaction)}} Inputs 
+        </div>
+        <div class="card" *ngFor="let input of item.transaction.rawtransaction.data[typeName(item.transaction, true) +'inputs']; let i = index">
+          <div class="card-title">
+            General
+          </div>
+          <div class="row">
+            <div class="row-title">
+              Parent ID
+            </div>
+            <div class="row-data">
+              {{input.parentid}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="row-title">
+              Address
+            </div>
+            <div class="row-data">
+              {{item.transaction[typeName(item.transaction, true) +'inputoutputs'][i].unlockhash }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="row-title">
+              Value
+            </div>
+            <div class="row-data" *ngIf="typeName(item.transaction) === 'Coin'">
+              {{calculatedValueInTokens(item.transaction.coininputoutputs[i].value) | number : '1.0-8'}} TFT 
+            </div>
+            <div class="row-data" *ngIf="typeName(item.transaction) === 'Blockstake'">
+              {{item.transaction.blockstakeinputoutputs[i].value }}
+            </div>
+          </div>
+          <div class="card-title">
+            Unlocker
+          </div>
+          <div class="row">
+            <div class="row-title">
+              Unlock type
+            </div>
+            <div class="row-data">
+              {{input.unlocker.type}}
+            </div>
+          </div>
+          <div class="card-title">
+            Condition
+          </div>
+          <div class="row">
+            <div class="row-title">
+              Publickey
+            </div>
+            <div class="row-data">
+              {{input.unlocker.condition.publickey}}
+            </div>
+          </div>
+          <div class="card-title">
+            Fulfillment
+          </div>
+          <div class="row">
+            <div class="row-title">
+              Signature
+            </div>
+            <div class="row-data">
+              {{input.unlocker.fulfillment.signature}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="layer"></div>
+        <div class="page-subtitle">
+          {{typeName(item.transaction)}} Outputs
+        </div>
+        <div class="card" *ngFor="let output of item.transaction.rawtransaction.data[typeName(item.transaction, true) +'outputs']; let i = index">
+          <div class="row">
+            <div class="row-title">
+              ID
+            </div>
+            <div class="row-data">
+              {{item.transaction[typeName(item.transaction, true) +'outputids'][i]}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="row-title">
+              Address
+            </div>
+            <div class="row-data">
+              {{output.unlockhash}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="row-title">
+              Value
+            </div>
+            <div class="row-data" *ngIf="typeName(item.transaction) === 'Coin'">
+              {{calculatedValueInTokens(output.value) | number : '1.0-8'}} TFT
+            </div>
+            <div class="row-data" *ngIf="typeName(item.transaction) === 'Blockstake'">
+              {{output.value}}
+            </div>
           </div>
         </div>
       </div>

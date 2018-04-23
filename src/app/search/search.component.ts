@@ -41,4 +41,14 @@ export class SearchComponent implements OnInit {
   public calculatedValueInTokens(value) {
     return value / 1000000000;
   }
+  public typeName(transaction, lowCase?: boolean) {
+    let name;
+    const transactionData = transaction.rawtransaction.data;
+    if (transactionData.blockstakeinputs || transactionData.blockstakeouputs) {
+      name = 'Blockstake';
+    } else {
+      name = 'Coin';
+    }
+    return lowCase ? name.toLocaleLowerCase() : name;
+  }
 }

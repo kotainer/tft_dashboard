@@ -115,6 +115,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.appComponent.API('get', 'block').subscribe(
       data => {
         if (data) {
+          this.lastBlock = data.lastBlock;
           this.lastBlocks = data.lastBlocks;
         }
       },

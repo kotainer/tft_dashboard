@@ -1,0 +1,4 @@
+2018/04/23 08:52:17.349267 gateway.go:220: STARTUP: Logging has started. tfchain Version 1.0.3
+2018/04/23 08:52:17.349819 gateway.go:232: INFO: gateway created, started logging
+2018/04/23 08:52:24.080329 upnp.go:97: INFO: our address is 37.113.136.239:23112
+2018/04/23 08:52:25.990343 upnp.go:130: INFO: successfully forwarded port 23112
