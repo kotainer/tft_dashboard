@@ -28,7 +28,7 @@
               <div class="flex">
                 <div class="flex-no-shrink">
                   <div class="big-num">
-                    {{convertInThousands(computeUnitsTotal) | number: '1.1-1'}}K
+                    {{getStaticData('computeUnitsTotal', true) | number: '1.1-1'}}K
                   </div>
                   <div class="card-subtitle">
                     Compute Units
@@ -37,7 +37,7 @@
                 <div class="layer"></div>
                 <div class="flex-no-shrink">
                   <div class="big-num">
-                    {{convertInThousands(storageUnitsTotal) | number: '1.1-1'}}K
+                    {{getStaticData('storageUnitsTotal', true) | number: '1.1-1'}}K
                   </div>
                   <div class="card-subtitle">
                     Storage Units
@@ -53,7 +53,7 @@
               <div class="flex">
                 <div class="flex-no-shrink">
                   <div class="big-num">
-                    {{convertInThousands(storageUnitsPB) | number: '1.0-0'}}K PB
+                    {{getStaticData('storageUnitsPB', true) | number: '1.0-0'}}K PB
                   </div>
                   <div class="card-subtitle">
                     Storage Units
@@ -62,7 +62,7 @@
                 <div class="layer"></div>
                 <div class="flex-no-shrink">
                   <div class="big-num">
-                    {{convertInThousands(storageUnitsCores) | number: '1.0-0'}}K
+                    {{getStaticData('storageUnitsCores', true) | number: '1.0-0'}}K
                   </div>
                   <div class="card-subtitle">
                     Cores
@@ -80,7 +80,7 @@
               <div class="flex">
                 <div class="flex-no-shrink">
                   <div class="big-num pink-text">
-                    ${{computeUnitPriceUSD | number: '1.2-2'}}
+                    ${{getStaticData('computeUnitPriceUSD') | number: '1.2-2'}}
                   </div>
                   <div class="card-subtitle">
                     Compute Unit
@@ -89,7 +89,7 @@
                 <div class="layer"></div>
                 <div class="flex-no-shrink">
                   <div class="big-num peach-text">
-                    ${{storageUnitPriceUSD | number: '1.2-2'}}
+                    ${{getStaticData('storageUnitPriceUSD') | number: '1.2-2'}}
                   </div>
                   <div class="card-subtitle">
                     Storage Unit
@@ -140,8 +140,8 @@
                 <a class="row-title" (click)="search(block?.height)">
                   Block #{{block?.height}}
                 </a>
-                <!-- <div class="small-layer"></div>
-                <div class="chip green">{{timeAgo(block.timeStamp)}}s ago</div> -->
+                <div class="small-layer"></div>
+                <div class="chip green">{{block.ago}}</div>
               </div>
               <div class="row-info">
                 <a class="big-data-container" (click)="search(block?.id)">

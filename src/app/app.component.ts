@@ -31,6 +31,13 @@ export class AppComponent {
     animate: 'scale',
     position: ['right', 'top']
   };
+  // Static Stats
+  public computeUnitsTotal = 25200;
+  public storageUnitsTotal = 91578;
+  public storageUnitsPB = 72000;
+  public storageUnitsCores = 28000;
+  public computeUnitPriceUSD = 12;
+  public storageUnitPriceUSD = 10;
   public currentTokenPrice = 0.1;
 
   public exchangeRates;
