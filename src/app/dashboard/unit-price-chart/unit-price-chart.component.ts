@@ -7,18 +7,19 @@ import { AppComponent } from '../../app.component';
   styleUrls: ['./unit-price-chart.component.css']
 })
 export class UnitPriceChartComponent implements OnInit {
-  public computeUnitPrice = {
-    usd: 12,
-    eur: 0,
-    btc: 0
-  };
-  public storageUnitPrice = {
-    usd: 10,
-    eur: 0,
-    btc: 0
-  };
+  public computeUnitPrice;
+  public storageUnitPrice;
 
-  public unitsChartData;
+  public unitsChartData = [
+    {
+      'name': 'Compute Unit',
+      'series': []
+    },
+    {
+      'name': 'Storage Unit',
+      'series': []
+    }
+  ];
 
   public viewCharts = [400, 175];
   public colorSchemeUnitsChart = {
@@ -29,35 +30,25 @@ export class UnitPriceChartComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.unitsChartData = this.calculateUnitsChartData();
+    this.computeUnitPrice = this.appComponent.computeUnitPriceUSD;
+    this.storageUnitPrice = this.appComponent.storageUnitPriceUSD;
+    this.calculateUnitsChartData();
   }
   public calculateUnitsChartData() {
-    const that = this;
-    const unitsData = [
-      {
-        'name': 'Compute Unit',
-        'series': []
-      },
-      {
-        'name': 'Storage Unit',
-        'series': []
-      }
-    ];
-    function setData(index: number, price: number, times: number) {
-      while (times > 0) {
-        const monthNumber = that.monthNumber(times + 1);
-        const monthNumberString = monthNumber > 9 ? monthNumber : '0' + monthNumber;
-        const object = {
-          name: '01/' + monthNumberString,
-          value: price
-        };
-        unitsData[index].series.push(object);
-        times--;
-      }
+    this.setData(0, this.computeUnitPrice, 6);
+    this.setData(1, this.storageUnitPrice, 6);
+  }
+  private setData(index: number, price: number, times: number) {
+    while (times > 0) {
+      const monthNumber = this.monthNumber(times + 1);
+      const monthNumberString = monthNumber > 9 ? monthNumber : '0' + monthNumber;
+      const object = {
+        name: '01/' + monthNumberString,
+        value: price
+      };
+      this.unitsChartData[index].series.push(object);
+      times--;
     }
-    setData(0, this.computeUnitPrice.usd, 6);
-    setData(1, this.storageUnitPrice.usd, 6);
-    return unitsData;
   }
 
   private monthNumber(monthsCount: number) {

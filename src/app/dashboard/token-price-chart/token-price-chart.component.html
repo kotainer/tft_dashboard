@@ -8,5 +8,7 @@
   </ngx-charts-line-chart>
 </div>
 <div class="chart-currencies">
-  <div class="tip" *ngFor="let curency of currenciesNames" (click)="changeCurrency(curency)" [class.active]="currentCurrency === curency" >USD</div>
+  <div class="tip" *ngFor="let currency of currencies" (click)="changeCurrency(currency)" [class.active]="currentCurrency === currency" >
+    {{currenciesNames[currency]}}
+  </div>
 </div>
