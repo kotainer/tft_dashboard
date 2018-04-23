@@ -19,6 +19,9 @@ import { FooterComponent } from './footer/footer.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SearchComponent } from './search/search.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { TokenPriceChartComponent } from './dashboard/token-price-chart/token-price-chart.component';
+import { UnitPriceChartComponent } from './dashboard/unit-price-chart/unit-price-chart.component';
+import { NodesMapsComponent } from './dashboard/nodes-maps/nodes-maps.component';
 
 
 @NgModule({
@@ -28,7 +31,10 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     FooterComponent,
     DashboardComponent,
     SearchComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    TokenPriceChartComponent,
+    UnitPriceChartComponent,
+    NodesMapsComponent
   ],
   imports: [
     BrowserModule,

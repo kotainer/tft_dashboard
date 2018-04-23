@@ -11,7 +11,7 @@ import { AppComponent } from '../app.component';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
-  public currencies;
+  public exchangeRates;
   public query;
   public tokenPrice = {
     usd: 0,
@@ -24,15 +24,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    const currenciesSub = this.appComponent.dataService.currencies$.subscribe(
-      currencies => {
-        if (currencies) {
-          this.currencies = currencies;
+    const exchangeRatesSub = this.appComponent.dataService.exchangeRates$.subscribe(
+      rates => {
+        if (rates) {
+          this.exchangeRates = rates;
           this.setTokenPrice();
         }
       }
     );
-    this.subscriptions.push(currenciesSub);
+    this.subscriptions.push(exchangeRatesSub);
   }
   ngOnDestroy() {
     this.subscriptions
@@ -40,8 +40,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
   private setTokenPrice() {
     this.tokenPrice.usd = this.appComponent.currentTokenPrice;
-    this.tokenPrice.eur = this.tokenPrice.usd / this.currencies.usdEur;
-    this.tokenPrice.btc = this.tokenPrice.usd / this.currencies.btcUsd;
+    this.tokenPrice.eur = this.tokenPrice.usd / this.exchangeRates.usdEur;
+    this.tokenPrice.btc = this.tokenPrice.usd / this.exchangeRates.btcUsd;
   }
   public search() {
     if (!this.query) {

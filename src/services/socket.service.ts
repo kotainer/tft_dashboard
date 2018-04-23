@@ -33,8 +33,6 @@ export class SocketService {
                         observer.next(data.data);
                     }
                 }
-
-                console.log('socket message', data);
             });
         });
     }

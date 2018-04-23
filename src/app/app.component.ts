@@ -44,7 +44,7 @@ export class AppComponent {
     this.socketService.onTick().subscribe(
       (data) => {
         dataService.lastBlock$.next(data.lastBlock);
-        dataService.currencies$.next(data.currency);
+        dataService.exchangeRates$.next(data.currency);
       });
     this.setRoutingScroll();
   }
