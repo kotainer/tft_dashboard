@@ -90,13 +90,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
     const blockTimeFormatted = moment.unix(timestamp).format('DD.MM.YYYY');
     const now = moment();
     let diffText;
-    const diff = Math.ceil(moment.duration(now.diff(blockTime)).asSeconds());
+    const diff = moment.duration(now.diff(blockTime)).asSeconds();
     if ( diff < 1 ) {
       diffText = '1s ago';
     } else if (diff < 60) {
-      diffText = `${diff}s ago`;
+      diffText = `${Math.ceil(diff)}s ago`;
     } else if (diff > 60) {
-      diffText = `${Math.ceil(diff / 60)}m ago`;
+      diffText = `${Math.ceil(diff / 60) }m ago`;
     } else if ( diff > 3600) {
       diffText = `${Math.ceil(diff / 3600)}h ago`;
     } else {
