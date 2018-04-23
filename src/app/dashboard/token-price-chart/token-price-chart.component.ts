@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import * as d3 from 'd3-shape';
+import * as moment from 'moment/moment';
 import { AppComponent } from '../../app.component';
 
 @Component({
@@ -19,6 +20,7 @@ export class TokenPriceChartComponent implements OnInit, OnDestroy {
   public currentCurrency;
 
   public priceChartData;
+  public monthsToShow = 6;
   public viewCharts = [400, 175];
   public colorSchemePriceChart = {
     domain: ['#17f9be']
@@ -46,33 +48,37 @@ export class TokenPriceChartComponent implements OnInit, OnDestroy {
       .forEach(s => s.unsubscribe());
   }
   public calculatePriceChartData() {
-    this.setData(6);
+    this.setData(this.monthsToShow);
   }
-  public setData(times: number) {
-    while (times > 0) {
-      const monthNumber = this.monthNumber(times + 1);
-      const monthNumberString = monthNumber > 9 ? monthNumber : '0' + monthNumber;
-      let price;
-      if (times === 1) {
-        price = this.calculatePrice(0.1, this.currentCurrency);
-      } else if (1 < times && times < 4) {
-        price = this.calculatePrice(0.08, this.currentCurrency);
-      } else {
-        price = this.calculatePrice(0.05, this.currentCurrency);
-      }
+  public setData(months: number) {
+    while (months > 0) {
+      const monthNumber = this.monthNumber(months);
+      const monthNumberString = monthNumber > 9 ? monthNumber : `0${monthNumber}`;
+      const price = this.calculatePrice(this.checkTokenPrice(months), this.currentCurrency);
       const object = {
         name: '01/' + monthNumberString,
         value: price
       };
       this.priceChartData[0].series.push(object);
-      times--;
+      months--;
     }
   }
   private monthNumber(monthsCount: number) {
-    const currentMonth = new Date().getMonth() + 1;
-    const today = new Date();
-    const monthNum = new Date(today.setMonth(currentMonth - monthsCount + 1)).getMonth() + 1;
-    return monthNum;
+    const monthNumber = moment().subtract(monthsCount - 1, 'month').format('M');
+    return Number(monthNumber);
+  }
+  private checkTokenPrice(months: number) {
+    let currentPriceUSD = 0.05;
+    const priceChange1 = moment('2018-02-01');
+    const priceChange2 = moment('2018-04-01');
+    const activeMonth = moment().subtract(months - 1, 'month');
+    if (activeMonth.isAfter(priceChange1)) {
+      currentPriceUSD = 0.08;
+    }
+    if (activeMonth.isAfter(priceChange2)) {
+      currentPriceUSD = this.appComponent.currentTokenPriceUSD;
+    }
+    return currentPriceUSD;
   }
   public calculatePrice(amountInUsd: number, currency: string) {
     if (currency === 'usd') {

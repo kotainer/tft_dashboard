@@ -38,7 +38,7 @@ export class AppComponent {
   public storageUnitsCores = 28000;
   public computeUnitPriceUSD = 12;
   public storageUnitPriceUSD = 10;
-  public currentTokenPrice = 0.1;
+  public currentTokenPriceUSD = 0.1;
 
   public exchangeRates;
   constructor(

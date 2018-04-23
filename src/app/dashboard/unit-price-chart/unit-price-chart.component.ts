@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../../app.component';
+import * as moment from 'moment/moment';
 
 @Component({
   selector: 'app-unit-price-chart',
@@ -20,7 +21,7 @@ export class UnitPriceChartComponent implements OnInit {
       'series': []
     }
   ];
-
+  public monthsToShow = 6;
   public viewCharts = [400, 175];
   public colorSchemeUnitsChart = {
     domain: ['#f993ab', '#ffc8a7']
@@ -35,26 +36,23 @@ export class UnitPriceChartComponent implements OnInit {
     this.calculateUnitsChartData();
   }
   public calculateUnitsChartData() {
-    this.setData(0, this.computeUnitPrice, 6);
-    this.setData(1, this.storageUnitPrice, 6);
+    this.setData(0, this.computeUnitPrice, this.monthsToShow);
+    this.setData(1, this.storageUnitPrice, this.monthsToShow);
   }
-  private setData(index: number, price: number, times: number) {
-    while (times > 0) {
-      const monthNumber = this.monthNumber(times + 1);
-      const monthNumberString = monthNumber > 9 ? monthNumber : '0' + monthNumber;
+  private setData(index: number, price: number, months: number) {
+    while (months > 0) {
+      const monthNumber = this.monthNumber(months);
+      const monthNumberString = monthNumber > 9 ? monthNumber : `0${monthNumber}`;
       const object = {
         name: '01/' + monthNumberString,
         value: price
       };
       this.unitsChartData[index].series.push(object);
-      times--;
+      months--;
     }
   }
-
   private monthNumber(monthsCount: number) {
-    const currentMonth = new Date().getMonth() + 1;
-    const today = new Date();
-    const monthNum = new Date(today.setMonth(currentMonth - monthsCount + 1)).getMonth() + 1;
-    return monthNum;
+    const monthNumber = moment().subtract(monthsCount - 1, 'month').format('M');
+    return Number(monthNumber);
   }
 }

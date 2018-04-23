@@ -37,7 +37,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       .forEach(s => s.unsubscribe());
   }
   private setTokenPrice() {
-    this.tokenPrice.usd = this.appComponent.currentTokenPrice;
+    this.tokenPrice.usd = this.appComponent.currentTokenPriceUSD;
     this.tokenPrice.eur = this.appComponent.calculateAmount(this.tokenPrice.usd, 'usdEur');
     this.tokenPrice.btc = this.appComponent.calculateAmount(this.tokenPrice.usd, 'btcUsd');
   }
