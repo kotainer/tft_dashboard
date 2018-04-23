@@ -91,6 +91,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.getPeers();
     this.unitsChartData = this.calculateUnitsChartData();
     this.priceChartData = this.calculatePriceChartData();
+
     const lastBlockSub = this.appComponent.dataService.lastBlock$.subscribe(
       block => {
         if (block) {

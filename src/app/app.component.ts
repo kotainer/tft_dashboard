@@ -31,6 +31,7 @@ export class AppComponent {
     animate: 'scale',
     position: ['right', 'top']
   };
+  public currentTokenPrice = 0.1;
   constructor(
     public socketService: SocketService,
     public dataService: DataService,
@@ -41,8 +42,9 @@ export class AppComponent {
   ) {
     this.socketService.initSocket();
     this.socketService.onTick().subscribe(
-      (data: any) => {
-        this.dataService.lastBlock$.next(data.lastBlock);
+      (data) => {
+        dataService.lastBlock$.next(data.lastBlock);
+        dataService.currencies$.next(data.currency);
       });
     this.setRoutingScroll();
   }
@@ -63,29 +65,20 @@ export class AppComponent {
     });
   }
   public setRoutingScroll() {
+    // Routing scrolling up
     this.subscriptions.push(
       this.router.events.pairwise().subscribe(([prevRouteEvent, currRouteEvent]) => {
-        if (currRouteEvent instanceof NavigationEnd) {
-          setTimeout(() => {
-            const tree = this.router.parseUrl(this.router.url);
-            if (tree.fragment) {
-              const element = document.querySelector('#' + tree.fragment);
-              if (element) {
-                element.scrollIntoView();
-              }
-              return;
-            }
-            const urlPath = (currRouteEvent.urlAfterRedirects || currRouteEvent.url).split(';', 1)[0];
-            window.scrollTo(0, this.routeScrollPositions[urlPath] || 0);
-          }, 0);
-        }
         if (prevRouteEvent instanceof NavigationEnd && currRouteEvent instanceof NavigationStart) {
           const urlPath = (prevRouteEvent.urlAfterRedirects || prevRouteEvent.url).split(';', 1)[0];
           this.routeScrollPositions[urlPath] = window.pageYOffset;
         }
+        if (currRouteEvent instanceof NavigationEnd) {
+          setTimeout(() => {
+            const urlPath = (currRouteEvent.urlAfterRedirects || currRouteEvent.url).split(';', 1)[0];
+            window.scrollTo(0, this.routeScrollPositions[urlPath] || 0);
+          }, 0);
+        }
       })
     );
   }
-
-
 }
