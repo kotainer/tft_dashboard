@@ -116,6 +116,9 @@ body {
   display: flex;
   align-items: center;
 }
+.break{
+  word-break: break-all;
+}
 
 /* libraries new styles */
 
@@ -170,8 +173,6 @@ simple-notification .simple-notification.success{
   border-radius: 5px;
 }
 ::-webkit-scrollbar-track {
-  /* display: none; */
-  -webkit-box-shadow: none;
   -webkit-border-radius: 1px;
   border-radius: 5px;
   background: rgba(0, 0, 0, 0.15);
@@ -179,8 +180,6 @@ simple-notification .simple-notification.success{
 ::-webkit-scrollbar-corner{
   background-color: transparent;
 }
-/* Handle */
-
 ::-webkit-scrollbar-thumb {
   position: absolute;
   -webkit-border-radius: 5px;
@@ -191,4 +190,3 @@ simple-notification .simple-notification.success{
 ::-webkit-scrollbar-thumb:window-inactive {
   background: rgba(0, 0, 0, 0.75);
 }
-/*  */
