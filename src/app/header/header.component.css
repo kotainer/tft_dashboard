@@ -3,7 +3,7 @@ header {
   background: rgba(18, 20, 19, 0.918);
   color: white;
   position: relative;
-  padding: 15px 1%;
+  padding: 1vw;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -48,8 +48,8 @@ header .price-line{
   }
   header .search-line{
     position: absolute;
-    top: 15px;
-    right: 1%;
+    top: 1vw;
+    right: 1vw;
   }
 }
 

@@ -22,9 +22,20 @@ export class UnitPriceChartComponent implements OnInit {
     }
   ];
   public monthsToShow = 6;
-  public viewCharts = [400, 175];
-  public colorSchemeUnitsChart = {
-    domain: ['#f993ab', '#ffc8a7']
+  public chartOptions = {
+    view: [400, 175],
+    colorScheme : {
+      domain: ['#f993ab', '#ffc8a7']
+    },
+    gradient: true,
+    xAxis: true,
+    yAxis: true,
+    legendTitle: '',
+    legend: true,
+    showXAxisLabel: false,
+    showYAxisLabel: false,
+    autoScale: false,
+    showGridLines: true
   };
   constructor(
     private appComponent: AppComponent

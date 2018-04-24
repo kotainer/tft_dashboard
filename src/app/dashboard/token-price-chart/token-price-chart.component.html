@@ -2,11 +2,11 @@
   Token Price (last 6 months)
 </div>
 <div class="flex-center">
-  <ngx-charts-line-chart [view]="viewCharts" [scheme]="colorSchemePriceChart" [results]="priceChartData" [gradient]="true" [xAxis]="true" [yAxis]="true" [legend]="false" [showXAxisLabel]="false" [showYAxisLabel]="false" [autoScale]="false" [showGridLines]="true" [curve]="curveCharts">
+  <ngx-charts-line-chart [view]="chartOptions.view" [scheme]="chartOptions.colorScheme" [results]="priceChartData" [gradient]="chartOptions.gradient" [xAxis]="chartOptions.xAxis" [yAxis]="chartOptions.yAxis" [legend]="chartOptions.legend" [showXAxisLabel]="chartOptions.showXAxisLabel" [showYAxisLabel]="chartOptions.showYAxisLabel" [autoScale]="chartOptions.autoScale" [curve]="chartOptions.curve">
   </ngx-charts-line-chart>
 </div>
 <div class="chart-currencies">
-  <div class="tip" *ngFor="let currency of currencies" (click)="changeCurrency(currency)" [class.active]="currentCurrency === currency" >
-    {{currenciesNames[currency]}}
+  <div class="tip" *ngFor="let currency of currencies.pairs" (click)="changeCurrency(currency)" [class.active]="currencies.current === currency" >
+    {{currencies.names[currency]}}
   </div>
 </div>

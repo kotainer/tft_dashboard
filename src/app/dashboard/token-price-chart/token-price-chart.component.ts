@@ -11,28 +11,40 @@ import { AppComponent } from '../../app.component';
 })
 export class TokenPriceChartComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
-  public currencies = ['usd', 'usdEur', 'btcUsd'];
-  public currenciesNames = {
-    usd: 'USD',
-    usdEur: 'EUR',
-    btcUsd: 'BTC'
+  public currencies = {
+    pairs: ['usd', 'usdEur', 'btcUsd'],
+    names: {
+      usd: 'USD',
+      usdEur: 'EUR',
+      btcUsd: 'BTC'
+    },
+    current: ''
   };
-  public currentCurrency;
 
   public priceChartData;
   public monthsToShow = 6;
-  public viewCharts = [400, 175];
-  public colorSchemePriceChart = {
-    domain: ['#17f9be']
+
+  public chartOptions = {
+    view: [400, 175],
+    colorScheme: {
+      domain: ['#17f9be']
+    },
+    gradient: true,
+    xAxis: true,
+    yAxis: true,
+    legend: false,
+    showXAxisLabel: false,
+    showYAxisLabel: false,
+    autoScale: false,
+    curve: d3.curveLinear,
   };
-  public curveCharts = d3.curveLinear;
 
   constructor(
     private appComponent: AppComponent
   ) { }
 
   ngOnInit() {
-    this.currentCurrency = this.currencies[0];
+    this.currencies.current = this.currencies.pairs[0];
     this.initChart();
     const exchangeRatesSub = this.appComponent.dataService.exchangeRates$.subscribe(
       rates => {
@@ -54,7 +66,7 @@ export class TokenPriceChartComponent implements OnInit, OnDestroy {
     while (months > 0) {
       const monthNumber = this.monthNumber(months);
       const monthNumberString = monthNumber > 9 ? monthNumber : `0${monthNumber}`;
-      const price = this.calculatePrice(this.checkTokenPrice(months), this.currentCurrency);
+      const price = this.calculatePrice(this.checkTokenPrice(months), this.currencies.current);
       const object = {
         name: '01/' + monthNumberString,
         value: price
@@ -96,7 +108,7 @@ export class TokenPriceChartComponent implements OnInit, OnDestroy {
     this.calculatePriceChartData();
   }
   public changeCurrency(currency) {
-    this.currentCurrency = currency;
+    this.currencies.current = currency;
     this.initChart();
   }
 }

@@ -63,7 +63,7 @@
   color: #cfdef8;
   flex-shrink: 0;
 }
-.chart-currencies{
+.left-col >>> .chart-currencies{
   display: flex;
   position: absolute;
   bottom: 15px;
@@ -81,22 +81,22 @@
     min-width: 44.5%;
     width: 44.5%;
   }
-  .last-block-line,
-  .stats-line,
-  .charts-line,
-  .maps-line{
+  .left-col .last-block-line,
+  .left-col .stats-line,
+  .left-col .charts-line,
+  .left-col >>> .maps-line{
     flex-direction: column;
     align-items: center;
   }
-  .stats-line .card{
+  .left-col .stats-line .card{
     width: 100%;
   }
   .right-col .blocks-wrapper{
     max-height: 100%
   }
 }
-
 /*1400*/
+
 @media only screen and (max-width : 991px) {
   .cols-wrapper{
     flex-direction: column-reverse;
@@ -117,7 +117,34 @@
   .right-col .blocks-wrapper .row{
     flex-shrink: 0;
   }
-  
+  .left-col .charts-line,
+  .left-col >>> .maps-line{
+    flex-direction: row;
+  }
+  .left-col .stats-line .card,
+  .left-col .stats-line .card > .flex{
+    text-align: center;
+    justify-content: center;
+  }
+  .right-col .blocks-wrapper .row {
+    max-width: 400px;
+    border-bottom: none;
+    border-left: 1px solid rgba(250, 250, 250, 0.3);
+  }
 }
-
 /*991*/
+
+@media only screen and (max-width : 860px) {
+  .left-col .charts-line,
+  .left-col >>> .maps-line{
+    flex-direction: column;
+  }
+}
+/*860*/
+
+@media only screen and (max-width : 560px) {
+  .right-col .blocks-wrapper .row {
+    max-width: 65vw;
+  }
+}
+/*560*/
