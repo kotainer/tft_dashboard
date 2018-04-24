@@ -31,6 +31,7 @@ body {
   border-radius: 8px;
   box-sizing: border-box;
   width: 100%;
+  overflow: auto;
   position: relative;
 }
 .card.small{
@@ -190,3 +191,13 @@ simple-notification .simple-notification.success{
 ::-webkit-scrollbar-thumb:window-inactive {
   background: rgba(0, 0, 0, 0.35);
 }
+
+@media only screen and (max-width : 560px) {
+  .big-num{
+  font-size: 27px;
+  }
+  .middle-num{
+    font-size: 19px;
+  }
+}
+/*560*/

@@ -116,6 +116,9 @@
   }
   .right-col .blocks-wrapper .row{
     flex-shrink: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    padding-right: 3px;
   }
   .left-col .charts-line,
   .left-col >>> .maps-line{
@@ -146,8 +149,16 @@
 /*860*/
 
 @media only screen and (max-width : 560px) {
-  .right-col .blocks-wrapper .row {
+  .right-col .row {
     max-width: 65vw;
   }
+  .left-col .stats-line .stats-line-row{
+    flex-wrap: wrap;
+  }
+  .rileftght-col .stats-line .card{
+    width: 100%;
+    min-width: 100%;
+  }
+  
 }
 /*560*/
