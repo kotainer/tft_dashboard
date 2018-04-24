@@ -2,17 +2,14 @@
 header {
   background: rgba(18, 20, 19, 0.918);
   color: white;
-  padding: 9px;
+  position: relative;
+  padding: 15px 1%;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   box-shadow: 0 4px 4px 0 rgba(132,140,168,.28);
 }
-/* header .logo{
-  font-weight: 100;
-  font-size: 23px;
-  text-transform: uppercase;
-} */
 header .logo img{
   width: 140px;
   object-fit: contain;
@@ -39,3 +36,21 @@ header .price-line{
   justify-content: center;
   font-weight: bold;
 }
+@media only screen and (max-width : 1099px) {
+  header .logo{
+    width: 100%;
+    min-width: 100%;
+    margin-bottom: 5px;
+  }
+  header .price-line{
+    width: 100%;
+    text-align: center;
+  }
+  header .search-line{
+    position: absolute;
+    top: 15px;
+    right: 1%;
+  }
+}
+
+/*1099px*/
