@@ -188,5 +188,5 @@ simple-notification .simple-notification.success{
   -webkit-box-shadow: none;
 }
 ::-webkit-scrollbar-thumb:window-inactive {
-  background: rgba(0, 0, 0, 0.75);
+  background: rgba(0, 0, 0, 0.35);
 }

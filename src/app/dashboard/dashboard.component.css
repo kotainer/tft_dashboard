@@ -126,11 +126,14 @@
     text-align: center;
     justify-content: center;
   }
-  .right-col .blocks-wrapper .row {
+  .right-col .row {
     max-width: 400px;
     border-bottom: none;
     border-left: 1px solid rgba(250, 250, 250, 0.3);
   }
+  .right-col .row:first-child{
+    border-left: none;
+  }  
 }
 /*991*/
 
