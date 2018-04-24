@@ -2,8 +2,6 @@ body {
   color: white;
   width: 100%;
   min-height: 100vh;
-  min-width: 1400px;
-  overflow-x: auto;
   background-image: linear-gradient(to right top, #36c486 , #008ac7 , #6d327c);
   text-rendering: optimizeLegibility !important;
   -webkit-font-smoothing: antialiased;
@@ -118,6 +116,7 @@ body {
   display: flex;
   align-items: center;
 }
+
 /* libraries new styles */
 
 /* Charts */

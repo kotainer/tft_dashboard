@@ -1,10 +1,10 @@
 <app-header></app-header>
 <div class="inner-container">
   <div class="page-container">
-    <div class="flex-between">
+    <div class="flex-between cols-wrapper">
       <div class="left-col">
         <div class="card">
-          <div class="flex-center">
+          <div class="flex-center last-block-line">
             <div class="middle-num">
               Current Block #{{lastBlock?.height}}
             </div>
@@ -19,7 +19,7 @@
           </div>
         </div>
         <div class="small-layer"></div>
-        <div class="flex">
+        <div class="flex stats-line">
           <div class="full-width flex">
             <div class="card auto flex-grow">
               <div class="card-title">
@@ -114,7 +114,7 @@
           </div>
         </div>
         <div class="layer"></div>
-        <div class="flex">
+        <div class="flex charts-line">
           <div class="card chart">
             <app-token-price-chart></app-token-price-chart>
           </div>
