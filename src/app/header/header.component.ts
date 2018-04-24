@@ -23,6 +23,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    this.setTokenPrice();
     const exchangeRatesSub = this.appComponent.dataService.exchangeRates$.subscribe(
       rates => {
         if (rates) {
