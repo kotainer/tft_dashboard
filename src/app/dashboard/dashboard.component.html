@@ -128,36 +128,39 @@
       </div>
       <div class="right-col">
         <div class="card full-height">
-          <div class="card-title">
-            Recent blocks
-          </div>
-          <div class="row" *ngFor="let block of lastBlocks">
-            <div class="row-icon">
-              <img src="assets/images/icons8-brick-64.png" alt="">
+          <div class="blocks-wrapper">
+            <div class="card-title">
+              Recent blocks
             </div>
-            <div>
-              <div class="flex align-center">
-                <a class="row-title" (click)="search(block?.height)">
-                  Block #{{block?.height}}
-                </a>
-                <div class="small-layer"></div>
-                <div class="chip green">{{block.ago}}</div>
+            <div class="row" *ngFor="let block of lastBlocks">
+              <div class="row-icon">
+                <img src="assets/images/icons8-brick-64.png" alt="">
               </div>
-              <div class="row-info">
-                <a class="big-data-container" (click)="search(block?.id)">
-                  ID: {{block?.id}}
-                </a>
-              </div>
-              <div class="row-info">
-                <a class="big-data-container" (click)="search(block?.parentId)">
-                  Parent ID: {{block?.parentId}}
-                </a>
-              </div>
-              <div class="row-info bold">
-                Block Reward {{calculatedValueInTokens(block?.minerReward) | number : '1.0-3'}} TFT /&nbsp; {{block?.transactionsCount}} txns
-              </div>
-              <div class="row-info">
-                Active BlockStake: {{block?.activeBlockStake}} BS
+              <div>
+                <div class="flex align-center">
+                  <a class="row-title" (click)="search(block?.height)">
+                    Block #{{block?.height}}
+                  </a>
+                  <div class="small-layer"></div>
+                  <div class="chip green">{{block.ago}}</div>
+                </div>
+                <div class="row-info">
+                  <a class="big-data-container" (click)="search(block?.id)">
+                    ID: {{block?.id}}
+                  </a>
+                </div>
+                <div class="row-info">
+                  <a class="big-data-container" (click)="search(block?.parentId)">
+                    Parent ID: {{block?.parentId}}
+                  </a>
+                </div>
+                <div class="row-info bold">
+                  Block Reward {{calculatedValueInTokens(block?.minerReward) | number : '1.0-3'}} TFT /&nbsp; {{block?.transactionsCount}}
+                  txns
+                </div>
+                <div class="row-info">
+                  Active BlockStake: {{block?.activeBlockStake}} BS
+                </div>
               </div>
             </div>
           </div>

@@ -11,6 +11,10 @@
   min-width: 35%;
   width: 35%;
 }
+.right-col .blocks-wrapper{
+  max-height: 737px;
+  overflow: hidden;
+}
 .row{
   font-weight: 400;
   padding-bottom: 10px;

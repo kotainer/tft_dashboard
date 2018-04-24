@@ -163,3 +163,31 @@ simple-notification .simple-notification.error{
 simple-notification .simple-notification.success{
   background-color: #0EBD89;
 }
+/* Tracs */
+::-webkit-scrollbar {
+  background: blue;
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  /* display: none; */
+  -webkit-box-shadow: none;
+  -webkit-border-radius: 1px;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.75);
+}
+::-webkit-scrollbar-corner{
+  background-color: transparent;
+}
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+  position: absolute;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  background: rgba(211, 200, 200, 0.35);
+  -webkit-box-shadow: none;
+}
+::-webkit-scrollbar-thumb:window-inactive {
+  background: rgba(0, 0, 0, 0.75);
+}
+/*  */
