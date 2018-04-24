@@ -75,7 +75,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     const storageUnitsTotal = this.getStaticData('storageUnitsTotal');
     const storageUnitPriceUSD = this.getStaticData('storageUnitPriceUSD');
 
-    return computeUnitsTotal * computeUnitPriceUSD + storageUnitsTotal * storageUnitPriceUSD;
+    return ( computeUnitsTotal * computeUnitPriceUSD + storageUnitsTotal * storageUnitPriceUSD ) * 12;
   }
   public calculatedValueInTokens(value) {
     return value / 1000000000;

@@ -3,19 +3,9 @@
     <img src="/assets/images/tff-logo-white.svg" alt="">
   </a>
   <div class="price-line blue-text">
-    <span >1 TFT =</span>
-    &nbsp;
-    <span >{{tokenPrice.usd | number: '1.2-3'}}</span>
-    &nbsp;
-    <span class="small-num">USD</span>
-    &nbsp;
-    <span >/ {{tokenPrice.eur | number: '1.1-3'}}</span>
-    &nbsp;
-    <span class="small-num">EUR</span>
-    &nbsp;
-    <span >/ {{tokenPrice.btc | number: '1.1-8'}}</span>
-    &nbsp;
-    <span class="small-num">BTC</span>
+    1 TFT = ${{tokenPrice.usd | number: '1.2-3'}}
+    / €{{tokenPrice.eur | number: '1.1-3'}}
+    / {{tokenPrice.btc | number: '1.1-8'}}Ƀ
   </div>
   <div class="search-line">
     <input type="text" placeholder="Search by Txhash/Block" (keyup.enter)="search()" [(ngModel)]="query">

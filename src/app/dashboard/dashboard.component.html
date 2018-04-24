@@ -4,13 +4,9 @@
     <div class="flex-between cols-wrapper">
       <div class="left-col">
         <div class="card">
-          <div class="flex-center last-block-line">
+          <div class="flex-center">
             <div class="middle-num">
               Current Block #{{lastBlock?.height}}
-            </div>
-            <div class="big-layer"></div>
-            <div class="middle-num ">
-              Difficulty: {{lastBlock?.difficulty}} BS
             </div>
           </div>
           <div class="small-layer"></div>
@@ -23,7 +19,7 @@
           <div class="full-width flex stats-line-row">
             <div class="card auto flex-grow">
               <div class="card-title">
-                Units
+                Grid Capacity, Units
               </div>
               <div class="flex">
                 <div class="flex-no-shrink">
@@ -48,7 +44,7 @@
             <div class="small-layer"></div>
             <div class="card auto flex-grow">
               <div class="card-title">
-                Total
+                Grid Capacity
               </div>
               <div class="flex">
                 <div class="flex-no-shrink">
@@ -100,14 +96,14 @@
             <div class="small-layer"></div>
             <div class="card auto flex-grow">
               <div class="card-title">
-                Network
+                Annual Network Revenue
               </div>
               <div class="flex-no-shrink">
                 <div class="big-num">
                   ${{ networkPrice() | number: '1.0-0'}}
                 </div>
                 <div class="card-subtitle">
-                  Network price
+                  *with full utilization
                 </div>
               </div>
             </div>
