@@ -12,7 +12,7 @@
   width: 35%;
 }
 .right-col .blocks-wrapper{
-  max-height: 737px;
+  max-height: 715px;
   overflow: hidden;
 }
 .row{
@@ -91,6 +91,33 @@
   .stats-line .card{
     width: 100%;
   }
+  .right-col .blocks-wrapper{
+    max-height: 100%
+  }
 }
 
 /*1400*/
+@media only screen and (max-width : 991px) {
+  .cols-wrapper{
+    flex-direction: column-reverse;
+  }
+  .left-col{
+    min-width: 100%;
+    width: 100%;
+  }
+  .right-col{
+    min-width: 100%;
+    width: 100%;
+    margin-bottom: 1%;
+  }
+  .right-col .blocks-wrapper{
+    display: flex;
+    overflow: auto;
+  }
+  .right-col .blocks-wrapper .row{
+    flex-shrink: 0;
+  }
+  
+}
+
+/*991*/
