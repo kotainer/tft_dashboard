@@ -1,18 +1,15 @@
 
 header {
-  background: #121413ea;
+  background: rgba(18, 20, 19, 0.918);
   color: white;
-  padding: 9px;
+  position: relative;
+  padding: 1vw;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   box-shadow: 0 4px 4px 0 rgba(132,140,168,.28);
 }
-/* header .logo{
-  font-weight: 100;
-  font-size: 23px;
-  text-transform: uppercase;
-} */
 header .logo img{
   width: 140px;
   object-fit: contain;
@@ -29,13 +26,54 @@ header .search-line input{
   width: 330px;
   text-align: center;
   font-weight: 300;
-  position: relative;
+  box-sizing: border-box;
   transition: transform 0.3s, box-shadow 0.3s;
   box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.1);
 }
 header .price-line{
-  display: flex;
-  align-items: center;
-  justify-content: center;
   font-weight: bold;
+  font-size: 23px;
 }
+@media only screen and (max-width : 1099px) {
+  header .logo{
+    width: 100%;
+    min-width: 100%;
+    margin-bottom: 5px;
+  }
+  header .price-line{
+    width: 100%;
+    text-align: center;
+  }
+  header .search-line{
+    position: absolute;
+    top: 1vw;
+    right: 1vw;
+  }
+}
+/*1099px*/
+
+@media only screen and (max-width : 580px) {
+  header .logo{
+    text-align: center;
+  }
+  header .search-line{
+    position: relative;
+    width: 100%;
+    right: inherit;
+    margin-bottom: 2vw;
+  }
+  header .search-line input{
+    width: 100%;
+  } 
+  header .price-line{
+    font-size: 17px;
+  }
+}
+/*580*/
+
+@media only screen and (max-width : 380px) {
+  header .price-line{
+    font-size: 13px;
+  }
+}
+/*380*/

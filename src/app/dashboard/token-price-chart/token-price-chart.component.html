@@ -1,0 +1,12 @@
+<div class="card-title">
+  Token Price (last 6 months)
+</div>
+<div class="flex-center">
+  <ngx-charts-line-chart [view]="chartOptions.view" [scheme]="chartOptions.colorScheme" [results]="priceChartData" [gradient]="chartOptions.gradient" [xAxis]="chartOptions.xAxis" [yAxis]="chartOptions.yAxis" [legend]="chartOptions.legend" [showXAxisLabel]="chartOptions.showXAxisLabel" [showYAxisLabel]="chartOptions.showYAxisLabel" [autoScale]="chartOptions.autoScale" [curve]="chartOptions.curve">
+  </ngx-charts-line-chart>
+</div>
+<div class="chart-currencies">
+  <div class="tip" *ngFor="let currency of currencies.pairs" (click)="changeCurrency(currency)" [class.active]="currencies.current === currency" >
+    {{currencies.names[currency]}}
+  </div>
+</div>

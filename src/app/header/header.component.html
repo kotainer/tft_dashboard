@@ -1,26 +1,13 @@
 <header>
-  <div class="logo">
+  <a class="logo" routerLink="/">
     <img src="/assets/images/tff-logo-white.svg" alt="">
-  </div>
-  <!-- <a class="logo"> -->
-    <!-- <div>
-      ThreeFold Grid Explorer
-    </div> -->
-  <!-- </a> -->
+  </a>
   <div class="price-line blue-text">
-    <span class="middle-num">1 TFT = 0.1</span>
-    &nbsp;
-    <span class="small-num">USD</span>
-    &nbsp;
-    <span class="middle-num">/ 0.88</span>
-    &nbsp;
-    <span class="small-num">EUR</span>
-    &nbsp;
-    <span class="middle-num">/ 0.003</span>
-    &nbsp;
-    <span class="small-num">BTC</span>
+    1 TFT = ${{tokenPrice.usd | number: '1.2-3'}}
+    / €{{tokenPrice.eur | number: '1.1-3'}}
+    / {{tokenPrice.btc | number: '1.1-8'}}Ƀ
   </div>
   <div class="search-line">
-    <input type="text" placeholder="Search by Block Height/Transaction Hash">
+    <input type="text" placeholder="Search by Txhash/Block" (keyup.enter)="search()" [(ngModel)]="query">
   </div>
 </header>

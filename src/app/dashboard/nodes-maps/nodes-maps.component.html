@@ -1,0 +1,17 @@
+<div class="flex maps-line">
+  <div class="card">
+    <div class="card-title">
+      Registered Nodes
+    </div>
+    <div style="height: 221px" leaflet [leafletOptions]="geoMapOptions" [leafletLayers]="geoMapLayers">
+    </div>
+  </div>
+  <div class="small-layer"></div>
+  <div class="card">
+    <div class="card-title">
+      Heat Map of Nodes and Cloud Units
+    </div>
+    <div style="height: 221px" leaflet (leafletMapReady)="onHeatMapReady($event)" [leafletOptions]="heatMapOptions">
+    </div>
+  </div>
+</div>

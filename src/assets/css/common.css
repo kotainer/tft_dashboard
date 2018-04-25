@@ -2,19 +2,6 @@ body {
   color: white;
   width: 100%;
   min-height: 100vh;
-  min-width: 1400px;
-  overflow-x: auto;
-  /* background-image: linear-gradient(to right bottom,
-   #2ea7af, #334b97, #29337f, #520d43); */
-  /* background-image: -webkit-gradient(linear, right bottom, left top, from(#6d327c), color-stop(#485DA6), color-stop(#00a1ba), color-stop(#00BF98), to(#36C486));
-  background-image: -webkit-linear-gradient(right bottom, #6d327c, #485DA6, #00a1ba, #00BF98, #36C486);
-  background-image: -o-linear-gradient(right bottom, #6d327c, #485DA6, #00a1ba, #00BF98, #36C486);
-  background-image: linear-gradient(to left top, #6d327c, #485DA6, #00a1ba, #00BF98, #36C486); */
-  /* background-image: -webkit-gradient(linear, left bottom, right top, from(#6d327c), color-stop(#485DA6), color-stop(#00a1ba), color-stop(#00BF98), to(#36C486));
-  background-image: -webkit-linear-gradient(left bottom, #6d327c, #485DA6, #00a1ba, #00BF98, #36C486);
-  background-image: -o-linear-gradient(left bottom, #6d327c, #485DA6, #00a1ba, #00BF98, #36C486); */
-  /* background-image: linear-gradient(to left top, #b40cd2, #6675d2 55%, #45a0cb, #13e7c3 );
-  -webkit-user-drag: none; */
   background-image: linear-gradient(to right top, #36c486 , #008ac7 , #6d327c);
   text-rendering: optimizeLegibility !important;
   -webkit-font-smoothing: antialiased;
@@ -25,16 +12,18 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
-  background-color: rgba(0, 0, 0, 0.35);
+  color: #444444;
+  background-color: #fafafa;
   font-weight: 100;
   font-size: 19px;
-  /* text-transform: uppercase; */
 }
 .container{
+  max-width: 1170px;
   margin-left: auto;
   margin-right: auto;
-  padding: 0.7%;
+}
+.inner-container{
+  min-height: calc( 100vh - 58.77px - 135.19px);
 }
 .card{
   padding: 15px 10px;
@@ -42,6 +31,7 @@ body {
   border-radius: 8px;
   box-sizing: border-box;
   width: 100%;
+  overflow: auto;
   position: relative;
 }
 .card.small{
@@ -56,20 +46,11 @@ body {
 .card.chart{
   padding-bottom: 55px;
 }
-.card-title{
-  font-weight: 400;
-  font-size: 16px;
-  padding-bottom: 5px;
-  color: #cfdef8;
-}
-.card-subtitle{
-  font-size: 13px;
-  font-weight: 600;
-  color: #cfdef8;
-  flex-shrink: 0;
+.card a:hover{
+  color: #a749fa;
 }
 .big-num{
-  font-size: 33.5px;
+  font-size: 31.5px;
 }
 .middle-num{
   font-size: 23px;
@@ -93,6 +74,9 @@ body {
 .green-text{
   color: #80ffb5;
 }
+.bordered{
+  border-bottom: 1px solid rgba(250, 250, 250, 0.3);
+}
 .chip{
   padding: 3px 5px;
   border-radius: 18px;
@@ -110,27 +94,6 @@ body {
 .chip.green{
   color: #17f9be;
   background: rgba(23, 249, 189, 0.18);
-}
-ngx-charts-chart .tick text{
-  fill: white
-}
-ngx-charts-chart .ngx-charts .gridline-path{
-  stroke: #fafafa47;
-}
-ngx-charts-chart ngx-charts-legend.chart-legend,
-ngx-charts-chart ngx-charts-legend.chart-legend>div{
-  width: 100% !important;
-}
-ngx-charts-chart ngx-charts-legend.chart-legend ul{
-  margin-top: 10px;
-  margin-left: 10px;
-  display: flex;
-}
-ngx-charts-chart .line-series .line{
-  stroke-width: 2.3px;
-}
-.leaflet-control-container a{
-  display: none;
 }
 .tip{
   padding: 3px 7px;
@@ -150,41 +113,91 @@ ngx-charts-chart .line-series .line{
   background: #8a58ff;
   color: white
 }
-.big-data-container{
-  height: 20px;
-  width: 90%;
-  word-break: break-all;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-}
-.big-data-container.long{
-  width: 300px;
-}
 .row{
   display: flex;
   align-items: center;
-  font-weight: 400;
-  padding-bottom: 10px;
-  margin-bottom: 10px;
-  border-bottom: 1px solid #fafafa47;
 }
-.row:last-child{
-  border-bottom: none;
-  margin-bottom: 0;
+.break{
+  word-break: break-all;
 }
-.row .row-icon{
-  margin-right: 15px;
+
+/* libraries new styles */
+
+/* Charts */
+ngx-charts-chart .tick text{
+  fill: white
 }
-.row .row-title{
-  font-weight: 600;
-  font-size: 19px;
+ngx-charts-chart .ngx-charts .gridline-path{
+  stroke: #fafafa47;
 }
-.row .row-info{
-  margin-top: 5px;
-  margin-bottom: 5px;
+ngx-charts-chart ngx-charts-legend.chart-legend,
+ngx-charts-chart ngx-charts-legend.chart-legend>div{
+  width: 100% !important;
+}
+ngx-charts-chart ngx-charts-legend.chart-legend ul{
+  margin-top: 10px;
+  margin-left: 10px;
   display: flex;
+}
+ngx-charts-chart .line-series .line{
+  stroke-width: 2.3px;
+}
+ngx-charts-chart .chart-legend .legend-labels{
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 6px;
+}
+ngx-charts-chart .ngx-charts-outer{
+  display: flex;
+  flex-direction: column;
   align-items: center;
 }
+/* Leaflet */
+.leaflet-control-container a{
+  display: none;
+}
+/* Notifications */
+simple-notification .simple-notification{
+  border-radius: 5px;
+}
+simple-notification .simple-notification.error{
+  background-color: #cc0033;
+}
+simple-notification .simple-notification.success{
+  background-color: #0EBD89;
+}
+/* Tracs */
+::-webkit-scrollbar {
+  background: transparent;
+  width: 5px;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-track {
+  -webkit-border-radius: 1px;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.15);
+}
+::-webkit-scrollbar-corner{
+  background-color: transparent;
+}
+::-webkit-scrollbar-thumb {
+  position: absolute;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  background: rgba(211, 200, 200, 0.35);
+  -webkit-box-shadow: none;
+}
+::-webkit-scrollbar-thumb:window-inactive {
+  background: rgba(0, 0, 0, 0.35);
+}
+
+@media only screen and (max-width : 560px) {
+  .big-num{
+  font-size: 27px;
+  }
+  .middle-num{
+    font-size: 19px;
+  }
+}
+/*560*/
