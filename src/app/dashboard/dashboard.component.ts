@@ -16,7 +16,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   public peers = [];
 
   constructor(
-    private appComponent: AppComponent,
+    public appComponent: AppComponent,
     private router: Router
   ) { }
 
