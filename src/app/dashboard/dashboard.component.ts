@@ -90,6 +90,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
       block.ago = this.calculateTimeDiff(block.timeStamp);
     });
   }
+  public tokenConverter(value: number, currency: string) {
+    return this.appComponent.tokenConverter(value, currency);
+  }
   public calculateTimeDiff(timestamp: number) {
     const blockTime = moment.unix(timestamp);
     const blockTimeFormatted = moment.unix(timestamp).format('DD.MM.YYYY');

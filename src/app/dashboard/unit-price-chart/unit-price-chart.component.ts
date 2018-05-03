@@ -36,6 +36,13 @@ export class UnitPriceChartComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    const exchangeRatesSub = this.appComponent.dataService.exchangeRates$.subscribe(
+      rates => {
+        if (rates) {
+          this.initChart();
+        }
+      }
+    );
     const currencySub = this.appComponent.dataService.currency$.subscribe(
       curr => {
         if (curr) {
@@ -43,7 +50,7 @@ export class UnitPriceChartComponent implements OnInit, OnDestroy {
         }
       }
     );
-    this.subscriptions.push(currencySub);
+    this.subscriptions.push(exchangeRatesSub, currencySub);
   }
   ngOnDestroy() {
     this.subscriptions

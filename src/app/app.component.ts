@@ -86,9 +86,23 @@ export class AppComponent {
     if (this.exchangeRates) {
       return amountInUsd / this.exchangeRates[pair];
     } else {
-      this.setCurrency('usd');
-      return amountInUsd;
+      // this.setCurrency('usd');
+      // return amountInUsd;
+      return 0;
     }
+  }
+  public tokenConverter(value: number, currencyPair: string) {
+    let result;
+    const tokens = this.tokens(value);
+    const tokensInUsd = this.currentTokenPriceUSD * tokens;
+    if (currencyPair === 'tft') {
+      result = tokens;
+    } else if (currencyPair === 'usd') {
+      result = tokensInUsd;
+    } else {
+      result = this.converter(tokensInUsd, currencyPair);
+    }
+    return result;
   }
   public symbol(position: string) {
     let result;

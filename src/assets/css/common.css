@@ -99,15 +99,15 @@ body {
   font-weight: bolder;
   letter-spacing: 0;
   flex-shrink: 0;
-  color: #8a58ff;
-  border: 1px solid #8a58ff;
+  color: #D04CFF;
+  border: 1px solid #D04CFF;
   margin-right: 7px;
   cursor: pointer;
   transition: all 0.3s ease; 
 }
 .tip:hover,
 .tip.active{
-  background: #8a58ff;
+  background: #D04CFF;
   color: white
 }
 .row{

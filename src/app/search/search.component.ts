@@ -39,9 +39,6 @@ export class SearchComponent implements OnInit {
   public newSearch(id) {
     this.router.navigate([`/search/${id}`]);
   }
-  public tokens(value) {
-    return this.appComponent.tokens(value);
-  }
   public typeName(transaction, lowCase?: boolean) {
     let name;
     const transactionData = transaction.rawtransaction.data;
@@ -51,5 +48,8 @@ export class SearchComponent implements OnInit {
       name = 'Coin';
     }
     return lowCase ? name.toLocaleLowerCase() : name;
+  }
+  public tokenConverter(value: number, currency: string ) {
+    return this.appComponent.tokenConverter(value, currency);
   }
 }

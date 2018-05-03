@@ -44,10 +44,14 @@ header .chart-currencies{
     min-width: 100%;
     margin-bottom: 5px;
   }
-  header .price-line{
+  header .price-line,
+  header .chart-currencies{
     width: 100%;
     text-align: center;
   }
+  header .chart-currencies{
+    padding-top: 7px;
+  }  
   header .search-line{
     position: absolute;
     top: 1vw;
@@ -72,6 +76,9 @@ header .chart-currencies{
   header .price-line{
     font-size: 17px;
   }
+  header .chart-currencies{
+    padding-top: 3px;
+  }  
 }
 /*580*/
 

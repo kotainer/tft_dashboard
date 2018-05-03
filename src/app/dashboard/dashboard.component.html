@@ -20,7 +20,7 @@
             <div class="full-width flex-center flex-wrap">
               <div>
                 <div class="card-title">
-                  Total Supply
+                  Total Supply:
                 </div>
                 <div class="big-num">
                   {{getStaticTechData('totalSupply') | number: '1.0-1'}}
@@ -29,7 +29,7 @@
               <div class="big-layer"></div>
               <div>
                 <div class="card-title">
-                  Total Token Capitalization
+                  Total Token Capitalization:
                 </div>
                 <div class="big-num">
                   {{appComponent.symbol('l')}}{{totalTokenCapitalization() | number: '1.0-1'}}{{appComponent.symbol('r')}}
@@ -38,7 +38,7 @@
               <div class="big-layer"></div>
               <div>
                 <div class="card-title">
-                  Max Supply
+                  Max Supply:
                 </div>
                 <div class="big-num">
                   {{getStaticTechData('maxSupply') | number: '1.0-1'}}
@@ -106,7 +106,7 @@
               <div class="card-title">
                 AVG Unit Price
               </div>
-              <div class="flex">
+              <div class="flex" *ngIf="appComponent.currentCurrencyPair !== 'btcUsd'">
                 <div class="flex-no-shrink">
                   <div class="big-num pink-text">
                     {{appComponent.symbol('l')}}{{getStaticData('computeUnitPriceUSD') | number: '1.2-2'}}{{appComponent.symbol('r')}}
@@ -119,6 +119,25 @@
                 <div class="flex-no-shrink">
                   <div class="big-num peach-text">
                     {{appComponent.symbol('l')}}{{getStaticData('storageUnitPriceUSD') | number: '1.2-2'}}{{appComponent.symbol('r')}}
+                  </div>
+                  <div class="card-subtitle">
+                    Storage Unit
+                  </div>
+                </div>
+              </div>
+              <div class="flex-column" *ngIf="appComponent.currentCurrencyPair === 'btcUsd'">
+                <div class="flex-no-shrink">
+                  <div class="middle-num pink-text">
+                    {{appComponent.symbol('l')}}{{getStaticData('computeUnitPriceUSD') | number: '1.2-8'}}{{appComponent.symbol('r')}}
+                  </div>
+                  <div class="card-subtitle">
+                    Compute Unit
+                  </div>
+                </div>
+                <div class="small-layer"></div>
+                <div class="flex-no-shrink">
+                  <div class="middle-num peach-text">
+                    {{appComponent.symbol('l')}}{{getStaticData('storageUnitPriceUSD') | number: '1.2-8'}}{{appComponent.symbol('r')}}
                   </div>
                   <div class="card-subtitle">
                     Storage Unit
@@ -184,12 +203,23 @@
                   </a>
                 </div>
                 <div class="row-info bold">
-                  Block Reward: {{tokens(block?.minerReward) | number : '1.0-3'}} TFT /&nbsp; {{block?.transactionsCount}}
-                  txns
+                  <div>
+                    Block Reward:&nbsp;
+                  </div>
+                  <div>
+                    <div>
+                     {{tokenConverter(block?.minerReward, 'tft') | number : '1.0-3'}} TFT /&nbsp; {{block?.transactionsCount}} txns
+                    </div>
+                    <div>
+                      ${{tokenConverter(block?.minerReward, 'usd')| number : '1.0-3'}} /&nbsp; €{{tokenConverter(block?.minerReward,
+                      'usdEur')| number : '1.0-3'}} /&nbsp; {{tokenConverter(block?.minerReward, 'btcUsd')| number :
+                      '1.0-8'}}Ƀ
+                    </div>
+                  </div>
                 </div>
-                <div class="row-info">
+                <!-- <div class="row-info">
                   Active BlockStake: {{block?.activeBlockStake}} BS
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
