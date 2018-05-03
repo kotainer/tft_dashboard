@@ -39,8 +39,8 @@ export class SearchComponent implements OnInit {
   public newSearch(id) {
     this.router.navigate([`/search/${id}`]);
   }
-  public calculatedValueInTokens(value) {
-    return value / 1000000000;
+  public tokens(value) {
+    return this.appComponent.tokens(value);
   }
   public typeName(transaction, lowCase?: boolean) {
     let name;

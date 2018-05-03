@@ -39,8 +39,11 @@ export class AppComponent {
   public computeUnitPriceUSD = 12;
   public storageUnitPriceUSD = 10;
   public currentTokenPriceUSD = 0.1;
+  public totalSupply = 1000000000;
+  public maxSupply = 2000000000;
 
   public exchangeRates;
+  public currentCurrencyPair = 'usd';
   constructor(
     public socketService: SocketService,
     public dataService: DataService,
@@ -56,6 +59,7 @@ export class AppComponent {
         dataService.exchangeRates$.next(data.currency);
         dataService.lastBlock$.next(data.lastBlock);
       });
+    this.setCurrency('usd');
     this.setRoutingScroll();
   }
   public API(...args): Observable<any> {
@@ -74,12 +78,44 @@ export class AppComponent {
       );
     });
   }
-  public calculateAmount( amountInUsd: number, currencyName: string) {
-     if (this.exchangeRates) {
-        return amountInUsd / this.exchangeRates[currencyName];
-    } else {
-      return 0;
+  public converter(amountInUsd: number, currencyPair?: string ) {
+    const pair = currencyPair ? currencyPair : this.currentCurrencyPair;
+    if ( pair === 'usd' ) {
+      return amountInUsd;
     }
+    if (this.exchangeRates) {
+      return amountInUsd / this.exchangeRates[pair];
+    } else {
+      this.setCurrency('usd');
+      return amountInUsd;
+    }
+  }
+  public symbol(position: string) {
+    let result;
+    if (position === 'l') {
+      if (this.currentCurrencyPair === 'usd') {
+        result = '$';
+      } else if (this.currentCurrencyPair === 'usdEur') {
+        result = '€';
+      } else {
+        result = '';
+      }
+    }
+    if (position === 'r') {
+      if (this.currentCurrencyPair === 'btcUsd') {
+        result = 'Ƀ';
+      } else {
+        result = '';
+      }
+    }
+    return result;
+  }
+  public setCurrency(currency: string) {
+    this.currentCurrencyPair = currency;
+    this.dataService.currency$.next(currency);
+  }
+  public tokens(value: number) {
+    return value / 1000000000;
   }
   public setRoutingScroll() {
     // Routing scrolling up

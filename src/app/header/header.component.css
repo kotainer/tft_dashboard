@@ -34,6 +34,10 @@ header .price-line{
   font-weight: bold;
   font-size: 23px;
 }
+header .chart-currencies{
+  display: flex;
+  justify-content: center;
+}
 @media only screen and (max-width : 1099px) {
   header .logo{
     width: 100%;

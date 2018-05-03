@@ -17,6 +17,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
     eur: 0,
     btc: 0
   };
+  public currencies = {
+    pairs: ['usd', 'usdEur', 'btcUsd'],
+    names: {
+      usd: 'USD',
+      usdEur: 'EUR',
+      btcUsd: 'BTC'
+    },
+    current: ''
+  };
   constructor(
     private appComponent: AppComponent,
     private router: Router,
@@ -31,7 +40,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
         }
       }
     );
-    this.subscriptions.push(exchangeRatesSub);
+    const currencySub = this.appComponent.dataService.currency$.subscribe(
+      curr => {
+        if (curr) {
+          this.currencies.current = curr;
+        }
+      }
+    );
+    this.subscriptions.push(exchangeRatesSub, currencySub);
   }
   ngOnDestroy() {
     this.subscriptions
@@ -39,14 +55,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
   private setTokenPrice() {
     this.tokenPrice.usd = this.appComponent.currentTokenPriceUSD;
-    this.tokenPrice.eur = this.appComponent.calculateAmount(this.tokenPrice.usd, 'usdEur');
-    this.tokenPrice.btc = this.appComponent.calculateAmount(this.tokenPrice.usd, 'btcUsd');
+    this.tokenPrice.eur = this.appComponent.converter(this.tokenPrice.usd, 'usdEur');
+    this.tokenPrice.btc = this.appComponent.converter(this.tokenPrice.usd, 'btcUsd');
   }
   public search() {
     if (!this.query) {
       return;
     }
     this.router.navigate([`/search/${this.query}`]);
+  }
+  public setCurrency(currency: string) {
+    this.appComponent.setCurrency(currency);
   }
 
 }

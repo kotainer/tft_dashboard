@@ -89,7 +89,7 @@
               Value
             </div>
             <div class="row-data">
-              {{calculatedValueInTokens(item.block.rawblock.minerpayouts[i].value) | number : '1.0-8'}} TFT
+              {{tokens(item.block.rawblock.minerpayouts[i].value) | number : '1.0-8'}} TFT
             </div>
           </div>
         </div>
@@ -196,7 +196,7 @@
               Value
             </div>
             <div class="row-data" *ngIf="typeName(item.transaction) === 'Coin'">
-              {{calculatedValueInTokens(item.transaction.coininputoutputs[i].value) | number : '1.0-8'}} TFT 
+              {{tokens(item.transaction.coininputoutputs[i].value) | number : '1.0-8'}} TFT 
             </div>
             <div class="row-data" *ngIf="typeName(item.transaction) === 'Blockstake'">
               {{item.transaction.blockstakeinputoutputs[i].value }}
@@ -264,7 +264,7 @@
               Value
             </div>
             <div class="row-data" *ngIf="typeName(item.transaction) === 'Coin'">
-              {{calculatedValueInTokens(output.value) | number : '1.0-8'}} TFT
+              {{tokens(output.value) | number : '1.0-8'}} TFT
             </div>
             <div class="row-data" *ngIf="typeName(item.transaction) === 'Blockstake'">
               {{output.value}}

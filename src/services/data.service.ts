@@ -5,6 +5,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 export class DataService {
   public lastBlock$: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   public exchangeRates$: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  public currency$: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
   constructor() { }
 }

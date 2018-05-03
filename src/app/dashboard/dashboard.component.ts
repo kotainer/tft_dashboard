@@ -70,15 +70,20 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.router.navigate([`/search/${id}`]);
   }
   public networkPrice() {
-    const computeUnitsTotal = this.getStaticData('computeUnitsTotal');
+    const computeUnitsTotal = this.getStaticTechData('computeUnitsTotal');
     const computeUnitPriceUSD = this.getStaticData('computeUnitPriceUSD');
-    const storageUnitsTotal = this.getStaticData('storageUnitsTotal');
+    const storageUnitsTotal = this.getStaticTechData('storageUnitsTotal');
     const storageUnitPriceUSD = this.getStaticData('storageUnitPriceUSD');
 
     return ( computeUnitsTotal * computeUnitPriceUSD + storageUnitsTotal * storageUnitPriceUSD ) * 12;
   }
-  public calculatedValueInTokens(value) {
-    return value / 1000000000;
+  public totalTokenCapitalization() {
+    const totalSupply = this.getStaticData('totalSupply');
+    const tokenPrice = this.getStaticData('currentTokenPriceUSD');
+    return totalSupply * tokenPrice;
+  }
+  public tokens(value) {
+    return this.appComponent.tokens(value);
   }
   public setBlocksTimeDiff() {
     this.lastBlocks.forEach((block) => {
@@ -104,7 +109,16 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
     return diffText;
   }
-  public getStaticData(name: string, convertInThousands?: boolean) {
-    return convertInThousands ? ( this.appComponent[name] / 1000)  : this.appComponent[name];
+  public getStaticData(name: string) {
+    return this.appComponent.converter(this.appComponent[name]);
+  }
+  public getStaticTechData(name: string, divideType?: string) {
+    let divisor = 1;
+    if (divideType === 'k') {
+      divisor = 1000;
+    } else if (divideType === 'm') {
+      divisor = 1000000;
+    }
+    return this.appComponent[name] / divisor;
   }
 }
