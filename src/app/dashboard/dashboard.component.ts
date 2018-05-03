@@ -95,9 +95,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
       diffText = '1s ago';
     } else if (diff < 60) {
       diffText = `${Math.ceil(diff)}s ago`;
-    } else if (diff > 60) {
+    } else if (diff > 60 && diff <= 3600) {
       diffText = `${Math.ceil(diff / 60) }m ago`;
-    } else if ( diff > 3600) {
+    } else if (diff > 3600 && diff <= 86400) {
       diffText = `${Math.ceil(diff / 3600)}h ago`;
     } else {
       diffText = blockTimeFormatted;
