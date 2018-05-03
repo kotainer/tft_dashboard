@@ -34,7 +34,7 @@ export class AppComponent {
   // Static Stats
   public computeUnitsTotal = 25200;
   public storageUnitsTotal = 91578;
-  public storageUnitsPB = 72000;
+  public storageUnitsPB = 73000;
   public storageUnitsCores = 28000;
   public computeUnitPriceUSD = 12;
   public storageUnitPriceUSD = 10;
