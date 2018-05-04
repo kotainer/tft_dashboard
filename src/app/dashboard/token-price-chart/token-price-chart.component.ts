@@ -22,6 +22,7 @@ export class TokenPriceChartComponent implements OnInit, OnDestroy {
     xAxis: true,
     yAxis: true,
     legend: true,
+    legendTitle: '',
     showXAxisLabel: false,
     showYAxisLabel: false,
     autoScale: false,
