@@ -102,15 +102,15 @@ body {
   font-weight: bolder;
   letter-spacing: 0;
   flex-shrink: 0;
-  color: #D04CFF;
-  border: 1px solid #D04CFF;
+  color: #25dfec;
+  border: 1px solid #25dfec;
   margin-right: 7px;
   cursor: pointer;
   transition: all 0.3s ease; 
 }
 .tip:hover,
 .tip.active{
-  background: #D04CFF;
+  background: #25dfec;
   color: white
 }
 .row{

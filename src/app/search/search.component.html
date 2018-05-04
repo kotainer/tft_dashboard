@@ -89,14 +89,17 @@
               Value
             </div>
             <div class="row-data">
-              <div>
-                {{tokenConverter(item.block.rawblock.minerpayouts[i].value, 'tft') | number : '1.0-8'}} TFT
-              </div>
-              <div>
-                ${{tokenConverter(item.block.rawblock.minerpayouts[i].value, 'usd')| number : '1.0-3'}} /&nbsp;
-                €{{tokenConverter(item.block.rawblock.minerpayouts[i].value, 'usdEur')| number : '1.0-3'}} /&nbsp;
-                {{tokenConverter(item.block.rawblock.minerpayouts[i].value, 'btcUsd')| number : '1.0-8'}}Ƀ
-              </div>
+              {{tokens(item.block.rawblock.minerpayouts[i].value) | number : '1.0-8'}} TFT&nbsp;
+              <span class="flex">
+                ({{symbol('l')}}
+                <span *ngIf="currentCurrencyPair() !== 'btcUsd'">
+                {{tokenConverter(item.block.rawblock.minerpayouts[i].value) | number: '1.2-3'}}
+                </span>
+                <span *ngIf="currentCurrencyPair() === 'btcUsd'">
+                {{tokenConverter(item.block.rawblock.minerpayouts[i].value) | number: '1.2-8'}}
+                </span>
+                {{symbol('r')}})
+              </span>
             </div>
           </div>
         </div>
@@ -203,13 +206,17 @@
               Value
             </div>
             <div class="row-data" *ngIf="typeName(item.transaction) === 'Coin'">
-              <div>
-                {{tokenConverter(item.transaction.coininputoutputs[i].value, 'tft') | number : '1.0-8'}} TFT
-              </div>
-              <div>
-                ${{tokenConverter(item.transaction.coininputoutputs[i].value, 'usd')| number : '1.0-3'}} /&nbsp; €{{tokenConverter(item.transaction.coininputoutputs[i].value,
-                'usdEur')| number : '1.0-3'}} /&nbsp; {{tokenConverter(item.transaction.coininputoutputs[i].value, 'btcUsd')| number : '1.0-8'}}Ƀ
-              </div>
+              {{tokens(item.transaction.coininputoutputs[i].value) | number : '1.0-8'}} TFT&nbsp;
+              <span class="flex">
+                ({{symbol('l')}}
+                <span *ngIf="currentCurrencyPair() !== 'btcUsd'">
+                  {{tokenConverter(item.transaction.coininputoutputs[i].value) | number: '1.2-3'}}
+                </span>
+                <span *ngIf="currentCurrencyPair() === 'btcUsd'">
+                  {{tokenConverter(item.transaction.coininputoutputs[i].value) | number: '1.2-8'}}
+                </span>
+                {{symbol('r')}})
+              </span>
             </div>
             <div class="row-data" *ngIf="typeName(item.transaction) === 'Blockstake'">
               {{item.transaction.blockstakeinputoutputs[i].value }}
@@ -277,13 +284,17 @@
               Value
             </div>
             <div class="row-data" *ngIf="typeName(item.transaction) === 'Coin'">
-              <div>
-                {{tokenConverter(output.value, 'tft') | number : '1.0-8'}} TFT
-              </div>
-              <div>
-                ${{tokenConverter(output.value, 'usd')| number : '1.0-3'}} /&nbsp; €{{tokenConverter(output.value,
-                'usdEur')| number : '1.0-3'}} /&nbsp; {{tokenConverter(output.value, 'btcUsd')| number : '1.0-8'}}Ƀ
-              </div>
+              {{tokens(output.value) | number : '1.0-8'}} TFT&nbsp;
+              <span class="flex">
+                ({{symbol('l')}}
+                <span *ngIf="currentCurrencyPair() !== 'btcUsd'">
+                  {{tokenConverter(output.value) | number: '1.2-3'}}
+                </span>
+                <span *ngIf="currentCurrencyPair() === 'btcUsd'">
+                  {{tokenConverter(output.value) | number: '1.2-8'}}
+                </span>
+                {{symbol('r')}})
+              </span>
             </div>
             <div class="row-data" *ngIf="typeName(item.transaction) === 'Blockstake'">
               {{output.value}}

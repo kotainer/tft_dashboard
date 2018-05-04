@@ -86,40 +86,47 @@ export class AppComponent {
     if (this.exchangeRates) {
       return amountInUsd / this.exchangeRates[pair];
     } else {
-      // this.setCurrency('usd');
-      // return amountInUsd;
-      return 0;
+      this.setCurrency('usd');
+      return amountInUsd;
     }
   }
-  public tokenConverter(value: number, currencyPair: string) {
+  // public tokenConverter(value: number, currencyPair: string) {
+  //   let result;
+  //   const tokens = this.tokens(value);
+  //   const tokensInUsd = this.currentTokenPriceUSD * tokens;
+  //   if (currencyPair === 'tft') {
+  //     result = tokens;
+  //   } else if (currencyPair === 'usd') {
+  //     result = tokensInUsd;
+  //   } else {
+  //     result = this.converter(tokensInUsd, currencyPair);
+  //   }
+  //   return result;
+  // }
+  public tokenConverter(value: number) {
     let result;
     const tokens = this.tokens(value);
+    const pair = this.currentCurrencyPair;
     const tokensInUsd = this.currentTokenPriceUSD * tokens;
-    if (currencyPair === 'tft') {
-      result = tokens;
-    } else if (currencyPair === 'usd') {
+    if (pair === 'usd') {
       result = tokensInUsd;
     } else {
-      result = this.converter(tokensInUsd, currencyPair);
+      result = this.converter(tokensInUsd);
     }
     return result;
   }
   public symbol(position: string) {
-    let result;
+    let result = '';
     if (position === 'l') {
       if (this.currentCurrencyPair === 'usd') {
         result = '$';
       } else if (this.currentCurrencyPair === 'usdEur') {
         result = '€';
-      } else {
-        result = '';
       }
     }
     if (position === 'r') {
       if (this.currentCurrencyPair === 'btcUsd') {
         result = 'Ƀ';
-      } else {
-        result = '';
       }
     }
     return result;

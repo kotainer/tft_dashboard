@@ -49,7 +49,16 @@ export class SearchComponent implements OnInit {
     }
     return lowCase ? name.toLocaleLowerCase() : name;
   }
-  public tokenConverter(value: number, currency: string ) {
-    return this.appComponent.tokenConverter(value, currency);
+  public tokens(value) {
+    return this.appComponent.tokens(value);
+  }
+  public tokenConverter(value: number) {
+    return this.appComponent.tokenConverter(value);
+  }
+  public symbol(position: string) {
+    return this.appComponent.symbol(position);
+  }
+  public currentCurrencyPair() {
+    return this.appComponent.currentCurrencyPair;
   }
 }

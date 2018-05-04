@@ -14,9 +14,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   public lastBlock;
   public lastBlocks = [];
   public peers = [];
-
   constructor(
-    public appComponent: AppComponent,
+    private appComponent: AppComponent,
     private router: Router
   ) { }
 
@@ -82,17 +81,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
     const tokenPrice = this.getStaticData('currentTokenPriceUSD');
     return totalSupply * tokenPrice;
   }
-  public tokens(value) {
-    return this.appComponent.tokens(value);
-  }
   public setBlocksTimeDiff() {
     this.lastBlocks.forEach((block) => {
       block.ago = this.calculateTimeDiff(block.timeStamp);
     });
   }
-  public tokenConverter(value: number, currency: string) {
-    return this.appComponent.tokenConverter(value, currency);
-  }
+  // public tokenConverter(value: number, currency: string) {
+  //   return this.appComponent.tokenConverter(value, currency);
+  // }
   public calculateTimeDiff(timestamp: number) {
     const blockTime = moment.unix(timestamp);
     const blockTimeFormatted = moment.unix(timestamp).format('DD.MM.YYYY');
@@ -112,8 +108,20 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
     return diffText;
   }
+  public tokens(value) {
+    return this.appComponent.tokens(value);
+  }
+  public tokenConverter(value: number) {
+    return this.appComponent.tokenConverter(value);
+  }
   public getStaticData(name: string) {
     return this.appComponent.converter(this.appComponent[name]);
+  }
+  public symbol(position: string) {
+    return this.appComponent.symbol(position);
+  }
+  public currentCurrencyPair() {
+    return this.appComponent.currentCurrencyPair;
   }
   public getStaticTechData(name: string, divideType?: string) {
     let divisor = 1;

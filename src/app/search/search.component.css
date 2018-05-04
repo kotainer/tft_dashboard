@@ -43,6 +43,7 @@
   text-align: right;
 }
 .row .row-data{
+  display: flex;
   word-break: break-all;
 }
 @media only screen and (max-width : 767px) {

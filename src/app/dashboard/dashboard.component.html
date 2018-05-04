@@ -32,7 +32,7 @@
                   Total Token Capitalization:
                 </div>
                 <div class="big-num">
-                  {{appComponent.symbol('l')}}{{totalTokenCapitalization() | number: '1.0-1'}}{{appComponent.symbol('r')}}
+                  {{symbol('l')}}{{totalTokenCapitalization() | number: '1.0-1'}}{{symbol('r')}}
                 </div>
               </div>
               <div class="big-layer"></div>
@@ -106,10 +106,10 @@
               <div class="card-title">
                 AVG Unit Price
               </div>
-              <div class="flex" *ngIf="appComponent.currentCurrencyPair !== 'btcUsd'">
+              <div class="flex" *ngIf="currentCurrencyPair() !== 'btcUsd'">
                 <div class="flex-no-shrink">
                   <div class="big-num pink-text">
-                    {{appComponent.symbol('l')}}{{getStaticData('computeUnitPriceUSD') | number: '1.2-2'}}{{appComponent.symbol('r')}}
+                    {{symbol('l')}}{{getStaticData('computeUnitPriceUSD') | number: '1.2-2'}}{{symbol('r')}}
                   </div>
                   <div class="card-subtitle">
                     Compute Unit
@@ -118,17 +118,17 @@
                 <div class="layer"></div>
                 <div class="flex-no-shrink">
                   <div class="big-num peach-text">
-                    {{appComponent.symbol('l')}}{{getStaticData('storageUnitPriceUSD') | number: '1.2-2'}}{{appComponent.symbol('r')}}
+                    {{symbol('l')}}{{getStaticData('storageUnitPriceUSD') | number: '1.2-2'}}{{symbol('r')}}
                   </div>
                   <div class="card-subtitle">
                     Storage Unit
                   </div>
                 </div>
               </div>
-              <div class="flex-column" *ngIf="appComponent.currentCurrencyPair === 'btcUsd'">
+              <div class="flex-column" *ngIf="currentCurrencyPair() === 'btcUsd'">
                 <div class="flex-no-shrink">
                   <div class="middle-num pink-text">
-                    {{appComponent.symbol('l')}}{{getStaticData('computeUnitPriceUSD') | number: '1.2-8'}}{{appComponent.symbol('r')}}
+                    {{symbol('l')}}{{getStaticData('computeUnitPriceUSD') | number: '1.2-8'}}{{symbol('r')}}
                   </div>
                   <div class="card-subtitle">
                     Compute Unit
@@ -137,7 +137,7 @@
                 <div class="small-layer"></div>
                 <div class="flex-no-shrink">
                   <div class="middle-num peach-text">
-                    {{appComponent.symbol('l')}}{{getStaticData('storageUnitPriceUSD') | number: '1.2-8'}}{{appComponent.symbol('r')}}
+                    {{symbol('l')}}{{getStaticData('storageUnitPriceUSD') | number: '1.2-8'}}{{symbol('r')}}
                   </div>
                   <div class="card-subtitle">
                     Storage Unit
@@ -152,7 +152,7 @@
               </div>
               <div class="flex-no-shrink">
                 <div class="big-num">
-                  {{appComponent.symbol('l')}}{{ networkPrice() | number: '1.0-0'}}{{appComponent.symbol('r')}}
+                  {{symbol('l')}}{{ networkPrice() | number: '1.0-0'}}{{symbol('r')}}
                 </div>
                 <div class="card-subtitle">
                   With full utilization
@@ -203,23 +203,21 @@
                   </a>
                 </div>
                 <div class="row-info bold">
-                  <div>
-                    Block Reward:&nbsp;
-                  </div>
-                  <div>
-                    <div>
-                     {{tokenConverter(block?.minerReward, 'tft') | number : '1.0-3'}} TFT /&nbsp; {{block?.transactionsCount}} txns
-                    </div>
-                    <div>
-                      ${{tokenConverter(block?.minerReward, 'usd')| number : '1.0-3'}} /&nbsp; €{{tokenConverter(block?.minerReward,
-                      'usdEur')| number : '1.0-3'}} /&nbsp; {{tokenConverter(block?.minerReward, 'btcUsd')| number :
-                      '1.0-8'}}Ƀ
-                    </div>
-                  </div>
+                  Block Reward:
+                  {{tokens(block?.minerReward) | number : '1.0-3'}} TFT 
+                  ({{symbol('l')}}
+                  <span *ngIf="currentCurrencyPair() !== 'btcUsd'">
+                  {{tokenConverter(block?.minerReward) | number: '1.2-3'}}
+                  </span>
+                  <span *ngIf="currentCurrencyPair() === 'btcUsd'">
+                  {{tokenConverter(block?.minerReward) | number: '1.2-8'}}
+                  </span>
+                  {{symbol('r')}})
+                  /&nbsp; {{block?.transactionsCount}} txns
                 </div>
-                <!-- <div class="row-info">
+                <div class="row-info">
                   Active BlockStake: {{block?.activeBlockStake}} BS
-                </div> -->
+                </div>
               </div>
             </div>
           </div>
