@@ -307,7 +307,62 @@
       </div>
     </div>
     <div *ngIf="item?.hashtype === 'unlockhash'">
-      fghjk
+      <div class="page-subtitle">
+        Coin Output Appearances
+      </div>
+      <div *ngFor="let transaction of item.transactions; let i = index">
+        <div class="card">
+          <div class="row">
+            <div class="row-title">
+              Height
+            </div>
+            <a class="row-data bold" (click)="newSearch(transaction.height)">
+              {{transaction.height}}
+            </a>
+          </div>
+          <div class="row">
+            <div class="row-title">
+              Parent Transaction
+            </div>
+            <a class="row-data bold" (click)="newSearch(transaction.id)">
+              {{transaction.id}}
+            </a>
+          </div>
+          <div class="row">
+            <div class="row-title">
+              ID
+            </div>
+            <div class="row-data">
+              
+            </div>
+          </div>
+          <div class="row">
+            <div class="row-title">
+              Address
+            </div>
+            <div class="row-data">
+              {{id}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="row-title">
+              Value
+            </div>
+            <div class="row-data">
+              
+            </div>
+          </div>
+          <div class="row">
+            <div class="row-title">
+              Has Been Spent
+            </div>
+            <div class="row-data">
+          
+            </div>
+          </div>
+        </div>
+      </div>
+      
     </div>
   </div>
 </div>

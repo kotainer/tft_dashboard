@@ -34,6 +34,8 @@ header .price-line{
   font-weight: bold;
   display: flex;
   font-size: 25px;
+  justify-content: center;
+  min-width: 250px;
 }
 header .chart-currencies{
   display: flex;
@@ -47,7 +49,7 @@ header .chart-currencies{
   }
   header .price-line{
     width: 100%;
-    justify-content: center;
+    min-width: 100%;
   }
   header .chart-currencies{
     width: 100%;
