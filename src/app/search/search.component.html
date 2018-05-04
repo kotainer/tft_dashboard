@@ -6,10 +6,13 @@
   <div class="container" *ngIf="item">
     <div *ngIf="item?.hashtype">
       <div class="page-title">
-        Hash Type: {{ item?.hashtype !== 'transactionid' ? 'Block ID' : 'Transaction ID'}}
+        Hash Type:
+        {{ item?.hashtype === 'blockid' ? 'Block ID' : ''}}
+        {{ item?.hashtype === 'transactionid' ? 'Transaction ID' : ''}}
+        {{ item?.hashtype === 'unlockhash' ? 'Unlock Hash / Address' : ''}}
       </div>
       <div class="page-subtitle break">
-         Hash: {{id}}
+        Hash: {{id}}
       </div>
     </div>
     <div class="page-title" *ngIf="!item?.hashtype">
@@ -302,6 +305,9 @@
           </div>
         </div>
       </div>
+    </div>
+    <div *ngIf="item?.hashtype === 'unlockhash'">
+      fghjk
     </div>
   </div>
 </div>
