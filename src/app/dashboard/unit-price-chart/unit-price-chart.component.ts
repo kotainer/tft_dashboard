@@ -17,15 +17,14 @@ export class UnitPriceChartComponent implements OnInit, OnDestroy {
   public unitsChartData;
   public monthsToShow = 6;
   public chartOptions = {
-    view: [400, 155],
     colorScheme : {
       domain: ['#f993ab', '#ffc8a7']
     },
     gradient: true,
     xAxis: true,
     yAxis: true,
-    legendTitle: '',
     legend: true,
+    legendTitle: '',
     showXAxisLabel: false,
     showYAxisLabel: false,
     autoScale: false,
@@ -59,11 +58,11 @@ export class UnitPriceChartComponent implements OnInit, OnDestroy {
   public initChart() {
     this.unitsChartData = [
       {
-        'name': 'Compute Unit',
+        'name': 'Compute Unit price',
         'series': []
       },
       {
-        'name': 'Storage Unit',
+        'name': 'Storage Unit price',
         'series': []
       }
     ];

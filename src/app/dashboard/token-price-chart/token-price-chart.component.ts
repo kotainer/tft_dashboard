@@ -15,14 +15,13 @@ export class TokenPriceChartComponent implements OnInit, OnDestroy {
   public monthsToShow = 6;
 
   public chartOptions = {
-    view: [400, 175],
     colorScheme: {
       domain: ['#17f9be']
     },
     gradient: true,
     xAxis: true,
     yAxis: true,
-    legend: false,
+    legend: true,
     showXAxisLabel: false,
     showYAxisLabel: false,
     autoScale: false,

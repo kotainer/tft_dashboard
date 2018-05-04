@@ -43,6 +43,9 @@ body {
 .card.auto{
   width: auto;
 }
+.card.chart{
+  padding-bottom: 55px;
+}
 .card a:hover{
   color: #a749fa;
 }
@@ -130,6 +133,11 @@ ngx-charts-chart .ngx-charts .gridline-path{
 ngx-charts-chart ngx-charts-legend.chart-legend,
 ngx-charts-chart ngx-charts-legend.chart-legend>div{
   width: 100% !important;
+}
+ngx-charts-chart .chart-legend{
+  position: absolute;
+  bottom: 20px;
+  left: -5px;
 }
 ngx-charts-chart ngx-charts-legend.chart-legend ul{
   margin-top: 10px;
