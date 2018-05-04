@@ -111,7 +111,7 @@ body {
 .tip:hover,
 .tip.active{
   background: #25dfec;
-  color: white
+  color: #121413;
 }
 .row{
   display: flex;
