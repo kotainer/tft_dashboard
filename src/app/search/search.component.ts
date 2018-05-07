@@ -10,6 +10,8 @@ import { AppComponent } from '../app.component';
 export class SearchComponent implements OnInit {
   public id;
   public item;
+  public sfoids = [];
+  public sfoidMatches = [];
   constructor(
     private appComponent: AppComponent,
     public activatedRoute: ActivatedRoute,
@@ -87,13 +89,43 @@ export class SearchComponent implements OnInit {
         const blockstakeoutputids = transactions[i].blockstakeoutputids;
         if (blockstakeoutputids != null && blockstakeoutputids.length !== 0) {
           for (let j = 0; j < blockstakeoutputids.length; j++) {
+            this.sfoids.push(blockstakeoutputids[j]);
+            this.sfoidMatches.push(false);
             if (transactions[i].rawtransaction.data.blockstakeoutputs[j].unlockhash === this.id) {
               result = true;
             }
           }
         }
+        // if (!transactions[i].rawtransaction.data.blockstakeinputs) {
+        //   return;
+        // }
+        // const blockstakeinputs = transactions[i].rawtransaction.data.blockstakeinputs;
+        // if (blockstakeinputs !== null && blockstakeinputs.length !== 0) {
+        //   for (let j = 0; j < blockstakeinputs.length; j++) {
+
+        //     for (let k = 0; k < this.sfoids.length; k++) {
+        //       if (blockstakeinputs[j].parentid === this.sfoids[k]) {
+        //         this.sfoidMatches[k] = true;
+        //       }
+        //     }
+        //   }
+        // }
       }
     }
+    return result;
+  }
+  public hasBeenSpent(transactions: any, value: string, typeName: string ) {
+    let result = 'No';
+    // const type = typeName === 'coin' ? 'coininputoutputs' : 'blockstakeoutputids';
+    transactions.map( transaction => {
+      if (transaction.coininputoutputs !== null ) {
+        transaction.coininputoutputs.filter((el) => {
+          if (el.value === value && el.unlockhash === this.id) {
+            result = 'Yes';
+          }
+        });
+      }
+    });
     return result;
   }
 }

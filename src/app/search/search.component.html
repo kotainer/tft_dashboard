@@ -455,7 +455,6 @@
             {{item.coinoutputsHidden ? 'Show all' : 'Hide all'}}
           </a>
         </div>
-        
         <div *ngFor="let transaction of item.transactions; let i = index;">
           <ng-container *ngFor="let coinoutputid of transaction.coinoutputids; let j = index">
            
@@ -515,7 +514,7 @@
                   Has Been Spent
                 </div>
                 <div class="row-data">
-            
+                  {{hasBeenSpent(item.transactions, transaction.rawtransaction.data.coinoutputs[j].value, 'coin')}}
                 </div>
               </div>
             </div>
@@ -648,7 +647,9 @@
                   Has Been Spent
                 </div>
                 <div class="row-data">
-            
+                  <div class="row-data">
+                    {{hasBeenSpent(item.transactions, transaction.rawtransaction.data.blockstakeoutputs[j].value, 'blockstake')}}
+                  </div>
                 </div>
               </div>
             </div>
