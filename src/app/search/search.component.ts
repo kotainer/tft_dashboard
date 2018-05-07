@@ -53,12 +53,14 @@ export class SearchComponent implements OnInit {
   }
   public isAddressCoinOuputs(transactions: Array<any>) {
     let result = false;
-    for (let i = 0; i < transactions.length; i++) {
-      if (transactions[i].coinoutputids != null && transactions[i].coinoutputids.length !== 0) {
-        // Scan for a relevant siacoin output.
-        for (let j = 0; j < transactions[i].coinoutputids.length; j++) {
-          if (transactions[i].rawtransaction.data.coinoutputs[j].unlockhash === this.id) {
-            result = true;
+    if (transactions !== null) {
+      for (let i = 0; i < transactions.length; i++) {
+        if (transactions[i].coinoutputids != null && transactions[i].coinoutputids.length !== 0) {
+          // Scan for a relevant siacoin output.
+          for (let j = 0; j < transactions[i].coinoutputids.length; j++) {
+            if (transactions[i].rawtransaction.data.coinoutputs[j].unlockhash === this.id) {
+              result = true;
+            }
           }
         }
       }
@@ -80,11 +82,15 @@ export class SearchComponent implements OnInit {
   }
   public isAddressBlockstakeOutputs(transactions: Array<any>) {
     let result = false;
-    for (let i = 0; i < transactions.length; i++) {
-      const blockstakeinputs = transactions[i].rawtransaction.data.blockstakeinputs;
-      if (blockstakeinputs != null && blockstakeinputs.length !== 0) {
-        for (let j = 0; j < blockstakeinputs.length; j++) {
-          result = true;
+    if (transactions !== null) {
+      for (let i = 0; i < transactions.length; i++) {
+        const blockstakeoutputids = transactions[i].blockstakeoutputids;
+        if (blockstakeoutputids != null && blockstakeoutputids.length !== 0) {
+          for (let j = 0; j < blockstakeoutputids.length; j++) {
+            if (transactions[i].rawtransaction.data.blockstakeoutputs[j].unlockhash === this.id) {
+              result = true;
+            }
+          }
         }
       }
     }
