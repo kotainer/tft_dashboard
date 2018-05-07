@@ -99,29 +99,29 @@ export class SearchComponent implements OnInit {
   }
   public hasBeenSpent(transactions: any, value: string, typeName: string ) {
     let result = 'No';
-    // const type = typeName === 'coin' ? 'coininputoutputs' : 'blockstakeoutputids';
-    if (typeName === 'coin') {
+    const type = typeName === 'coin' ? 'coininputoutputs' : 'blockstakeinputoutputs';
+    // if (typeName === 'coin') {
       transactions.map(transaction => {
-        if (transaction.coininputoutputs !== null) {
-          transaction.coininputoutputs.filter((el) => {
+        if (transaction[type] !== null) {
+          transaction[type].map((el) => {
             if (el.value === value && el.unlockhash === this.id) {
               result = 'Yes';
             }
           });
         }
       });
-    } else {
-      result = 'Yes';
-      // transactions.map(transaction => {
-      //   if (transaction.coininputoutputs !== null) {
-      //     transaction.coininputoutputs.filter((el) => {
-      //       if (el.value === value && el.unlockhash === this.id) {
-      //         result = 'Yes';
-      //       }
-      //     });
-      //   }
-      // });
-    }
+    // }
+    //  else {
+    //   transactions.map(transaction => {
+    //     if (transaction.blockstakeinputoutputs !== null) {
+    //       transaction.blockstakeinputoutputs.map((el) => {
+    //         if (el.value === value && el.unlockhash === this.id) {
+    //           result = 'Yes';
+    //         }
+    //       });
+    //     }
+    //   });
+    // }
     return result;
   }
 }
