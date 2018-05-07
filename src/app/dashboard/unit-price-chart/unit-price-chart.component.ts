@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
 import { AppComponent } from '../../app.component';
 import * as moment from 'moment/moment';
 
@@ -7,31 +8,23 @@ import * as moment from 'moment/moment';
   templateUrl: './unit-price-chart.component.html',
   styleUrls: ['./unit-price-chart.component.css', '../dashboard.component.css']
 })
-export class UnitPriceChartComponent implements OnInit {
+export class UnitPriceChartComponent implements OnInit, OnDestroy {
+  private subscriptions: Subscription[] = [];
+
   public computeUnitPrice;
   public storageUnitPrice;
 
-  public unitsChartData = [
-    {
-      'name': 'Compute Unit',
-      'series': []
-    },
-    {
-      'name': 'Storage Unit',
-      'series': []
-    }
-  ];
+  public unitsChartData;
   public monthsToShow = 6;
   public chartOptions = {
-    view: [400, 175],
     colorScheme : {
       domain: ['#f993ab', '#ffc8a7']
     },
     gradient: true,
     xAxis: true,
     yAxis: true,
-    legendTitle: '',
     legend: true,
+    legendTitle: '',
     showXAxisLabel: false,
     showYAxisLabel: false,
     autoScale: false,
@@ -42,8 +35,39 @@ export class UnitPriceChartComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.computeUnitPrice = this.appComponent.computeUnitPriceUSD;
-    this.storageUnitPrice = this.appComponent.storageUnitPriceUSD;
+    const exchangeRatesSub = this.appComponent.dataService.exchangeRates$.subscribe(
+      rates => {
+        if (rates) {
+          this.initChart();
+        }
+      }
+    );
+    const currencySub = this.appComponent.dataService.currency$.subscribe(
+      curr => {
+        if (curr) {
+          this.initChart();
+        }
+      }
+    );
+    this.subscriptions.push(exchangeRatesSub, currencySub);
+  }
+  ngOnDestroy() {
+    this.subscriptions
+      .forEach(s => s.unsubscribe());
+  }
+  public initChart() {
+    this.unitsChartData = [
+      {
+        'name': 'Compute Unit price',
+        'series': []
+      },
+      {
+        'name': 'Storage Unit price',
+        'series': []
+      }
+    ];
+    this.computeUnitPrice = this.appComponent.converter(this.appComponent.computeUnitPriceUSD);
+    this.storageUnitPrice = this.appComponent.converter(this.appComponent.storageUnitPriceUSD);
     this.calculateUnitsChartData();
   }
   public calculateUnitsChartData() {

@@ -12,10 +12,14 @@ import { AppComponent } from '../app.component';
 export class HeaderComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
   public query;
-  public tokenPrice = {
-    usd: 0,
-    eur: 0,
-    btc: 0
+  public currencies = {
+    pairs: ['usd', 'usdEur', 'btcUsd'],
+    names: {
+      usd: 'USD',
+      usdEur: 'EUR',
+      btcUsd: 'BTC'
+    },
+    current: ''
   };
   constructor(
     private appComponent: AppComponent,
@@ -23,24 +27,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.setTokenPrice();
-    const exchangeRatesSub = this.appComponent.dataService.exchangeRates$.subscribe(
-      rates => {
-        if (rates) {
-          this.setTokenPrice();
+    const currencySub = this.appComponent.dataService.currency$.subscribe(
+      curr => {
+        if (curr) {
+          this.currencies.current = curr;
         }
       }
     );
-    this.subscriptions.push(exchangeRatesSub);
+    this.subscriptions.push(currencySub);
   }
   ngOnDestroy() {
     this.subscriptions
       .forEach(s => s.unsubscribe());
-  }
-  private setTokenPrice() {
-    this.tokenPrice.usd = this.appComponent.currentTokenPriceUSD;
-    this.tokenPrice.eur = this.appComponent.calculateAmount(this.tokenPrice.usd, 'usdEur');
-    this.tokenPrice.btc = this.appComponent.calculateAmount(this.tokenPrice.usd, 'btcUsd');
   }
   public search() {
     if (!this.query) {
@@ -48,5 +46,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
     this.router.navigate([`/search/${this.query}`]);
   }
-
+  public setCurrency(currency: string) {
+    this.appComponent.setCurrency(currency);
+  }
+  public tokenPrice() {
+    return this.appComponent.tokenConverter(1000000000);
+  }
+  public symbol(position: string) {
+    return this.appComponent.symbol(position);
+  }
+  public currentCurrencyPair() {
+    return this.appComponent.currentCurrencyPair;
+  }
 }

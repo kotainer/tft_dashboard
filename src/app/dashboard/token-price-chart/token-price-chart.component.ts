@@ -11,28 +11,18 @@ import { AppComponent } from '../../app.component';
 })
 export class TokenPriceChartComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
-  public currencies = {
-    pairs: ['usd', 'usdEur', 'btcUsd'],
-    names: {
-      usd: 'USD',
-      usdEur: 'EUR',
-      btcUsd: 'BTC'
-    },
-    current: ''
-  };
-
   public priceChartData;
   public monthsToShow = 6;
 
   public chartOptions = {
-    view: [400, 175],
     colorScheme: {
       domain: ['#17f9be']
     },
     gradient: true,
     xAxis: true,
     yAxis: true,
-    legend: false,
+    legend: true,
+    legendTitle: '',
     showXAxisLabel: false,
     showYAxisLabel: false,
     autoScale: false,
@@ -44,29 +34,40 @@ export class TokenPriceChartComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.currencies.current = this.currencies.pairs[0];
-    this.initChart();
     const exchangeRatesSub = this.appComponent.dataService.exchangeRates$.subscribe(
       rates => {
         if (rates) {
-          this.calculatePriceChartData();
+          this.initChart();
         }
       }
     );
-    this.subscriptions.push(exchangeRatesSub);
+    const currencySub = this.appComponent.dataService.currency$.subscribe(
+      curr => {
+        if (curr) {
+          this.initChart();
+        }
+      }
+    );
+    this.subscriptions.push(exchangeRatesSub, currencySub);
   }
   ngOnDestroy() {
     this.subscriptions
       .forEach(s => s.unsubscribe());
   }
-  public calculatePriceChartData() {
+  private initChart() {
+    this.priceChartData = [
+      {
+        'name': 'Token price',
+        'series': []
+      }
+    ];
     this.setData(this.monthsToShow);
   }
-  public setData(months: number) {
+  private setData(months: number) {
     while (months > 0) {
       const monthNumber = this.monthNumber(months);
       const monthNumberString = monthNumber > 9 ? monthNumber : `0${monthNumber}`;
-      const price = this.calculatePrice(this.checkTokenPrice(months), this.currencies.current);
+      const price = this.appComponent.converter(this.checkTokenPrice(months));
       const object = {
         name: '01/' + monthNumberString,
         value: price
@@ -91,24 +92,5 @@ export class TokenPriceChartComponent implements OnInit, OnDestroy {
       currentPriceUSD = this.appComponent.currentTokenPriceUSD;
     }
     return currentPriceUSD;
-  }
-  public calculatePrice(amountInUsd: number, currency: string) {
-    if (currency === 'usd') {
-      return amountInUsd;
-    }
-    return this.appComponent.calculateAmount(amountInUsd, currency);
-  }
-  private initChart() {
-    this.priceChartData = [
-      {
-        'name': 'Token price',
-        'series': []
-      }
-    ];
-    this.calculatePriceChartData();
-  }
-  public changeCurrency(currency) {
-    this.currencies.current = currency;
-    this.initChart();
   }
 }

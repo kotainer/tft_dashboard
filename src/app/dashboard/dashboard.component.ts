@@ -14,7 +14,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
   public lastBlock;
   public lastBlocks = [];
   public peers = [];
-
   constructor(
     private appComponent: AppComponent,
     private router: Router
@@ -70,21 +69,26 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.router.navigate([`/search/${id}`]);
   }
   public networkPrice() {
-    const computeUnitsTotal = this.getStaticData('computeUnitsTotal');
+    const computeUnitsTotal = this.getStaticTechData('computeUnitsTotal');
     const computeUnitPriceUSD = this.getStaticData('computeUnitPriceUSD');
-    const storageUnitsTotal = this.getStaticData('storageUnitsTotal');
+    const storageUnitsTotal = this.getStaticTechData('storageUnitsTotal');
     const storageUnitPriceUSD = this.getStaticData('storageUnitPriceUSD');
 
     return ( computeUnitsTotal * computeUnitPriceUSD + storageUnitsTotal * storageUnitPriceUSD ) * 12;
   }
-  public calculatedValueInTokens(value) {
-    return value / 1000000000;
+  public totalTokenCapitalization() {
+    const totalSupply = this.getStaticTechData('totalSupply');
+    const tokenPrice = this.getStaticData('currentTokenPriceUSD');
+    return totalSupply * tokenPrice;
   }
   public setBlocksTimeDiff() {
     this.lastBlocks.forEach((block) => {
       block.ago = this.calculateTimeDiff(block.timeStamp);
     });
   }
+  // public tokenConverter(value: number, currency: string) {
+  //   return this.appComponent.tokenConverter(value, currency);
+  // }
   public calculateTimeDiff(timestamp: number) {
     const blockTime = moment.unix(timestamp);
     const blockTimeFormatted = moment.unix(timestamp).format('DD.MM.YYYY');
@@ -95,16 +99,37 @@ export class DashboardComponent implements OnInit, OnDestroy {
       diffText = '1s ago';
     } else if (diff < 60) {
       diffText = `${Math.ceil(diff)}s ago`;
-    } else if (diff > 60) {
+    } else if (diff > 60 && diff <= 3600) {
       diffText = `${Math.ceil(diff / 60) }m ago`;
-    } else if ( diff > 3600) {
+    } else if (diff > 3600 && diff <= 86400) {
       diffText = `${Math.ceil(diff / 3600)}h ago`;
     } else {
       diffText = blockTimeFormatted;
     }
     return diffText;
   }
-  public getStaticData(name: string, convertInThousands?: boolean) {
-    return convertInThousands ? ( this.appComponent[name] / 1000)  : this.appComponent[name];
+  public tokens(value) {
+    return this.appComponent.tokens(value);
+  }
+  public tokenConverter(value: number) {
+    return this.appComponent.tokenConverter(value);
+  }
+  public getStaticData(name: string) {
+    return this.appComponent.converter(this.appComponent[name]);
+  }
+  public symbol(position: string) {
+    return this.appComponent.symbol(position);
+  }
+  public currentCurrencyPair() {
+    return this.appComponent.currentCurrencyPair;
+  }
+  public getStaticTechData(name: string, divideType?: string) {
+    let divisor = 1;
+    if (divideType === 'k') {
+      divisor = 1000;
+    } else if (divideType === 'm') {
+      divisor = 1000000;
+    }
+    return this.appComponent[name] / divisor;
   }
 }

@@ -3,10 +3,24 @@
     <img src="/assets/images/tff-logo-white.svg" alt="">
   </a>
   <div class="price-line blue-text">
-    1 TFT = ${{tokenPrice.usd | number: '1.2-3'}}
-    / €{{tokenPrice.eur | number: '1.1-3'}}
-    / {{tokenPrice.btc | number: '1.1-8'}}Ƀ
+    <span>
+      1 TFT = {{symbol('l')}}
+    </span>
+    <span *ngIf="currentCurrencyPair() !== 'btcUsd'">
+    {{tokenPrice() | number: '1.2-4'}}
+    </span>
+    <span *ngIf="currentCurrencyPair() === 'btcUsd'">
+    &nbsp;{{tokenPrice() | number: '1.2-8'}}
+    </span>
+    {{symbol('r')}}
   </div>
+    
+  <div class="chart-currencies">
+    <div class="tip" *ngFor="let currency of currencies.pairs" [class.active]="currencies.current === currency" (click)="setCurrency(currency)">
+      {{currencies.names[currency]}}
+    </div>
+  </div>
+  
   <div class="search-line">
     <input type="text" placeholder="Search by Txhash/Block" (keyup.enter)="search()" [(ngModel)]="query">
   </div>

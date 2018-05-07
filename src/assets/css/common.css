@@ -26,7 +26,7 @@ body {
   min-height: calc( 100vh - 58.77px - 135.19px);
 }
 .card{
-  padding: 15px 10px;
+  padding: 11.5px 10px;
   background: rgba(0, 0, 0, 0.55);
   border-radius: 8px;
   box-sizing: border-box;
@@ -95,6 +95,10 @@ body {
   color: #17f9be;
   background: rgba(23, 249, 189, 0.18);
 }
+.chip.peach{
+  color: #ffc8a7;
+  background: rgba(255, 201, 167, 0.23);
+}
 .tip{
   padding: 3px 7px;
   border-radius: 18px;
@@ -102,16 +106,16 @@ body {
   font-weight: bolder;
   letter-spacing: 0;
   flex-shrink: 0;
-  color: #8a58ff;
-  border: 1px solid #8a58ff;
+  color: #25dfec;
+  border: 1px solid #25dfec;
   margin-right: 7px;
   cursor: pointer;
   transition: all 0.3s ease; 
 }
 .tip:hover,
 .tip.active{
-  background: #8a58ff;
-  color: white
+  background: #25dfec;
+  color: #121413;
 }
 .row{
   display: flex;
@@ -133,6 +137,11 @@ ngx-charts-chart .ngx-charts .gridline-path{
 ngx-charts-chart ngx-charts-legend.chart-legend,
 ngx-charts-chart ngx-charts-legend.chart-legend>div{
   width: 100% !important;
+}
+ngx-charts-chart .chart-legend{
+  position: absolute;
+  bottom: 20px;
+  left: -5px;
 }
 ngx-charts-chart ngx-charts-legend.chart-legend ul{
   margin-top: 10px;

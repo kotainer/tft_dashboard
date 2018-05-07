@@ -32,7 +32,14 @@ header .search-line input{
 }
 header .price-line{
   font-weight: bold;
-  font-size: 23px;
+  display: flex;
+  font-size: 25px;
+  justify-content: center;
+  min-width: 250px;
+}
+header .chart-currencies{
+  display: flex;
+  justify-content: center;
 }
 @media only screen and (max-width : 1099px) {
   header .logo{
@@ -42,8 +49,15 @@ header .price-line{
   }
   header .price-line{
     width: 100%;
+    min-width: 100%;
+  }
+  header .chart-currencies{
+    width: 100%;
     text-align: center;
   }
+  header .chart-currencies{
+    padding-top: 7px;
+  }  
   header .search-line{
     position: absolute;
     top: 1vw;
@@ -66,14 +80,10 @@ header .price-line{
     width: 100%;
   } 
   header .price-line{
-    font-size: 17px;
+    font-size: 19px;
   }
+  header .chart-currencies{
+    padding-top: 3px;
+  }  
 }
 /*580*/
-
-@media only screen and (max-width : 380px) {
-  header .price-line{
-    font-size: 13px;
-  }
-}
-/*380*/
