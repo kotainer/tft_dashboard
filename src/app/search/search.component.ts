@@ -56,76 +56,72 @@ export class SearchComponent implements OnInit {
   public isAddressCoinOuputs(transactions: Array<any>) {
     let result = false;
     if (transactions !== null) {
-      for (let i = 0; i < transactions.length; i++) {
-        if (transactions[i].coinoutputids != null && transactions[i].coinoutputids.length !== 0) {
-          // Scan for a relevant siacoin output.
-          for (let j = 0; j < transactions[i].coinoutputids.length; j++) {
-            if (transactions[i].rawtransaction.data.coinoutputs[j].unlockhash === this.id) {
+      transactions.map((transaction, i) => {
+        if (transaction.coinoutputids != null && transaction.coinoutputids.length !== 0) {
+          transaction.coinoutputids.map((coinoutputid, j) => {
+            if (transaction.rawtransaction.data.coinoutputs[j].unlockhash === this.id) {
               result = true;
             }
-          }
+          });
         }
-      }
+      });
     }
     return result;
   }
   public isAddressMinerPayouts(item: any) {
     let result = false;
     if (item.blocks != null && item.blocks.length !== 0) {
-      for (let i = 0; i < item.blocks.length; i++) {
-        for (let j = 0; j < item.blocks[i].minerpayoutids.length; j++) {
-          if (item.blocks[i].rawblock.minerpayouts[j].unlockhash === this.id) {
+      item.blocks.map((block, i) => {
+        block.minerpayoutids.map((minerpayoutid, j) => {
+          if (block.rawblock.minerpayouts[j].unlockhash === this.id) {
             result = true;
           }
-        }
-      }
+        });
+      });
     }
     return result;
   }
   public isAddressBlockstakeOutputs(transactions: Array<any>) {
     let result = false;
     if (transactions !== null) {
-      for (let i = 0; i < transactions.length; i++) {
-        const blockstakeoutputids = transactions[i].blockstakeoutputids;
+      transactions.map((transaction, i) => {
+        const blockstakeoutputids = transaction.blockstakeoutputids;
         if (blockstakeoutputids != null && blockstakeoutputids.length !== 0) {
-          for (let j = 0; j < blockstakeoutputids.length; j++) {
-            this.sfoids.push(blockstakeoutputids[j]);
-            this.sfoidMatches.push(false);
-            if (transactions[i].rawtransaction.data.blockstakeoutputs[j].unlockhash === this.id) {
+          blockstakeoutputids.map((blockstakeoutputid, j) => {
+            if (transaction.rawtransaction.data.blockstakeoutputs[j].unlockhash === this.id) {
               result = true;
             }
-          }
+          });
         }
-        // if (!transactions[i].rawtransaction.data.blockstakeinputs) {
-        //   return;
-        // }
-        // const blockstakeinputs = transactions[i].rawtransaction.data.blockstakeinputs;
-        // if (blockstakeinputs !== null && blockstakeinputs.length !== 0) {
-        //   for (let j = 0; j < blockstakeinputs.length; j++) {
-
-        //     for (let k = 0; k < this.sfoids.length; k++) {
-        //       if (blockstakeinputs[j].parentid === this.sfoids[k]) {
-        //         this.sfoidMatches[k] = true;
-        //       }
-        //     }
-        //   }
-        // }
-      }
+      });
     }
     return result;
   }
   public hasBeenSpent(transactions: any, value: string, typeName: string ) {
     let result = 'No';
     // const type = typeName === 'coin' ? 'coininputoutputs' : 'blockstakeoutputids';
-    transactions.map( transaction => {
-      if (transaction.coininputoutputs !== null ) {
-        transaction.coininputoutputs.filter((el) => {
-          if (el.value === value && el.unlockhash === this.id) {
-            result = 'Yes';
-          }
-        });
-      }
-    });
+    if (typeName === 'coin') {
+      transactions.map(transaction => {
+        if (transaction.coininputoutputs !== null) {
+          transaction.coininputoutputs.filter((el) => {
+            if (el.value === value && el.unlockhash === this.id) {
+              result = 'Yes';
+            }
+          });
+        }
+      });
+    } else {
+      result = 'Yes';
+      // transactions.map(transaction => {
+      //   if (transaction.coininputoutputs !== null) {
+      //     transaction.coininputoutputs.filter((el) => {
+      //       if (el.value === value && el.unlockhash === this.id) {
+      //         result = 'Yes';
+      //       }
+      //     });
+      //   }
+      // });
+    }
     return result;
   }
 }
