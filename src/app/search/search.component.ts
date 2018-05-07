@@ -51,4 +51,43 @@ export class SearchComponent implements OnInit {
   public currentCurrencyPair() {
     return this.appComponent.currentCurrencyPair;
   }
+  public isAddressCoinOuputs(transactions: Array<any>) {
+    let result = false;
+    for (let i = 0; i < transactions.length; i++) {
+      if (transactions[i].coinoutputids != null && transactions[i].coinoutputids.length !== 0) {
+        // Scan for a relevant siacoin output.
+        for (let j = 0; j < transactions[i].coinoutputids.length; j++) {
+          if (transactions[i].rawtransaction.data.coinoutputs[j].unlockhash === this.id) {
+            result = true;
+          }
+        }
+      }
+    }
+    return result;
+  }
+  public isAddressMinerPayouts(item: any) {
+    let result = false;
+    if (item.blocks != null && item.blocks.length !== 0) {
+      for (let i = 0; i < item.blocks.length; i++) {
+        for (let j = 0; j < item.blocks[i].minerpayoutids.length; j++) {
+          if (item.blocks[i].rawblock.minerpayouts[j].unlockhash === this.id) {
+            result = true;
+          }
+        }
+      }
+    }
+    return result;
+  }
+  public isAddressBlockstakeOutputs(transactions: Array<any>) {
+    let result = false;
+    for (let i = 0; i < transactions.length; i++) {
+      const blockstakeinputs = transactions[i].rawtransaction.data.blockstakeinputs;
+      if (blockstakeinputs != null && blockstakeinputs.length !== 0) {
+        for (let j = 0; j < blockstakeinputs.length; j++) {
+          result = true;
+        }
+      }
+    }
+    return result;
+  }
 }

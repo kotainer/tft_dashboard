@@ -95,6 +95,10 @@ body {
   color: #17f9be;
   background: rgba(23, 249, 189, 0.18);
 }
+.chip.peach{
+  color: #ffc8a7;
+  background: rgba(255, 201, 167, 0.23);
+}
 .tip{
   padding: 3px 7px;
   border-radius: 18px;
