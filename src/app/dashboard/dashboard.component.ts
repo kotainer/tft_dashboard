@@ -77,7 +77,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     return ( computeUnitsTotal * computeUnitPriceUSD + storageUnitsTotal * storageUnitPriceUSD ) * 12;
   }
   public totalTokenCapitalization() {
-    const totalSupply = this.getStaticData('totalSupply');
+    const totalSupply = this.getStaticTechData('totalSupply');
     const tokenPrice = this.getStaticData('currentTokenPriceUSD');
     return totalSupply * tokenPrice;
   }
