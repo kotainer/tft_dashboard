@@ -123,7 +123,7 @@
               {{transaction.id}}
             </a>
           </div>
-          <div class="row" *ngIf="transaction.rawtransaction.data.coininputs">
+          <div class="row" *ngIf="transaction.rawtransaction.data.coininputs && transaction.rawtransaction.data.coininputs.length > 0">
             <div class="row-title">
               Coin Input Count
             </div>
@@ -131,7 +131,7 @@
               {{transaction.rawtransaction.data.coininputs.length}}
             </div>
           </div>
-          <div class="row" *ngIf="transaction.rawtransaction.data.coinoutputs">
+          <div class="row" *ngIf="transaction.rawtransaction.data.coinoutputs && transaction.rawtransaction.data.coinoutputs.length > 0">
             <div class="row-title">
               Coin Output Count
             </div>
@@ -139,7 +139,7 @@
               {{transaction.rawtransaction.data.coinoutputs.length}}
             </div>
           </div>
-          <div class="row" *ngIf="transaction.rawtransaction.data.blockstakeinputs">
+          <div class="row" *ngIf="transaction.rawtransaction.data.blockstakeinputs && transaction.rawtransaction.data.blockstakeinputs.length > 0">
             <div class="row-title">
               BlockStake Input Count
             </div>
@@ -147,7 +147,7 @@
               {{transaction.rawtransaction.data.blockstakeinputs.length}}
             </div>
           </div>
-          <div class="row" *ngIf="transaction.rawtransaction.data.blockstakeoutputs">
+          <div class="row" *ngIf="transaction.rawtransaction.data.blockstakeoutputs && transaction.rawtransaction.data.blockstakeoutputs.length > 0">
             <div class="row-title">
               BlockStake Output Count
             </div>
@@ -182,7 +182,7 @@
             {{item.transaction.id}}
           </div>
         </div>
-        <div class="row" *ngIf="item.transaction.rawtransaction.data.coininputs">
+        <div class="row" *ngIf="item.transaction.rawtransaction.data.coininputs && item.transaction.rawtransaction.data.coininputs.length > 0">
           <div class="row-title">
             Coin Input Count
           </div>
@@ -216,7 +216,7 @@
         </div>
       </div>
       <!-- Coin Inputs -->
-      <div *ngIf="item.transaction.rawtransaction.data.coininputs">
+      <div *ngIf="item.transaction.rawtransaction.data.coininputs && item.transaction.rawtransaction.data.coininputs.length > 0">
         <div class="layer"></div>
         <div class="page-subtitle">
           Coin Inputs
@@ -237,8 +237,8 @@
             <div class="row-title">
               Address
             </div>
-            <a class="row-data bold" (click)="newSearch(item.transaction.coininputoutputs[i].unlockhash)">
-              {{item.transaction.coininputoutputs[i].unlockhash}}
+            <a class="row-data bold" (click)="newSearch(item.transaction.coininputoutputs[i].condition.data.unlockhash)">
+              {{item.transaction.coininputoutputs[i].condition.data.unlockhash}}
             </a>
           </div>
           <div class="row">
@@ -295,7 +295,7 @@
         </div>
       </div>
       <!-- Coin Outputs -->
-      <div *ngIf="item.transaction.rawtransaction.data.coinoutputs">
+      <div *ngIf="item.transaction.rawtransaction.data.coinoutputs && item.transaction.rawtransaction.data.coinoutputs.length > 0">
         <div class="layer"></div>
         <div class="page-subtitle">
           Coin Outputs
@@ -339,7 +339,7 @@
       </div>
 
       <!-- BlockStake Inputs -->
-      <div *ngIf="item.transaction.rawtransaction.data.blockstakeinputs">
+      <div *ngIf="item.transaction.rawtransaction.data.blockstakeinputs && item.transaction.rawtransaction.data.blockstakeinputs.length > 0">
         <div class="layer"></div>
         <div class="page-subtitle">
           BlockStake Inputs
@@ -360,8 +360,8 @@
             <div class="row-title">
               Address
             </div>
-            <a class="row-data bold" (click)="newSearch(item.transaction.blockstakeinputoutputs[i].unlockhash)">
-              {{item.transaction.blockstakeinputoutputs[i].unlockhash}}
+            <a class="row-data bold" (click)="newSearch(item.transaction.blockstakeinputoutputs[i].condition.data.unlockhash)">
+              {{item.transaction.blockstakeinputoutputs[i].condition.data.unlockhash}}
             </a>
           </div>
           <div class="row">
@@ -407,7 +407,7 @@
           </div>
         </div>
       </div>
-      <div *ngIf="item.transaction.rawtransaction.data.blockstakeoutputs">
+      <div *ngIf="item.transaction.rawtransaction.data.blockstakeoutputs && item.transaction.rawtransaction.data.blockstakeoutputs.length > 0">
         <div class="layer"></div>
         <div class="page-subtitle">
           BlockStake Outputs
