@@ -104,7 +104,7 @@ export class SearchComponent implements OnInit {
       transactions.map(transaction => {
         if (transaction[type] !== null) {
           transaction[type].map((el) => {
-            if (el.value === value && el.unlockhash === this.id) {
+            if (el.value === value && el.condition.data.unlockhash === this.id) {
               result = 'Yes';
             }
           });

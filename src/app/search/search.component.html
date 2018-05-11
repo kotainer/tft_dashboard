@@ -237,7 +237,7 @@
             <div class="row-title">
               Address
             </div>
-            <a class="row-data bold" (click)="newSearch(item.transaction.coininputoutputs[i].unlockhash)">
+            <a class="row-data bold" (click)="newSearch(item.transaction.coininputoutputs[i].condition.data.unlockhash)">
               {{item.transaction.coininputoutputs[i].condition.data.unlockhash}}
             </a>
           </div>
@@ -360,7 +360,7 @@
             <div class="row-title">
               Address
             </div>
-            <a class="row-data bold" (click)="newSearch(item.transaction.blockstakeinputoutputs[i].unlockhash)">
+            <a class="row-data bold" (click)="newSearch(item.transaction.blockstakeinputoutputs[i].condition.data.unlockhash)">
               {{item.transaction.blockstakeinputoutputs[i].condition.data.unlockhash}}
             </a>
           </div>
