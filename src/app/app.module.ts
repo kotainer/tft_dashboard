@@ -26,6 +26,7 @@ import { NodesMapsComponent } from './dashboard/nodes-maps/nodes-maps.component'
 
 import { ExplorerComponent } from './explorer/explorer.component';
 import { AddressExplorerComponent } from './explorer/address-explorer/address-explorer.component';
+import { LoaderComponent } from './loader/loader.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { AddressExplorerComponent } from './explorer/address-explorer/address-ex
     UnitPriceChartComponent,
     NodesMapsComponent,
     ExplorerComponent,
-    AddressExplorerComponent
+    AddressExplorerComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,

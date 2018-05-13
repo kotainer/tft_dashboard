@@ -1,0 +1,204 @@
+.wrapper {
+  width: 100vw;
+  height: calc( 100vh - 66.77px);
+  position: relative;
+  margin: auto;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.35);
+/*   
+  background: #0d1019;
+  background: -moz-linear-gradient(-45deg, #0d1019 0%, #161b29 100%);
+  background: -webkit-linear-gradient(-45deg, #0d1019 0%, #161b29 100%);
+  background: linear-gradient(135deg, #0d1019 0%, #161b29 100%);
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#0d1019', endColorstr='#161b29', GradientType=1); */
+}
+
+/* Compressing bars style */
+
+.bars-common {
+  height: 50px;
+  max-height: 100%;
+  width: 12.5px;
+  margin: auto;
+  position: absolute;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.bar-one {
+  left: 0;
+  right: 50px;
+  top: 0;
+  bottom: 0;
+  box-shadow: 0 0 0 1.25px cyan, 0 0 12.5px 0 cyan, inset 0 0 6.25px 0 cyan;
+}
+
+.bar-two {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  box-shadow: 0 0 0 1.25px cyan, 0 0 12.5px 0 cyan, inset 0 0 6.25px 0 cyan;
+}
+
+.bar-three {
+  left: 50px;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  box-shadow: 0 0 0 1.25px cyan, 0 0 12.5px 0 cyan, inset 0 0 6.25px 0 cyan;
+}
+
+/* Rotating squares style */
+
+.squares-common {
+  height: 100px;
+  max-height: 100%;
+  width: 100px;
+  margin: auto;
+  position: absolute;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 0%;
+}
+
+.square-one {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  box-shadow: 0 0 0 1.25px cyan, 0 0 12.5px 0 cyan, inset 0 0 6.25px 0 cyan;
+}
+
+.square-two {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  box-shadow: 0 0 0 1.25px cyan, 0 0 12.5px 0 cyan, inset 0 0 6.25px 0 cyan;
+}
+
+/* Animation */
+/* Compressing bars animation */
+
+.bar-one {
+  animation: barOne 1s .33s ease infinite;
+  -moz-animation: barOne 1s .33s ease infinite;
+  /* Firefox */
+  -webkit-animation: barOne 1s .33s ease infinite;
+  /* Safari and Chrome */
+  -o-animation: barOne 1s .33s ease infinite;
+  /* Opera */
+}
+
+@keyframes barOne {
+  0%,
+  100% {
+    box-shadow: 0 0 0 1.25px cyan, 0 0 12.5px 0 cyan, inset 0 0 6.25px 0 cyan;
+  }
+  50% {
+    height: 26.25px;
+    box-shadow: 0 0 0 1.25px magenta, 0 0 12.5px 0 magenta, inset 0 0 6.25px 0 magenta;
+  }
+}
+
+.bar-two {
+  animation: barTwo 1s .66s ease infinite;
+  -moz-animation: barTwo 1s .66s ease infinite;
+  /* Firefox */
+  -webkit-animation: barTwo 1s .66s ease infinite;
+  /* Safari and Chrome */
+  -o-animation: barTwo 1s .66s ease infinite;
+  /* Opera */
+}
+
+@keyframes barTwo {
+  0%,
+  100% {
+    box-shadow: 0 0 0 1.25px cyan, 0 0 12.5px 0 cyan, inset 0 0 6.25px 0 cyan;
+  }
+  50% {
+    height: 26.25px;
+    box-shadow: 0 0 0 1.25px magenta, 0 0 12.5px 0 magenta, inset 0 0 6.25px 0 magenta;
+  }
+}
+
+.bar-three {
+  animation: barThree 1s .99s ease infinite;
+  -moz-animation: barThree 1s .99s ease infinite;
+  /* Firefox */
+  -webkit-animation: barThree 1s .99s ease infinite;
+  /* Safari and Chrome */
+  -o-animation: barThree 1s .99s ease infinite;
+  /* Opera */
+}
+
+@keyframes barThree {
+  0%,
+  100% {
+    box-shadow: 0 0 0 1.25px cyan, 0 0 12.5px 0 cyan, inset 0 0 6.25px 0 cyan;
+  }
+  50% {
+    height: 26.25px;
+    box-shadow: 0 0 0 1.25px magenta, 0 0 12.5px 0 magenta, inset 0 0 6.25px 0 magenta;
+  }
+}
+
+/* Rotating squares animation */
+
+.square-one {
+  animation: squareOne 4s .99s ease infinite;
+  -moz-animation: squareOne 4s .99s ease infinite;
+  /* Firefox */
+  -webkit-animation: squareOne 4s .99s ease infinite;
+  /* Safari and Chrome */
+  -o-animation: squareOne 4s .99s ease infinite;
+  /* Opera */
+}
+
+@keyframes squareOne {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-180deg);
+  }
+}
+
+.square-two {
+  animation: squareTwo 4s .99s ease infinite;
+  -moz-animation: squareTwo 4s .99s ease infinite;
+  /* Firefox */
+  -webkit-animation: squareTwo 4s .99s ease infinite;
+  /* Safari and Chrome */
+  -o-animation: squareTwo 4s .99s ease infinite;
+  /* Opera */
+}
+
+@keyframes squareTwo {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(180deg);
+  }
+}
+@media only screen and (max-width : 1099px) {
+  .wrapper{
+    height: calc(100vh - 134.77px);
+  }
+}
+/*1099px*/
+
+@media only screen and (max-width : 580px) {
+  .wrapper{
+    height: calc(100vh - 161.77px);
+  }
+}
+/*580*/
