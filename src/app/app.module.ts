@@ -8,6 +8,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { SimpleNotificationsModule } from 'angular2-notifications';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { SocketService } from '../services/socket.service';
 import { DataService } from '../services/data.service';
@@ -23,6 +24,9 @@ import { TokenPriceChartComponent } from './dashboard/token-price-chart/token-pr
 import { UnitPriceChartComponent } from './dashboard/unit-price-chart/unit-price-chart.component';
 import { NodesMapsComponent } from './dashboard/nodes-maps/nodes-maps.component';
 
+import { ExplorerComponent } from './explorer/explorer.component';
+import { AddressExplorerComponent } from './explorer/address-explorer/address-explorer.component';
+
 
 @NgModule({
   declarations: [
@@ -34,7 +38,9 @@ import { NodesMapsComponent } from './dashboard/nodes-maps/nodes-maps.component'
     PageNotFoundComponent,
     TokenPriceChartComponent,
     UnitPriceChartComponent,
-    NodesMapsComponent
+    NodesMapsComponent,
+    ExplorerComponent,
+    AddressExplorerComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +51,7 @@ import { NodesMapsComponent } from './dashboard/nodes-maps/nodes-maps.component'
     LeafletModule.forRoot(),
     SimpleNotificationsModule.forRoot(),
     HttpClientModule,
+    NgxPaginationModule
   ],
   providers: [
     SocketService,
