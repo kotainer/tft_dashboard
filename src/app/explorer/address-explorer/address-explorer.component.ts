@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AppComponent } from '../../app.component';
 
 @Component({
@@ -10,6 +11,7 @@ export class AddressExplorerComponent implements OnInit {
   @Input() public item;
   @Input() public id;
   constructor(
+    public router: Router,
     private appComponent: AppComponent,
   ) { }
 
@@ -19,6 +21,9 @@ export class AddressExplorerComponent implements OnInit {
   public totalItems = this.collection.length;
 
   ngOnInit() {
+  }
+  public newSearch(id) {
+    this.router.navigate([`/search/${id}`]);
   }
   public tokens(value) {
     return this.appComponent.tokens(value);
