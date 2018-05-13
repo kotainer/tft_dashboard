@@ -1,6 +1,6 @@
 .container{
-  padding-top: 35px;
-  padding-bottom: 15px;
+  margin-top: 35px;
+  margin-bottom: 15px;
 }
 .search-line{
   margin-top: 15vh;
@@ -18,8 +18,9 @@
   margin-top: 15px;
   padding: 0 5px;
 }
-.card{
+.container .card{
   margin-top: 15px;
+  background: rgba(255,255,255,0.055)
 }
 .card .card-title{
   font-size: 17px;

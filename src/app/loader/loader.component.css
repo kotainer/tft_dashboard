@@ -4,15 +4,13 @@
   position: relative;
   margin: auto;
   overflow: hidden;
+  background: rgba(0, 0, 0, 0.35);
+/*   
   background: #0d1019;
-  /* Old browsers */
   background: -moz-linear-gradient(-45deg, #0d1019 0%, #161b29 100%);
-  /* FF3.6-15 */
   background: -webkit-linear-gradient(-45deg, #0d1019 0%, #161b29 100%);
-  /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(135deg, #0d1019 0%, #161b29 100%);
-  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#0d1019', endColorstr='#161b29', GradientType=1);
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#0d1019', endColorstr='#161b29', GradientType=1); */
 }
 
 /* Compressing bars style */
