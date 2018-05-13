@@ -23,7 +23,7 @@ body {
   margin-right: auto;
 }
 .inner-container{
-  min-height: calc( 100vh - 58.77px - 135.19px);
+  min-height: calc( 100vh - 66.77px - 135.19px);
 }
 .card{
   padding: 11.5px 10px;
@@ -69,7 +69,7 @@ body {
   color: #ffc8a7;
 }
 .blue-text{
-  color: #25dfec;
+  color: cyan;
 }
 .green-text{
   color: #80ffb5;
@@ -106,15 +106,15 @@ body {
   font-weight: bolder;
   letter-spacing: 0;
   flex-shrink: 0;
-  color: #25dfec;
-  border: 1px solid #25dfec;
+  color: cyan;
+  border: 1px solid cyan;
   margin-right: 7px;
   cursor: pointer;
   transition: all 0.3s ease; 
 }
 .tip:hover,
 .tip.active{
-  background: #25dfec;
+  background: cyan;
   color: #121413;
 }
 .row{
@@ -201,12 +201,22 @@ simple-notification .simple-notification.success{
   background: rgba(0, 0, 0, 0.35);
 }
 
+@media only screen and (max-width : 1099px) {
+  .inner-container{
+    min-height: calc( 100vh - 134.77px - 135.19px);
+  }
+}
+/*1099px*/
+
 @media only screen and (max-width : 560px) {
   .big-num{
   font-size: 27px;
   }
   .middle-num{
     font-size: 19px;
+  }
+  .inner-container{
+    min-height: calc( 100vh - 161.77px - 135.19px);
   }
 }
 /*560*/
