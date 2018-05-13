@@ -1,0 +1,221 @@
+<!-- <div *ngFor="let item of collection | paginate: { id: 'foo', itemsPerPage: 5, currentPage: currentPage, totalItems: '100' }">
+  {{item}}
+</div>
+<div class="flex-ceneter">
+  <pagination-controls id="foo" (pageChange)="pageChanged($event)"></pagination-controls>
+</div>
+ -->
+<!-- Coin Output Appearances -->
+<ng-container *ngIf="isAddressCoinOuputs(item.transactions)">
+  <div class="layer"></div>
+  <div class="flex-center align-end flex-wrap">
+    <div class="page-subtitle">
+      Coin Output Appearances
+    </div>
+    <div class="layer"></div>
+    <a class="chip peach" (click)="item.coinoutputsHidden = !item.coinoutputsHidden">
+      {{item.coinoutputsHidden ? 'Show all' : 'Hide all'}}
+    </a>
+  </div>
+  <div *ngFor="let transaction of item.transactions; let i = index;">
+    <ng-container *ngFor="let coinoutputid of transaction.coinoutputids; let j = index">
+
+      <div class="card" *ngIf="!item.coinoutputsHidden && transaction.rawtransaction.data.coinoutputs[j].unlockhash === id">
+        <div class="row">
+          <div class="row-title">
+            Height
+          </div>
+          <a class="row-data bold" (click)="newSearch(transaction.height)">
+            {{transaction.height}}
+          </a>
+        </div>
+        <div class="row">
+          <div class="row-title">
+            Parent Transaction
+          </div>
+          <a class="row-data bold" (click)="newSearch(transaction.id)">
+            {{transaction.id}}
+          </a>
+        </div>
+        <div class="row">
+          <div class="row-title">
+            ID
+          </div>
+          <div class="row-data">
+            {{coinoutputid}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="row-title">
+            Address
+          </div>
+          <div class="row-data">
+            {{id}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="row-title">
+            Value
+          </div>
+          <div class="row-data">
+            {{tokens(transaction.rawtransaction.data.coinoutputs[j].value) | number : '1.0-8'}} TFT&nbsp;
+            <span class="flex">
+              ({{symbol('l')}}
+              <span *ngIf="currentCurrencyPair() !== 'btcUsd'">
+                {{tokenConverter(transaction.rawtransaction.data.coinoutputs[j].value) | number: '1.2-3'}}
+              </span>
+              <span *ngIf="currentCurrencyPair() === 'btcUsd'">
+                {{tokenConverter(transaction.rawtransaction.data.coinoutputs[j].value) | number: '1.2-8'}}
+              </span>
+              {{symbol('r')}})
+            </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="row-title">
+            Has Been Spent
+          </div>
+          <div class="row-data">
+            {{hasBeenSpent(item.transactions, transaction.rawtransaction.data.coinoutputs[j].value, 'coin')}}
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+  </div>
+</ng-container>
+<!-- Miner Payout Appearances -->
+<ng-container *ngIf="isAddressMinerPayouts(item)">
+  <div class="layer"></div>
+  <div class="flex-center align-end flex-wrap">
+    <div class="page-subtitle">
+      Miner Payout Appearances
+    </div>
+    <div class="layer"></div>
+    <a class="chip peach" (click)="item.minerpayoutputsHidden = !item.minerpayoutputsHidden">
+      {{item.minerpayoutputsHidden ? 'Show all' : 'Hide all'}}
+    </a>
+  </div>
+  <div *ngFor="let block of item.blocks; let i = index">
+    <ng-container *ngFor="let minerpayoutid of block.minerpayoutids; let j = index">
+
+      <div class="card" *ngIf="block.rawblock.minerpayouts[j].unlockhash === id && !item.minerpayoutputsHidden">
+        <div class="row">
+          <div class="row-title">
+            Parent Block ID
+          </div>
+          <a class="row-data bold" (click)="newSearch(block.blockid)">
+            {{block.blockid}}
+          </a>
+        </div>
+        <div class="row">
+          <div class="row-title">
+            Miner Payout ID
+          </div>
+          <a class="row-data">
+            {{minerpayoutid}}
+          </a>
+        </div>
+        <div class="row">
+          <div class="row-title">
+            Payout Address
+          </div>
+          <div class="row-data">
+            {{id}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="row-title">
+            Value
+          </div>
+          <div class="row-data">
+            {{tokens(block.rawblock.minerpayouts[j].value) | number : '1.0-8'}} TFT&nbsp;
+            <span class="flex">
+              ({{symbol('l')}}
+              <span *ngIf="currentCurrencyPair() !== 'btcUsd'">
+                {{tokenConverter(block.rawblock.minerpayouts[j].value) | number: '1.2-3'}}
+              </span>
+              <span *ngIf="currentCurrencyPair() === 'btcUsd'">
+                {{tokenConverter(block.rawblock.minerpayouts[j].value) | number: '1.2-8'}}
+              </span>
+              {{symbol('r')}})
+            </span>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+  </div>
+</ng-container>
+<!-- Blockstake Output Appearances -->
+<ng-container *ngIf="isAddressBlockstakeOutputs(item.transactions)">
+  <div class="layer"></div>
+  <div class="flex-center align-end flex-wrap">
+    <div class="page-subtitle">
+      Blockstake Output Appearances
+    </div>
+    <div class="layer"></div>
+    <a class="chip peach" (click)="item.blockstakeoutputsHidden = !item.blockstakeoutputsHidden">
+      {{item.blockstakeoutputsHidden ? 'Show all' : 'Hide all'}}
+    </a>
+  </div>
+  <div *ngFor="let transaction of item.transactions; let i = index">
+    <ng-container *ngFor="let blockstakeoutputid of transaction.blockstakeoutputids; let j = index">
+      <div class="card" *ngIf="!item.blockstakeoutputsHidden && transaction.rawtransaction.data.blockstakeoutputs[j].unlockhash === id">
+        <div class="row">
+          <div class="row-title">
+            Height
+          </div>
+          <a class="row-data bold" (click)="newSearch(transaction.height)">
+            {{transaction.height}}
+          </a>
+        </div>
+        <div class="row">
+          <div class="row-title">
+            Parent Transaction
+          </div>
+          <a class="row-data bold" (click)="newSearch(transaction.id)">
+            {{transaction.id}}
+          </a>
+        </div>
+        <div class="row">
+          <div class="row-title">
+            ID
+          </div>
+          <div class="row-data">
+            {{blockstakeoutputid}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="row-title">
+            Address
+          </div>
+          <div class="row-data">
+            {{id}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="row-title">
+            Value
+          </div>
+          <div class="row-data">
+            <div class="row-data">
+              {{transaction.rawtransaction.data.blockstakeoutputs[j].value}} blockstakes
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="row-title">
+            Has Been Spent
+          </div>
+          <div class="row-data">
+            <div class="row-data">
+              {{hasBeenSpent(item.transactions, transaction.rawtransaction.data.blockstakeoutputs[j].value, 'blockstake')}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+  </div>
+</ng-container>
